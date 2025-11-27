@@ -11,74 +11,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <style>
+        /* ----------------------------------------------------
+   CORE THEME VARIABLES
+---------------------------------------------------- */
         :root {
             --primary: #00e0ff;
-            /* Bright Cyan/Blue */
             --secondary: #a855f7;
-            /* Purple for depth */
             --background: #050505;
-            /* Deep Black */
             --card-bg: rgba(20, 20, 20, 0.6);
-            /* Glassmorphic Dark */
             --text-light: #f3f4f6;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background);
+            font-family: "Inter", sans-serif;
+            background: var(--background);
             color: var(--text-light);
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* --- Custom Background Effects --- */
-
-        /* 1. Grain/Noise Texture Overlay */
+        /* ----------------------------------------------------
+   SUBTLE NOISE TEXTURE + VIGNETTE
+---------------------------------------------------- */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: 50;
-            /* Top layer for texture */
-            opacity: 0.04;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAADAZ2w2AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAVUExURQAAAP///4GBgaysrOzs7P39/T+rY+QAAAAHdFJOUxuTJTQ/UaT8gN9lAAAAKElEQVR42mNkIAIYRGYGBnFwABrXGjI8gI2gZJAUZJkZAA00FhAWAJ8jBqK6hFf8AAAAAElFTkSuQmCC');
+            opacity: 0.03;
             pointer-events: none;
+            background-image: url("data:image/png;base64,iVBOR...");
         }
 
-        /* 2. Vignette Overlay (Focus attention) */
         body::after {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -5;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
             pointer-events: none;
+            background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
         }
 
-        /* 3. Gradient Glows */
+        /* ----------------------------------------------------
+   BACKGROUND GRADIENT BLOBS
+---------------------------------------------------- */
         #gradient-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            inset: 0;
             z-index: -20;
-            overflow: hidden;
+            pointer-events: none;
         }
 
         .gradient-blob {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.25;
             filter: blur(80px);
-            animation: gradientMove 25s infinite alternate ease-in-out;
+            opacity: 0.22;
+            animation: gradientMove 22s infinite alternate ease-in-out;
         }
 
         #blob-cyan {
@@ -95,7 +84,7 @@
             background: var(--secondary);
             bottom: -15%;
             right: -10%;
-            animation-delay: -5s;
+            animation-delay: -4s;
         }
 
         @keyframes gradientMove {
@@ -104,24 +93,33 @@
             }
 
             50% {
-                transform: translate(10vw, 5vh) scale(1.1);
+                transform: translate(8vw, 6vh) scale(1.12);
             }
 
             100% {
-                transform: translate(-5vw, -5vh) scale(0.95);
+                transform: translate(-6vw, -5vh) scale(0.96);
             }
         }
 
-        /* --- Scroll Reveal Animations --- */
+        /* ----------------------------------------------------
+   SCROLL FADE-IN
+---------------------------------------------------- */
         .fade-in-on-scroll {
             opacity: 0;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            transform: translateY(30px);
+            transform: translateY(25px);
+            transition: opacity .7s ease-out, transform .7s ease-out;
         }
 
         .is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* ----------------------------------------------------
+   HERO SIMPLE FADE-IN
+---------------------------------------------------- */
+        .hero-animate {
+            animation: fadeIn 1s ease-out both;
         }
 
         @keyframes fadeIn {
@@ -136,125 +134,115 @@
             }
         }
 
-        .hero-animate {
-            animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        /* --- Component Styling --- */
-
-        /* Titles */
+        /* ----------------------------------------------------
+   TITLES
+---------------------------------------------------- */
         .section-title {
-            position: relative;
             display: inline-block;
-            margin-bottom: 0.5rem;
             font-weight: 900;
-            letter-spacing: 0.05em;
+            letter-spacing: .05em;
+            margin-bottom: .5rem;
             text-transform: uppercase;
             background: linear-gradient(to right, #fff, #a5f3fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
         }
 
         .section-title::after {
-            content: '';
+            content: "";
             position: absolute;
             bottom: -8px;
             left: 0;
             width: 60%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), transparent);
             border-radius: 99px;
+            background: linear-gradient(90deg, var(--primary), transparent);
         }
 
-        /* Nav Link Hover */
+        /* ----------------------------------------------------
+   NAV LINKS
+---------------------------------------------------- */
         .nav-link {
             position: relative;
             font-weight: 500;
-            letter-spacing: 0.02em;
         }
 
         .nav-link::after {
-            content: '';
+            content: "";
             position: absolute;
-            width: 0;
             height: 2px;
             bottom: -4px;
             left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+            background: var(--primary);
+            transition: width .3s ease;
         }
 
         .nav-link:hover::after {
             width: 100%;
         }
 
-        /* Glassmorphic Cards */
+        /* ----------------------------------------------------
+   GLASS CARDS
+---------------------------------------------------- */
         .glass-card {
-            background-color: var(--card-bg);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
         }
 
-        /* Project Card Specifics */
+        /* PROJECT CARD */
         .project-card {
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
-            background-color: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 224, 255, 0.1);
-            perspective: 1000px;
-            transform-style: preserve-3d;
-            overflow: hidden;
+            border: 1px solid rgba(0, 224, 255, 0.15);
+            transition: .35s;
+            background: var(--card-bg);
         }
 
         .project-card:hover {
-            box-shadow: 0 20px 50px -10px rgba(0, 224, 255, 0.2), 0 0 20px rgba(0, 224, 255, 0.1) inset;
-            border-color: rgba(0, 224, 255, 0.5);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 224, 255, 0.15);
         }
 
-        /* Footer Lines */
-        .wire-line {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            margin: 2rem 0;
-        }
-
-        /* Skill Tags */
+        /* ----------------------------------------------------
+   SKILL TAGS
+---------------------------------------------------- */
         .skill-tag {
-            background-color: rgba(0, 224, 255, 0.05);
+            background: rgba(0, 224, 255, 0.05);
             border: 1px solid rgba(0, 224, 255, 0.2);
             color: var(--primary);
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: .25s;
         }
 
         .skill-tag:hover {
-            background-color: rgba(0, 224, 255, 0.15);
-            box-shadow: 0 0 15px rgba(0, 224, 255, 0.3);
-            transform: translateY(-2px);
+            background: rgba(0, 224, 255, 0.15);
             border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        /* Contact Items */
+        /* ----------------------------------------------------
+   CONTACT ITEMS
+---------------------------------------------------- */
         .contact-item {
-            transition: transform 0.3s ease;
+            transition: transform .25s;
         }
 
         .contact-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
         .contact-icon-wrapper {
-            transition: color 0.3s ease, filter 0.3s ease;
+            transition: .25s;
         }
 
         .contact-item:hover .contact-icon-wrapper {
             color: var(--primary);
-            filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.6));
+            filter: drop-shadow(0 0 7px rgba(0, 224, 255, 0.6));
         }
     </style>
+
 </head>
 
 <body class="antialiased selection:bg-cyan-500 selection:text-black">
@@ -667,11 +655,7 @@
         </section>
 
 
-        <style>
-            .project-btn {
-                @apply text-sm font-semibold text-teal-400 hover:text-green-400 transition duration-300;
-            }
-        </style>
+
 
 
 
@@ -829,71 +813,31 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Smooth Scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // Smooth Scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener("click", e => {
+                    const target = document.querySelector(link.getAttribute("href"));
+                    if (!target) return;
+
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    target.scrollIntoView({ behavior: "smooth" });
                 });
             });
 
-            // Intersection Observer
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
+            // Simple fade-in on scroll
+            const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
+                        entry.target.classList.add("is-visible");
                     }
                 });
-            }, observerOptions);
-
-            const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
-            elementsToAnimate.forEach((element, index) => {
-                element.style.transitionDelay = `${index * 0.1}s`;
-                observer.observe(element);
             });
 
-            // 3D Tilt for Projects
-            const projectsWrapper = document.getElementById('projects-grid-wrapper');
-
-            if (projectsWrapper) {
-                const cards = projectsWrapper.querySelectorAll('.project-card');
-
-                const applyTilt = (card, x, y) => {
-                    const rect = card.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    const offsetX = x - centerX;
-                    const offsetY = y - centerY;
-                    const normalizeX = offsetX / (rect.width / 2);
-                    const normalizeY = offsetY / (rect.height / 2);
-                    const maxRotate = 3; // Reduced rotation for subtlety
-                    const rotateX = normalizeY * -maxRotate;
-                    const rotateY = normalizeX * maxRotate;
-
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-                };
-
-                projectsWrapper.addEventListener('mousemove', (e) => {
-                    cards.forEach(card => applyTilt(card, e.clientX, e.clientY));
-                });
-
-                projectsWrapper.addEventListener('mouseleave', () => {
-                    cards.forEach(card => {
-                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-                    });
-                });
-            }
+            document.querySelectorAll(".fade-in-on-scroll").forEach(el => observer.observe(el));
         });
+
     </script>
     <style>
         /* Shimmer Animation for Button */
