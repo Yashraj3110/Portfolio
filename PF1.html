@@ -1,0 +1,426 @@
+<!DOCTYPE >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashraj Singh Rathore | Full Stack Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14b8a6; /* Tailwind Teal 500 for a vibrant, energetic feel */
+            --background: #000000; /* Pure Black for contrast */
+            --card-bg: #0f172a; /* Deep Navy Blue */
+            --text-light: #e5e7eb;
+            --accent: #22c55e; /* Green accent */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        /* --- Custom Scroll Reveal Animations (CSS) --- */
+
+        /* Base class for elements waiting to be animated */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(30px);
+        }
+        
+        /* Class applied by JS (Intersection Observer) when element is visible */
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero entrance animation on load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-animate {
+            animation: fadeIn 1s ease-out both;
+        }
+
+        /* --- Styling Enhancements --- */
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        /* Custom gradient underline for titles */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 9999px;
+        }
+
+        /* Project Card Hover Effect */
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease-in-out;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(20, 184, 166, 0.1); /* Subtle border */
+        }
+        .project-card:hover {
+            /* Lift and scale slightly */
+            transform: translateY(-8px) scale(1.01);
+            /* Cyan/Teal glow shadow */
+            box-shadow: 0 15px 30px -5px rgba(20, 184, 166, 0.4), 0 8px 10px -6px rgba(20, 184, 166, 0.2);
+            border-color: var(--primary);
+        }
+        
+        /* Skills Card Hover Effect */
+        .skill-card:hover {
+            background-color: #1a4f47; /* Darker teal on hover */
+            transform: translateY(-3px) scale(1.05);
+        }
+        .skill-card {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Gradient Button Background */
+        .btn-gradient {
+            background: linear-gradient(to right, #14b8a6, #22c55e);
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #22c55e, #14b8a6);
+        }
+        
+        /* --- Hero Section Background Animation (New) --- */
+
+        /* Keyframes for continuous, subtle movement */
+        @keyframes moving-background {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        #about {
+            position: relative;
+            overflow: hidden; /* Ensures background stays within the section */
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%; /* Larger than viewport to allow movement */
+            height: 300%;
+            z-index: 0; /* Behind content */
+            opacity: 0.1; /* Very subtle */
+            
+            /* Repeating gradient pattern for a grid/dot effect */
+            background-image: radial-gradient(circle, #14b8a6 2px, transparent 2px),
+                              radial-gradient(circle, #22c55e 1px, transparent 1px);
+            background-size: 80px 80px, 40px 40px; /* Spacing of the grid/dots */
+            background-repeat: repeat;
+            
+            /* Apply the continuous animation */
+            animation: moving-background 40s linear infinite;
+        }
+
+        /* Ensure content is above the animated background */
+        #about > .container {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md shadow-2xl shadow-teal-900/50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold text-white tracking-widest cursor-pointer hover:text-teal-400 transition duration-300">YASHRAJ S.R.</h1>
+            <div class="space-x-6 text-lg hidden md:flex">
+                <a href="#about" class="nav-link transition duration-300 hover:text-teal-400">About</a>
+                <a href="#skills" class="nav-link transition duration-300 hover:text-teal-400">Skills</a>
+                <a href="#experience" class="nav-link transition duration-300 hover:text-teal-400">Experience</a>
+                <a href="#projects" class="nav-link transition duration-300 hover:text-teal-400">Projects</a>
+                <a href="#contact" class="nav-link transition duration-300 hover:text-teal-400">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section / About -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 max-w-4xl text-center hero-animate">
+                <h2 class="text-lg font-medium text-teal-400 mb-2">Hello, I'm</h2>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6">Yashraj Singh Rathore</h1>
+                <p class="text-2xl md:text-3xl font-light text-gray-300 mb-8">
+                    A highly dedicated **M.E.R.N. Stack Developer** and **Creative Problem Solver**.
+                </p>
+                <p class="text-gray-400 leading-relaxed max-w-3xl mx-auto">
+                    Focused on delivering excellence and bringing a creative problem-solving approach to every challenge. Eager to leverage my technical adaptability to foster success within any development team or project.
+                </p>
+                <div class="mt-10 space-x-4">
+                    <a href="#projects" class="inline-block px-8 py-3 btn-gradient text-gray-900 font-bold rounded-lg shadow-xl shadow-teal-500/30 transition duration-500 hover:shadow-green-500/40">Explore My Code</a>
+                    <a href="#contact" class="inline-block px-8 py-3 border-2 border-teal-500 text-teal-400 font-semibold rounded-lg hover:bg-teal-600 hover:text-white transition duration-300">Hire Me</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 bg-gray-900 border-t border-b border-gray-800">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl text-center text-white section-title mx-auto">Technical Skills</h3>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 mt-10">
+                    <!-- Technical Skills - Added fade-in-on-scroll class -->
+                    <div class="skill-card p-4 bg-gray-800 rounded-xl text-center shadow-2xl shadow-gray-900/50 fade-in-on-scroll">
+                        <span class="text-xl font-bold text-teal-300">M.E.R.N.</span>
+                    </div>
+                    <div class="skill-card p-4 bg-gray-800 rounded-xl text-center shadow-2xl shadow-gray-900/50 fade-in-on-scroll">
+                        <span class="text-xl font-bold text-teal-300">React.js</span>
+                    </div>
+                    <div class="skill-card p-4 bg-gray-800 rounded-xl text-center shadow-2xl shadow-gray-900/50 fade-in-on-scroll">
+                        <span class="text-xl font-bold text-teal-300">Tailwind CSS</span>
+                    </div>
+                    <div class="skill-card p-4 bg-gray-800 rounded-xl text-center shadow-2xl shadow-gray-900/50 fade-in-on-scroll">
+                        <span class="text-xl font-bold text-teal-300">PHP/JS</span>
+                    </div>
+                    <div class="skill-card p-4 bg-gray-800 rounded-xl text-center shadow-2xl shadow-gray-900/50 fade-in-on-scroll">
+                        <span class="text-xl font-bold text-teal-300">Docker</span>
+                    </div>
+                    <div class="skill-card p-4 bg-gray-800 rounded-xl text-center shadow-2xl shadow-gray-900/50 fade-in-on-scroll">
+                        <span class="text-xl font-bold text-teal-300">WIX</span>
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <h4 class="text-2xl text-center text-white mb-4 section-title mx-auto">Soft Skills</h4>
+                    <div class="flex flex-wrap justify-center gap-4 fade-in-on-scroll">
+                        <span class="px-5 py-2 bg-green-600/30 text-green-300 rounded-full text-md font-medium border border-green-700">Quick Learner</span>
+                        <span class="px-5 py-2 bg-green-600/30 text-green-300 rounded-full text-md font-medium border border-green-700">Problem Solving</span>
+                        <span class="px-5 py-2 bg-green-600/30 text-green-300 rounded-full text-md font-medium border border-green-700">Positive Attitude</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-16">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl text-center text-white section-title mx-auto">Work & Training</h3>
+                
+                <div class="space-y-12 mt-10 max-w-3xl mx-auto">
+
+                    <!-- Experience 1 - Added fade-in-on-scroll class -->
+                    <div class="bg-gray-900 p-6 rounded-xl shadow-2xl border-l-8 border-teal-500 fade-in-on-scroll">
+                        <div class="flex justify-between items-start">
+                            <h4 class="text-2xl font-semibold text-white">Academic Operations Associate</h4>
+                            <span class="text-sm text-gray-400 font-medium bg-gray-800 px-3 py-1 rounded-full">March 2025 - Present</span>
+                        </div>
+                        <p class="text-lg text-teal-400 mb-2">Unacademy (Kota)</p>
+                        <ul class="list-disc list-inside text-gray-400 ml-4 space-y-1">
+                            <li>Managed and streamlined academic operations, ensuring efficient resource allocation and process adherence.</li>
+                            <li>Applied problem-solving skills to complex logistical challenges, improving team workflow and productivity.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience 2 - Added fade-in-on-scroll class -->
+                    <div class="bg-gray-900 p-6 rounded-xl shadow-2xl border-l-8 border-teal-500 fade-in-on-scroll">
+                        <div class="flex justify-between items-start">
+                            <h4 class="text-2xl font-semibold text-white">Web Developer</h4>
+                            <span class="text-sm text-gray-400 font-medium bg-gray-800 px-3 py-1 rounded-full">April 2023 - Sept 2024</span>
+                        </div>
+                        <p class="text-lg text-teal-400 mb-2">Spanco Web Technologies Pvt. Ltd. (Kota)</p>
+                        <p class="text-gray-400">
+                            Developed and maintained client websites using front-end and back-end technologies, solidifying expertise in the MERN stack and professional deployment practices.
+                        </p>
+                    </div>
+                    
+                    <!-- Training - Added fade-in-on-scroll class -->
+                    <div class="bg-gray-900 p-6 rounded-xl shadow-2xl border-l-8 border-teal-500 fade-in-on-scroll">
+                        <div class="flex justify-between items-start">
+                            <h4 class="text-2xl font-semibold text-white">Web Development Training (PHP)</h4>
+                            <span class="text-sm text-gray-400 font-medium bg-gray-800 px-3 py-1 rounded-full">June - Sept 2022 (4 Months)</span>
+                        </div>
+                        <p class="text-lg text-teal-400 mb-2">Grras Pvt. Ltd. (Jaipur)</p>
+                        <p class="text-gray-400">
+                            Intensive training focused on PHP development, building a strong foundation in backend logic, database interaction, and server-side scripting.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 bg-gray-900 border-t border-b border-gray-800">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl text-center text-white section-title mx-auto">Key Projects</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                    
+                    <!-- Project Card 1: E-commerce (React) -->
+                    <div class="project-card p-6 rounded-xl shadow-lg transition duration-500 fade-in-on-scroll">
+                        <h4 class="text-2xl font-bold text-white mb-2">E-commerce Website</h4>
+                        <p class="text-teal-400 mb-4">React, Tailwind CSS</p>
+                        <p class="text-gray-300">
+                            A fully responsive static e-commerce website built from the ground up using React and styled with the efficiency of Tailwind CSS.
+                        </p>
+                        <div class="mt-4 space-x-4">
+                            <!-- Update these links with your project URLs -->
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">View Demo &rarr;</a>
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">Source Code</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: Course-Easy (M.E.R.N) -->
+                    <div class="project-card p-6 rounded-xl shadow-lg transition duration-500 fade-in-on-scroll">
+                        <h4 class="text-2xl font-bold text-white mb-2">Course-Easy</h4>
+                        <p class="text-teal-400 mb-4">M.E.R.N. Stack (Full Stack)</p>
+                        <p class="text-gray-300">
+                            A comprehensive web application for online courses, leveraging the full MERN stack to manage user authentication, content delivery, and state.
+                        </p>
+                        <div class="mt-4 space-x-4">
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">View Demo &rarr;</a>
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">Source Code</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3: Company Enhancements -->
+                    <div class="project-card p-6 rounded-xl shadow-lg transition duration-500 fade-in-on-scroll">
+                        <h4 class="text-2xl font-bold text-white mb-2">Company Enhancements</h4>
+                        <p class="text-teal-400 mb-4">M.E.R.N. Stack</p>
+                        <p class="text-gray-300">
+                            Developed and integrated crucial MERN components like **Product FAQ** and dynamic **Size Chart** features to enhance the live e-commerce platform's functionality.
+                        </p>
+                        <div class="mt-4 space-x-4">
+                            <span class="text-sm font-medium text-gray-500">Workplace Project (Internal)</span>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 4: Flipkart Clone (React) -->
+                    <div class="project-card p-6 rounded-xl shadow-lg transition duration-500 fade-in-on-scroll">
+                        <h4 class="text-2xl font-bold text-white mb-2">Flipkart Clone</h4>
+                        <p class="text-teal-400 mb-4">React</p>
+                        <p class="text-gray-300">
+                            A dedicated project to replicate the key UI/UX elements of a major e-commerce marketplace, showcasing proficiency in complex UI development and component architecture in React.
+                        </p>
+                        <div class="mt-4 space-x-4">
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">View Demo &rarr;</a>
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">Source Code</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 5: Interior Design Template -->
+                    <div class="project-card p-6 rounded-xl shadow-lg transition duration-500 fade-in-on-scroll">
+                        <h4 class="text-2xl font-bold text-white mb-2">Interior Design Template</h4>
+                        <p class="text-teal-400 mb-4">Bootstrap</p>
+                        <p class="text-gray-300">
+                            A visually refined and fully responsive static template designed for a professional service, built quickly and reliably using the Bootstrap framework.
+                        </p>
+                        <div class="mt-4 space-x-4">
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">View Demo &rarr;</a>
+                            <a href="#" target="_blank" class="text-sm font-bold text-teal-400 hover:text-green-400 transition duration-300">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+            <div class="container mx-auto px-6 max-w-xl text-center fade-in-on-scroll">
+                <h3 class="text-3xl text-white section-title mx-auto">Let's Connect</h3>
+                <p class="text-gray-400 mt-4 mb-8">
+                    I am actively seeking new full-stack development opportunities where I can apply my MERN and problem-solving skills. Reach out to discuss collaboration!
+                </p>
+
+                <div class="space-y-4">
+                    <div class="text-lg text-white">
+                        <strong class="text-teal-400">Email:</strong> 
+                        <a href="mailto:3110Yashraj@gmail.com" class="hover:underline hover:text-teal-300 transition duration-300">3110Yashraj@gmail.com</a>
+                    </div>
+                    <div class="text-lg text-white">
+                        <strong class="text-teal-400">Phone:</strong> 
+                        <a href="tel:+918619259164" class="hover:underline hover:text-teal-300 transition duration-300">+91 86192 59164</a>
+                    </div>
+                    <div class="text-lg text-white">
+                        <strong class="text-teal-400">LinkedIn:</strong> 
+                        <a href="#" target="_blank" class="hover:underline hover:text-teal-300 transition duration-300">Yashraj Singh Rathore (Link Placeholder)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="pt-8 pb-16 bg-gray-900 border-t border-gray-800">
+            <div class="container mx-auto px-6 text-center fade-in-on-scroll">
+                <h3 class="text-xl text-white section-title mx-auto">Education</h3>
+                <div class="mt-4 space-y-2 text-gray-400">
+                    <p><strong>Master Of Computer Application (MCA)</strong> - Career Point University (2023 - Present)</p>
+                    <p><strong>Bachelor Of Computer Application (BCA)</strong> - Career Point University (2020 - 2023)</p>
+                    <p><strong>Sr. Secondary Education</strong> (PCM) - Springdales children School, Kota (2019)</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-6 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Yashraj Singh Rathore. Built with <span class="text-red-500">&hearts;</span> and <span class="text-teal-400">Advanced Tailwind.</span></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for smooth scrolling and Intersection Observer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // 2. Intersection Observer for Scroll Reveal Animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the 'is-visible' class to trigger the CSS animation
+                        entry.target.classList.add('is-visible');
+                        // Stop observing once it's visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Select all elements that should fade in on scroll
+            const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
+
+            elementsToAnimate.forEach((element, index) => {
+                // Apply a staggered delay to the transition for a professional look
+                element.style.transitionDelay = `${index * 0.15}s`;
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

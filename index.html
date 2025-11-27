@@ -1,0 +1,908 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashraj Singh Rathore | Full Stack Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00e0ff;
+            /* Bright Cyan/Blue */
+            --secondary: #a855f7;
+            /* Purple for depth */
+            --background: #050505;
+            /* Deep Black */
+            --card-bg: rgba(20, 20, 20, 0.6);
+            /* Glassmorphic Dark */
+            --text-light: #f3f4f6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Background Effects --- */
+
+        /* 1. Grain/Noise Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            /* Top layer for texture */
+            opacity: 0.04;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAADAZ2w2AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAVUExURQAAAP///4GBgaysrOzs7P39/T+rY+QAAAAHdFJOUxuTJTQ/UaT8gN9lAAAAKElEQVR42mNkIAIYRGYGBnFwABrXGjI8gI2gZJAUZJkZAA00FhAWAJ8jBqK6hFf8AAAAAElFTkSuQmCC');
+            pointer-events: none;
+        }
+
+        /* 2. Vignette Overlay (Focus attention) */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+            pointer-events: none;
+        }
+
+        /* 3. Gradient Glows */
+        #gradient-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -20;
+            overflow: hidden;
+        }
+
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.25;
+            filter: blur(80px);
+            animation: gradientMove 25s infinite alternate ease-in-out;
+        }
+
+        #blob-cyan {
+            width: 45vw;
+            height: 45vw;
+            background: var(--primary);
+            top: -15%;
+            left: -10%;
+        }
+
+        #blob-purple {
+            width: 50vw;
+            height: 50vw;
+            background: var(--secondary);
+            bottom: -15%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(10vw, 5vh) scale(1.1);
+            }
+
+            100% {
+                transform: translate(-5vw, -5vh) scale(0.95);
+            }
+        }
+
+        /* --- Scroll Reveal Animations --- */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(30px);
+        }
+
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-animate {
+            animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        /* --- Component Styling --- */
+
+        /* Titles */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, #a5f3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 99px;
+        }
+
+        /* Nav Link Hover */
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Glassmorphic Cards */
+        .glass-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Project Card Specifics */
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 224, 255, 0.1);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 20px 50px -10px rgba(0, 224, 255, 0.2), 0 0 20px rgba(0, 224, 255, 0.1) inset;
+            border-color: rgba(0, 224, 255, 0.5);
+        }
+
+        /* Footer Lines */
+        .wire-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            margin: 2rem 0;
+        }
+
+        /* Skill Tags */
+        .skill-tag {
+            background-color: rgba(0, 224, 255, 0.05);
+            border: 1px solid rgba(0, 224, 255, 0.2);
+            color: var(--primary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: rgba(0, 224, 255, 0.15);
+            box-shadow: 0 0 15px rgba(0, 224, 255, 0.3);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        /* Contact Items */
+        .contact-item {
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon-wrapper {
+            transition: color 0.3s ease, filter 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon-wrapper {
+            color: var(--primary);
+            filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.6));
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-cyan-500 selection:text-black">
+
+    <!-- Gradient Background Container -->
+    <div id="gradient-container">
+        <div class="gradient-blob" id="blob-cyan"></div>
+        <div class="gradient-blob" id="blob-purple"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
+            <!-- Polished Logo -->
+            <a href="#about" class="relative group">
+                <div
+                    class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200">
+                </div>
+                <div class="relative px-4 py-1 bg-black ring-1 ring-white/10 rounded-md leading-none flex items-center">
+                    <span
+                        class="font-black tracking-widest text-xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
+                        YRSR
+                    </span>
+                </div>
+            </a>
+
+            <div class="space-x-8 text-sm font-medium hidden md:flex text-gray-400">
+                <a href="#about" class="nav-link transition duration-300 hover:text-white">ABOUT</a>
+                <a href="#education" class="nav-link transition duration-300 hover:text-white">EDUCATION</a>
+                <a href="#experience" class="nav-link transition duration-300 hover:text-white">EXPERIENCE</a>
+                <a href="#projects" class="nav-link transition duration-300 hover:text-white">PROJECTS</a>
+                <a href="#contact" class="nav-link transition duration-300 hover:text-white">CONTACT</a>
+            </div>
+
+            <!-- Mobile Menu Button (Visual Only) -->
+            <div class="md:hidden text-white cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="about" class="py-20 md:py-32 min-h-screen flex items-center relative">
+            <div class="container mx-auto px-6 max-w-7xl relative z-10">
+                <div class="hero-animate space-y-6 max-w-4xl">
+                    <div class="flex items-center space-x-2">
+                        <span class="h-px w-8 bg-cyan-500"></span>
+                        <p class="text-sm font-bold text-cyan-400 tracking-widest uppercase">Portfolio 2024</p>
+                    </div>
+
+                    <h1 class="text-5xl md:text-8xl font-black text-white leading-tight tracking-tight">
+                        I'M <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">YASHRAJ</span><br>
+                        SINGH RATHORE.
+                    </h1>
+
+                    <div class="flex items-center space-x-4">
+                        <span
+                            class="px-4 py-1.5 bg-cyan-500/10 border border-cyan-500/50 text-cyan-300 text-xs font-bold rounded uppercase tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+                            Web Developer "3 years of experience"
+                        </span>
+                        <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
+                        <span class="text-xs text-gray-400 font-mono">AVAILABLE FOR WORK</span>
+                    </div>
+
+                    <p
+                        class="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed border-l-2 border-gray-800 pl-6">
+                        Dedicated to delivering excellence with a creative problem-solving approach. Eager to leverage
+                        technical adaptability to foster success within innovative development teams.
+                    </p>
+
+                    <div class="pt-8 flex flex-wrap gap-4">
+                        <a href="#projects"
+                            class="group relative px-8 py-3 bg-cyan-500 text-black font-bold rounded overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+                            <div
+                                class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]">
+                            </div>
+                            <span>EXPLORE WORK</span>
+                        </a>
+                        <a href="#contact"
+                            class="px-8 py-3 border border-gray-600 text-gray-300 font-bold rounded hover:border-cyan-500 hover:text-cyan-400 transition duration-300 backdrop-blur-sm bg-black/20">
+                            GET IN TOUCH
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 border-t border-white/5 bg-black/20">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-4 fade-in-on-scroll">
+                        <h3 class="text-4xl font-black text-white section-title">EDUCATION</h3>
+                        <p class="text-sm text-gray-500 mt-8 leading-relaxed max-w-xs">
+                            Academic background combining theoretical foundations in computer applications with
+                            practical, modern development methodologies.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-8 space-y-6">
+                        <!-- Education Card 1 -->
+                        <div
+                            class="glass-card p-8 rounded-2xl fade-in-on-scroll hover:border-cyan-500/30 transition duration-300">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center mb-2">
+                                <h4 class="text-xl font-bold text-white">Master Of Computer Application (MCA)</h4>
+                                <span
+                                    class="text-xs font-mono text-cyan-400 bg-cyan-900/20 px-2 py-1 rounded border border-cyan-900/50">2023
+                                    - 2025</span>
+                            </div>
+                            <p class="text-gray-400">Career Point University</p>
+                        </div>
+
+                        <!-- Education Card 2 -->
+                        <div class="glass-card p-8 rounded-2xl fade-in-on-scroll hover:border-cyan-500/30 transition duration-300"
+                            style="transition-delay: 0.1s;">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center mb-2">
+                                <h4 class="text-xl font-bold text-white">Bachelor Of Computer Application (BCA)</h4>
+                                <span class="text-xs font-mono text-gray-500 bg-gray-800/50 px-2 py-1 rounded">2020 -
+                                    2023</span>
+                            </div>
+                            <p class="text-gray-400">Career Point University</p>
+                        </div>
+
+                        <!-- Education Card 3 -->
+                        <div class="glass-card p-8 rounded-2xl fade-in-on-scroll hover:border-cyan-500/30 transition duration-300"
+                            style="transition-delay: 0.2s;">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center mb-2">
+                                <h4 class="text-xl font-bold text-white">Sr. Secondary Education (PCM)</h4>
+                                <span
+                                    class="text-xs font-mono text-gray-500 bg-gray-800/50 px-2 py-1 rounded">2019</span>
+                            </div>
+                            <p class="text-gray-400">Springdales Children School, Kota</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-24 border-t border-white/5">
+            <div class="container mx-auto px-6 max-w-7xl">
+
+                <!-- Section Header -->
+                <div class="text-center mb-20 fade-in-on-scroll">
+                    <h3 class="text-4xl md:text-5xl font-black text-white section-title mx-auto">EXPERIENCE</h3>
+                    <p class="text-gray-500 mt-4">Professional journey and technical training</p>
+                </div>
+
+                <div class="grid gap-10 max-w-4xl mx-auto">
+
+                    <!-- Job 1 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl border-l-4 border-l-cyan-500 fade-in-on-scroll group hover:bg-white/5 transition duration-300">
+
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                            <div>
+                                <h4 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition">
+                                    PHP Developer
+                                </h4>
+                                <p class="text-lg text-gray-400">Career Point University (Kota)</p>
+                            </div>
+                            <span
+                                class="mt-2 md:mt-0 text-sm font-semibold text-cyan-300 bg-cyan-900/30 px-3 py-1 rounded-full border border-cyan-800">
+                                August 2025 – Present
+                            </span>
+                        </div>
+
+                        <p class="text-gray-400 leading-relaxed">
+                            Building backend systems, maintaining academic portals, managing production deployments, and
+                            ensuring high-performance PHP applications.
+                        </p>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl border-l-4 border-l-cyan-500 fade-in-on-scroll group hover:bg-white/5 transition duration-300">
+
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                            <div>
+                                <h4 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition">
+                                    Academic Operations Associate
+                                </h4>
+                                <p class="text-lg text-gray-400">Unacademy (Kota)</p>
+                            </div>
+                            <span
+                                class="mt-2 md:mt-0 text-sm font-semibold text-cyan-300 bg-cyan-900/30 px-3 py-1 rounded-full border border-cyan-800">
+                                March 2025 – June 2025
+                            </span>
+                        </div>
+
+                        <ul class="list-disc list-inside text-gray-400 space-y-2 marker:text-cyan-600">
+                            <li>Managed and streamlined academic operations to optimize resource allocation.</li>
+                            <li>Applied problem-solving strategies to resolve complex logistical challenges.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="glass-card p-8 rounded-2xl border-l-4 border-l-purple-500 fade-in-on-scroll group hover:bg-white/5 transition duration-300"
+                        style="transition-delay: 0.1s;">
+
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
+                            <div>
+                                <h4 class="text-2xl font-bold text-white group-hover:text-purple-400 transition">
+                                    Web Developer
+                                </h4>
+                                <p class="text-lg text-gray-400">Spanco Web Technologies Pvt. Ltd.</p>
+                            </div>
+                            <span
+                                class="mt-2 md:mt-0 text-sm font-semibold text-purple-300 bg-purple-900/30 px-3 py-1 rounded-full border border-purple-800">
+                                April 2023 – September 2024
+                            </span>
+                        </div>
+
+                        <p class="text-gray-400 leading-relaxed">
+                            Developed and deployed full-stack solutions with specialization in the MERN ecosystem.
+                            Enhanced client digital presence through responsive UI/UX and optimized backend performance.
+                        </p>
+                    </div>
+
+                    <!-- Training -->
+                    <div class="glass-card p-8 rounded-2xl border-l-4 border-l-gray-600 fade-in-on-scroll group hover:bg-white/5 transition duration-300"
+                        style="transition-delay: 0.2s;">
+
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-white">PHP Web Development Training</h4>
+                                <p class="text-gray-400">Grras Pvt. Ltd. (Jaipur)</p>
+                            </div>
+                            <span class="mt-2 md:mt-0 text-xs font-mono text-gray-500">4 Months</span>
+                        </div>
+
+                        <p class="text-gray-500 text-sm">
+                            Intensive bootcamp focusing on backend logic, database management, and server-side scripting
+                            fundamentals.
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 border-t border-white/5">
+            <div class="container mx-auto px-6 max-w-7xl">
+
+                <!-- COMPANY PROJECTS -->
+                <section id="company-projects" class="mb-28">
+                    <div class="text-center mb-20 fade-in-on-scroll">
+                        <h3 class="text-4xl md:text-5xl font-black text-white">COMPANY PROJECTS</h3>
+                        <p class="text-gray-500 mt-3">Real-world projects developed during professional work</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                        <!-- CRM -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition duration-300 fade-in-on-scroll">
+                            <div
+                                class="w-full h-40 bg-white/10 rounded-lg overflow-hidden flex items-center justify-center mb-4 border border-white/10">
+                                <img src="./images/crm.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">C.R.M.</h4>
+                            <p class="text-teal-400 mb-3">Laravel</p>
+                            <p class="text-gray-300">A CRM to manage leads, track conversions, assign agents, and
+                                automate
+                                workflows.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://crm.betterstudy.in/v2/login" target="_blank">View
+                                    Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- Wix Applications -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition duration-300 fade-in-on-scroll">
+                            <div
+                                class="w-full h-40 bg-white/10 rounded-lg overflow-hidden flex items-center justify-center mb-4 border border-white/10">
+                                <img src="./images/sp.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Wix Applications</h4>
+                            <p class="text-teal-400 mb-3">MERN Stack</p>
+                            <p class="text-gray-300">Developed dynamic Product FAQ and advanced Size-Chart modules for
+                                live
+                                e-commerce sites.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://www.wix.com/app-market/developer/nayra-apps"
+                                    target="_blank">View Demo →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- PERSONAL PROJECTS -->
+                <section id="personal-projects">
+                    <div class="text-center mb-20 fade-in-on-scroll">
+                        <h3 class="text-4xl md:text-5xl font-black text-white">PERSONAL PROJECTS</h3>
+                        <p class="text-gray-500 mt-3">Independent projects built using modern technologies</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                        <!-- Course Easy Laravel -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition duration-300 fade-in-on-scroll">
+                            <div
+                                class="w-full h-40 bg-white/10 rounded-lg overflow-hidden flex items-center justify-center mb-4 border border-white/10">
+                                <img src="./images/cel.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Course-Easy (Laravel)</h4>
+                            <p class="text-teal-400 mb-3">Laravel</p>
+                            <p class="text-gray-300">Course management system with videos, quizzes, dashboards, and
+                                roles.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://course-easy.infinityfreeapp.com/"
+                                    target="_blank">View Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- Course Easy MERN -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-purple-500 transition duration-300 fade-in-on-scroll">
+                            <div
+                                class="w-full h-40 bg-white/10 rounded-lg overflow-hidden flex items-center justify-center mb-4 border border-white/10">
+                                <img src="./images/cem.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Course-Easy (MERN)</h4>
+                            <p class="text-teal-400 mb-3">MERN Stack</p>
+                            <p class="text-gray-300">Full MERN version with authentication, streaming, dashboards, and
+                                progress
+                                tracking.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://course-easy.vercel.app/HomePage"
+                                    target="_blank">View Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- Ecommerce -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition duration-300 fade-in-on-scroll">
+                            <div
+                                class="w-full h-40 bg-white/10 rounded-lg overflow-hidden flex items-center justify-center mb-4 border border-white/10">
+                                <img src="./images/ebuy.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">E-commerce Website</h4>
+                            <p class="text-teal-400 mb-3">React • Tailwind</p>
+                            <p class="text-gray-300">Responsive UI with reusable components and smooth product UI flows.
+                            </p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://easy-buy-six.vercel.app/" target="_blank">View Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- Flipkart Clone -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-blue-500 transition duration-300 fade-in-on-scroll">
+                            <div
+                                class="w-full h-40 bg-white/10 rounded-lg overflow-hidden flex items-center justify-center mb-4 border border-white/10">
+                                <img src="./images/fl.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Flipkart Clone</h4>
+                            <p class="text-teal-400 mb-3">React</p>
+                            <p class="text-gray-300">Replicated marketplace UI, banners, categories, and product grid.
+                            </p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://flipkart-clone-delta-three.vercel.app/"
+                                    target="_blank">View Demo →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- Interior Template -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-green-500 transition duration-300 fade-in-on-scroll">
+                            <div
+                                class="w-full h-40 bg-white/10 rounded-lg overflow-hidden flex items-center justify-center mb-4 border border-white/10">
+                                <img src="./images/int.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Interior Design Template</h4>
+                            <p class="text-teal-400 mb-3">Bootstrap</p>
+                            <p class="text-gray-300">A refined static template for interior design agencies.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://yashraj3110.github.io/Interior-design-Template/"
+                                    target="_blank">View Demo →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+
+        <style>
+            .project-btn {
+                @apply text-sm font-semibold text-teal-400 hover:text-green-400 transition duration-300;
+            }
+        </style>
+
+
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 border-t border-white/5">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <!-- Core Tech -->
+                    <div class="fade-in-on-scroll">
+                        <h3 class="text-3xl font-black text-white mb-8 flex items-center">
+                            <span class="bg-cyan-500 w-2 h-8 mr-4 rounded-sm"></span>
+                            CORE STACK
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">MongoDB</span>
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">Express.js</span>
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">React.js</span>
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">Node.js</span>
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">JavaScript (ES6+)</span>
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">PHP</span>
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">Tailwind CSS</span>
+                            <span class="skill-tag px-5 py-2.5 rounded text-sm">Bootstrap</span>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="fade-in-on-scroll" style="transition-delay: 0.2s;">
+                        <h3 class="text-3xl font-black text-white mb-8 flex items-center">
+                            <span class="bg-purple-500 w-2 h-8 mr-4 rounded-sm"></span>
+                            TOOLKIT
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="px-5 py-2.5 rounded text-sm bg-gray-800 text-gray-300 border border-gray-700 hover:border-purple-500 hover:text-purple-400 transition duration-300 cursor-default">Docker</span>
+                            <span
+                                class="px-5 py-2.5 rounded text-sm bg-gray-800 text-gray-300 border border-gray-700 hover:border-purple-500 hover:text-purple-400 transition duration-300 cursor-default">Git/GitHub</span>
+                            <span
+                                class="px-5 py-2.5 rounded text-sm bg-gray-800 text-gray-300 border border-gray-700 hover:border-purple-500 hover:text-purple-400 transition duration-300 cursor-default">WIX
+                                CMS</span>
+                            <span
+                                class="px-5 py-2.5 rounded text-sm bg-gray-800 text-gray-300 border border-gray-700 hover:border-purple-500 hover:text-purple-400 transition duration-300 cursor-default">REST
+                                APIs</span>
+                            <span
+                                class="px-5 py-2.5 rounded text-sm bg-gray-800 text-gray-300 border border-gray-700 hover:border-purple-500 hover:text-purple-400 transition duration-300 cursor-default">VS
+                                Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 border-t border-b border-white/5 bg-black/40 relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute inset-0 flex justify-center items-center opacity-5 pointer-events-none">
+                <span class="text-[20vw] font-black text-white select-none">CONTACT</span>
+            </div>
+
+            <div class="container mx-auto px-6 max-w-7xl relative z-10 text-center">
+                <h3 class="text-5xl font-black text-white tracking-tight mb-2 fade-in-on-scroll">LET'S CONNECT</h3>
+                <p class="text-xl text-cyan-400 font-medium mb-16 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                    Open for collaborations and opportunities</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <!-- Phone -->
+                    <div
+                        class="contact-item fade-in-on-scroll glass-card p-6 rounded-xl border-transparent hover:border-cyan-500/30">
+                        <div class="contact-icon-wrapper text-gray-400 mb-4">
+                            <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h4 class="text-white font-bold mb-2">PHONE</h4>
+                        <a href="tel:+918619259164" class="text-sm text-gray-400 hover:text-cyan-400 transition">+91
+                            86192 59164</a>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-item fade-in-on-scroll glass-card p-6 rounded-xl border-transparent hover:border-cyan-500/30"
+                        style="transition-delay: 0.1s;">
+                        <div class="contact-icon-wrapper text-gray-400 mb-4">
+                            <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-white font-bold mb-2">EMAIL</h4>
+                        <a href="mailto:3110Yashraj@gmail.com"
+                            class="text-sm text-gray-400 hover:text-cyan-400 transition">3110Yashraj@gmail.com</a>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="contact-item fade-in-on-scroll glass-card p-6 rounded-xl border-transparent hover:border-cyan-500/30"
+                        style="transition-delay: 0.2s;">
+                        <div class="contact-icon-wrapper text-gray-400 mb-4">
+                            <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-white font-bold mb-2">LOCATION</h4>
+                        <span class="text-sm text-gray-400">Kota, India</span>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="contact-item fade-in-on-scroll glass-card p-6 rounded-xl border-transparent hover:border-cyan-500/30"
+                        style="transition-delay: 0.3s;">
+                        <div class="contact-icon-wrapper text-gray-400 mb-4">
+                            <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-white font-bold mb-2">SOCIAL</h4>
+                        <a href="#" target="_blank"
+                            class="text-sm text-gray-400 hover:text-cyan-400 transition">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="wire-line opacity-50"></div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <p class="text-2xl font-black text-white tracking-widest uppercase">
+                        Yashraj S.R.
+                    </p>
+                    <p class="text-xs text-gray-600 font-mono mt-1">
+                        DESIGNED & BUILT 2024
+                    </p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="#"
+                        class="text-gray-500 hover:text-white transition text-xs font-bold tracking-widest">GITHUB</a>
+                    <a href="#"
+                        class="text-gray-500 hover:text-white transition text-xs font-bold tracking-widest">LINKEDIN</a>
+                    <a href="#"
+                        class="text-gray-500 hover:text-white transition text-xs font-bold tracking-widest">EMAIL</a>
+                </div>
+            </div>
+            <div class="wire-line opacity-50"></div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
+            elementsToAnimate.forEach((element, index) => {
+                element.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(element);
+            });
+
+            // 3D Tilt for Projects
+            const projectsWrapper = document.getElementById('projects-grid-wrapper');
+
+            if (projectsWrapper) {
+                const cards = projectsWrapper.querySelectorAll('.project-card');
+
+                const applyTilt = (card, x, y) => {
+                    const rect = card.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const offsetX = x - centerX;
+                    const offsetY = y - centerY;
+                    const normalizeX = offsetX / (rect.width / 2);
+                    const normalizeY = offsetY / (rect.height / 2);
+                    const maxRotate = 3; // Reduced rotation for subtlety
+                    const rotateX = normalizeY * -maxRotate;
+                    const rotateY = normalizeX * maxRotate;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+                };
+
+                projectsWrapper.addEventListener('mousemove', (e) => {
+                    cards.forEach(card => applyTilt(card, e.clientX, e.clientY));
+                });
+
+                projectsWrapper.addEventListener('mouseleave', () => {
+                    cards.forEach(card => {
+                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                    });
+                });
+            }
+        });
+    </script>
+    <style>
+        /* Shimmer Animation for Button */
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</body>
+
+</html>
