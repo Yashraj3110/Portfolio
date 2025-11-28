@@ -1,12 +1,36 @@
 /* --------------------------------------------
-        THEME VARIABLES
-        -------------------------------------------- */
+        THEME VARIABLES
+-------------------------------------------- */
 :root {
-    --primary: #00e0ff;
-    --secondary: #a855f7;
-    --bg: #050505;
-    --text: #f3f4f6;
-    --card-bg: rgba(20, 20, 20, 0.55);
+    --primary: #0088cc;
+    --secondary: #6c47ff;
+    --bg: #f8f8f8;
+    --text: #1f2937;
+    --card-bg: rgba(255, 255, 255, 0.75);
+    /* Pre-calculated/standard colors for re-use */
+    --primary-op-10: rgba(0, 136, 204, 0.1);
+    --primary-op-20: rgba(0, 136, 204, 0.2);
+    --primary-op-40: rgba(0, 136, 204, 0.4);
+    --primary-op-30: rgba(0, 136, 204, 0.3);
+    --primary-shadow: rgba(0, 136, 204, 0.15);
+    --primary-drop-shadow: rgba(0, 136, 204, 0.5);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------
+        GLOBAL BASICS & SCROLLBAR HIDING
+-------------------------------------------- */
+
+/* Apply shared properties to HTML and Body */
+html,
+body {
+    height: 100%;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    /* Global Scrollbar Hiding */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
 }
 
 body {
@@ -16,8 +40,14 @@ body {
     overflow-x: hidden;
 }
 
-/* Make all sections full-screen like slides */
-/* Force all sections to be exactly fullscreen */
+/* Hide scrollbars for all elements, including WebKit (Chrome, Safari) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Fullscreen Sections + Scroll Snap */
 section {
     height: 100vh;
     min-height: 100vh;
@@ -27,35 +57,33 @@ section {
     align-items: center;
     scroll-snap-align: start;
     overflow: hidden;
-    /* <–– prevents unwanted scroll */
 }
 
-/* Enable snapping on the page */
-html,
-body {
-    height: 100%;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    overflow-y: hidden;
-    /* <–– FIX */
+/* Mobile: Keep Sections Fullscreen for Snap (Consolidated from bottom) */
+@media (max-width: 640px) {
+    section {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
 }
 
 /* --------------------------------------------
-        SOFT NOISE TEXTURE
-        -------------------------------------------- */
+        BACKGROUND EFFECTS (NOISE & BLOBS)
+-------------------------------------------- */
 body::before {
+    /* NOISE TEXTURE */
     content: "";
     position: fixed;
     inset: 0;
     z-index: -2;
-    opacity: 0.03;
+    opacity: 0.05;
     pointer-events: none;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCA...");
 }
 
-/* --------------------------------------------
-        BACKGROUND GRADIENT BLOBS
-        -------------------------------------------- */
 #gradient-container {
     position: fixed;
     inset: 0;
@@ -67,7 +95,7 @@ body::before {
     position: absolute;
     border-radius: 50%;
     filter: blur(70px);
-    opacity: 0.22;
+    opacity: .4;
     animation: blobMove 18s infinite alternate ease-in-out;
 }
 
@@ -89,22 +117,18 @@ body::before {
 }
 
 @keyframes blobMove {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    100% {
+    to {
         transform: translate(6vw, 5vh) scale(1.08);
     }
 }
 
 /* --------------------------------------------
-        SCROLL FADE-IN (Simplified)
-        -------------------------------------------- */
+        FADE-IN & TRANSITIONS
+-------------------------------------------- */
 .fade-in-on-scroll {
     opacity: 0;
     transform: translateY(22px);
-    transition: opacity .6s ease-out, transform .6s ease-out;
+    transition: .6s ease-out;
 }
 
 .is-visible {
@@ -112,71 +136,65 @@ body::before {
     transform: translateY(0);
 }
 
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.tab-content {
+    animation: fade .35s ease;
+}
+
 /* --------------------------------------------
-        SECTION TITLES
-        -------------------------------------------- */
-/* ============================================================
-   UNIVERSAL SECTION TITLE (CENTERED)
-============================================================ */
-.section-title {
-    font-size: 2.2rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    position: relative;
+        TITLES & TEXT
+-------------------------------------------- */
 
-    background: linear-gradient(to right, #fff, #a5f3fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Underline for centered titles */
-.section-title::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 4px;
-    border-radius: 99px;
-    background: linear-gradient(90deg, var(--primary), transparent);
-}
-
-/* ============================================================
-   LEFT-ALIGNED TITLES (EDUCATION, EXPERIENCE)
-============================================================ */
+/* Grouped common title styles */
+.section-title,
 .section-title-left {
     font-size: 2.2rem;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: .06em;
-    text-align: left;
     margin-bottom: 1.5rem;
-    position: relative;
-
-    background: linear-gradient(to right, #fff, #a5f3fc);
+    background: linear-gradient(to right, #333, var(--primary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative;
 }
 
-/* Underline aligned left */
+/* Grouped ::after pseudo-elements common styles */
+.section-title::after,
 .section-title-left::after {
     content: "";
-    position: absolute;
-    left: 0;
-    bottom: -10px;
     width: 120px;
     height: 4px;
     border-radius: 99px;
+    position: absolute;
+    bottom: -10px;
     background: linear-gradient(90deg, var(--primary), transparent);
 }
 
-/* ============================================================
-   MOBILE — remove underline, smaller size
-============================================================ */
+.section-title {
+    text-align: center;
+}
+
+.section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title-left {
+    text-align: left;
+}
+
+.section-title-left::after {
+    left: 0;
+}
+
+/* Mobile Title Fix (Consolidated) */
 @media (max-width: 640px) {
 
     .section-title,
@@ -192,8 +210,8 @@ body::before {
 }
 
 /* --------------------------------------------
-        NAV LINKS (Optimized)
-        -------------------------------------------- */
+        NAV LINKS
+-------------------------------------------- */
 .nav-item {
     position: relative;
     font-weight: 500;
@@ -201,13 +219,13 @@ body::before {
 
 .nav-item::after {
     content: "";
-    position: absolute;
     height: 2px;
-    bottom: -4px;
-    left: 0;
     width: 0;
     background: var(--primary);
-    transition: width .3s ease;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    transition: .3s;
 }
 
 .nav-item:hover::after {
@@ -215,483 +233,68 @@ body::before {
 }
 
 /* --------------------------------------------
-        GLASS / CARD STYLES
-        -------------------------------------------- */
-.glass-card {
-    backdrop-filter: blur(12px);
+        CARDS
+-------------------------------------------- */
+
+/* Grouped Glass/Card common styles */
+.glass-card,
+.project-card {
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.22);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
 }
 
 .project-card {
-    border: 1px solid rgba(0, 224, 255, 0.18);
-    transition: .3s ease;
-    background: var(--card-bg);
+    border-color: var(--primary-op-30);
+    /* Uses new variable */
+    transition: .3s;
 }
 
 .project-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 8px 25px rgba(0, 224, 255, 0.22);
+    box-shadow: 0 8px 25px var(--primary-shadow);
+    /* Uses new variable */
 }
-
-/* --------------------------------------------
-        SKILL TAG (Unified — No Duplicates)
-        -------------------------------------------- */
-.skill-tag {
-    padding: .6rem 1.3rem;
-    font-size: .85rem;
-    border-radius: .5rem;
-    background: rgba(0, 224, 255, 0.06);
-    border: 1px solid rgba(0, 224, 255, 0.22);
-    color: var(--primary);
-    font-weight: 600;
-    transition: .25s;
-}
-
-.skill-tag:hover {
-    background: rgba(0, 224, 255, 0.15);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-}
-
-/* --------------------------------------------
-        CONTACT ITEM
-        -------------------------------------------- */
-.contact-item {
-    transition: transform .25s;
-}
-
-.contact-item:hover {
-    transform: translateY(-4px);
-}
-
-.contact-item:hover .contact-icon-wrapper {
-    color: var(--primary);
-    filter: drop-shadow(0 0 6px rgba(0, 224, 255, 0.55));
-}
-
-/* === DOT NAVIGATION === */
-.dots {
-    position: fixed;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    z-index: 1000;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    background: #0ea5e9;
-    border-radius: 50%;
-    position: relative;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.dot::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    transition: 0.3s ease;
-}
-
-.dot.active {
-    background: white;
-    transform: scale(1.25);
-}
-
-.dot.active::after {
-    transform: translate(-50%, -50%) scale(1);
-    border-color: white;
-}
-
-/*======================================================================== Projects  */
-/* --------------------------------------
-   ACTIVE TAB
--------------------------------------- */
-.project-tab {
-    transition: 0.25s ease;
-    white-space: nowrap;
-    user-select: none;
-}
-
-.project-tab.active {
-    background: rgba(255, 255, 255, 0.18);
-    color: #fff !important;
-}
-
-/* Tabs - Make small screens fit */
-@media (max-width: 420px) {
-    .project-tab {
-        padding: 0.45rem 0.7rem;
-        font-size: 0.7rem;
-    }
-}
-
-/* --------------------------------------
-   FADE ANIMATION
--------------------------------------- */
-.tab-content {
-    animation: fade 0.35s ease;
-}
-
-@keyframes fade {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* --------------------------------------
-   COMPANY PROJECTS RESPONSIVENESS
--------------------------------------- */
 
 .project-card img {
     object-fit: cover;
 }
 
-/* Smaller card padding on tiny screens */
-@media (max-width: 420px) {
-    .project-card {
-        padding: 14px !important;
-    }
+/* --------------------------------------------
+        SKILL TAGS
+-------------------------------------------- */
 
-    .project-card h4 {
-        font-size: 1rem !important;
-    }
-
-    .project-card p {
-        font-size: 0.78rem;
-        line-height: 1.2rem;
-    }
-
-    .project-card .w-full.h-36,
-    .project-card .w-full.h-40 {
-        height: 130px !important;
-    }
+/* Primary Skill Tag (original, more prominent) */
+.skill-tag:not(.global-skill-tag) {
+    /* Use :not to target original tags */
+    padding: .6rem 1.3rem;
+    font-size: .85rem;
+    border-radius: .5rem;
+    background: var(--primary-op-10);
+    /* Uses new variable */
+    border: 1px solid var(--primary-op-40);
+    /* Uses new variable */
+    color: var(--primary);
+    font-weight: 600;
+    transition: .25s;
 }
 
-/* --------------------------------------
-   PERSONAL PROJECTS CAROUSEL
--------------------------------------- */
-#personal-content {
-    overflow: hidden;
-    position: relative;
+.skill-tag:not(.global-skill-tag):hover {
+    background: var(--primary-op-20);
+    /* Uses new variable */
+    border-color: var(--primary);
+    transform: translateY(-2px);
 }
 
-/* HORIZONTAL CAROUSEL */
-.carousel-x {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 8px;
-}
-
-/* Hide horizontal scrollbar */
-.carousel-x::-webkit-scrollbar {
-    display: none;
-}
-
-/* FULL-WIDTH CARD ON MOBILE */
-.carousel-x>div {
-    scroll-snap-align: center;
-    flex: 0 0 calc(100% - 32px);
-    min-width: calc(100% - 32px);
-}
-
-/* Tablet screens */
-@media (min-width: 768px) {
-    .carousel-x>div {
-        flex: 0 0 46%;
-        min-width: 46%;
-    }
-}
-
-/* Desktop screens */
-@media (min-width: 1024px) {
-    .carousel-x>div {
-        flex: 0 0 30%;
-        min-width: 30%;
-    }
-}
-
-/* --------------------------------------
-   ARROWS
--------------------------------------- */
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 30;
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(8px);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-.carousel-left {
-    left: 10px;
-}
-
-.carousel-right {
-    right: 10px;
-}
-
-.carousel-arrow:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.carousel-arrow.disabled {
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-/* Hide arrows on mobile (touch users swipe instead) */
-@media (max-width: 640px) {
-    .carousel-arrow {
-        display: none;
-    }
-}
-
-/* MOBILE SIDE-SCROLL FOR COMPANY PROJECTS */
-.company-carousel {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 8px;
-}
-
-.company-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-/* Cards behave like carousel items */
-.company-carousel>div {
-    flex: 0 0 85%;
-    /* full width on mobile */
-    scroll-snap-align: center;
-}
-
-/* Tablet Layout */
-@media (min-width: 640px) {
-    .company-carousel {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        overflow: visible;
-    }
-
-    .company-carousel>div {
-        flex: none;
-    }
-}
-
-/* Desktop Layout */
-@media (min-width: 1024px) {
-    .company-carousel {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/*======================================================================== Projects  */
-/* ===========================
-   EDUCATION RESPONSIVE IMPROVEMENTS
-   =========================== */
-
-
-
-/* Description spacing */
-#education p {
-    font-size: 0.9rem;
-}
-
-/* Mobile tweaks */
-@media (max-width: 640px) {
-
-    #education {
-        padding-top: 25% !important;
-        padding-bottom: 40px;
-    }
-
-    /* Column stacking */
-    #education .lg\:col-span-4,
-    #education .lg\:col-span-8 {
-        grid-column: span 12 / span 12 !important;
-    }
-
-
-
-    /* Subtext centered */
-    #education .lg\:col-span-4 p {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Cards: tighter padding for mobile */
-    #education .glass-card {
-        padding: 18px !important;
-    }
-
-    /* Heading size inside cards */
-    #education .glass-card h4 {
-        font-size: 1rem !important;
-    }
-
-    /* Date badge */
-    #education .glass-card span {
-        font-size: 0.65rem !important;
-        padding: 2px 6px !important;
-    }
-
-    /* School name text */
-    #education .glass-card p {
-        font-size: 0.8rem !important;
-    }
-}
-
-/* Tablet optimization */
-@media (min-width: 641px) and (max-width: 1023px) {
-
-  
-    /* Cards */
-    #education .glass-card {
-        padding: 24px !important;
-    }
-}
-
-/*======================================================================== education  */
-
-/* ===========================
-   EXPERIENCE SAME AS EDUCATION
-=========================== */
-
-
-
-#experience p {
-    font-size: 0.9rem;
-}
-
-/* ================================
-   EXPERIENCE — MOBILE RESPONSIVE
-================================ */
-@media (max-width: 640px) {
-
-    /* Add proper vertical spacing */
-    #experience {
-        padding-top: 25% !important;
-        padding-bottom: 40px;
-    }
-
-    /* Stack both columns */
-    #experience [class*="lg:col-span-4"],
-    #experience [class*="lg:col-span-8"] {
-        grid-column: span 12 / span 12 !important;
-    }
-
-  
-
-    /* Cards — reduce padding */
-    #experience .glass-card {
-        padding: 18px !important;
-        border-radius: 18px;
-    }
-
-    /* Job Titles */
-    #experience .glass-card h4 {
-        font-size: 1rem !important;
-    }
-
-    /* Date badges */
-    #experience .glass-card span {
-        font-size: 0.65rem !important;
-        padding: 3px 6px !important;
-    }
-
-    /* Company names + descriptions */
-    #experience .glass-card p {
-        font-size: 0.8rem !important;
-        line-height: 1.25rem;
-    }
-
-    /* Fix flex layout (stack on small screens) */
-    #experience .glass-card .flex {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-    }
-
-    /* Add spacing after stacking */
-    #experience .glass-card .flex span {
-        margin-top: 6px;
-    }
-}
-
-/* ================================
-   EXPERIENCE — TABLET RESPONSIVE
-================================ */
-@media (min-width: 641px) and (max-width: 1023px) {
-
-
-    #experience .glass-card {
-        padding: 24px !important;
-    }
-}
-
-@media (max-height: 650px) {
-    #about {
-        height: auto !important;
-        padding-top: 14px !important;
-        padding-bottom: 50px;
-    }
-
-    #about h1 {
-        font-size: 2.3rem !important;
-        line-height: 1.2 !important;
-    }
-
-    #about p,
-    #about span {
-        font-size: 0.85rem !important;
-    }
-
-    #about .border-l-2 {
-        border-width: 1px;
-    }
-}
-
-
-/* GENERAL SKILL TAGS */
-.skill-tag {
+/* GENERAL SKILL TAGS (Revised/Merged with Mobile) */
+#skills .skill-tag,
+.skill-tag.global-skill-tag {
+    /* Added global-skill-tag class for clarity */
     padding: 6px 12px;
     font-size: 0.75rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #d1d5db;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text);
     border-radius: 6px;
     white-space: nowrap;
 }
@@ -710,7 +313,7 @@ body::before {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    color: white;
+    color: var(--text);
 }
 
 .skill-heading .bar {
@@ -720,17 +323,12 @@ body::before {
     border-radius: 2px;
 }
 
-/* -----------------------------
-   MOBILE OPTIMIZATION (No Scroll)
------------------------------- */
+/* Mobile Optimization (Skills, combined media queries) */
 @media (max-width: 640px) {
-
     #skills {
         padding-top: 14px !important;
         padding-bottom: 40px;
     }
-
-   
 
     .grid {
         gap: 24px !important;
@@ -744,99 +342,330 @@ body::before {
         gap: 6px;
     }
 
-    .skill-tag {
+    #skills .skill-tag,
+    .skill-tag.global-skill-tag {
         padding: 5px 10px;
         font-size: 0.7rem;
     }
 }
 
-/* Tablet Fit */
+/* Tablet Fit (Skill Heading) */
 @media (min-width: 641px) and (max-width: 1023px) {
     .skill-heading {
         font-size: 1.3rem;
     }
 }
 
-/* ================================
-   CONTACT SECTION BASE
-================================ */
+/* --------------------------------------------
+        CONTACT ITEMS
+-------------------------------------------- */
+.contact-item {
+    transition: .25s;
+}
+
+.contact-item:hover {
+    transform: translateY(-4px);
+}
+
+.contact-item:hover .contact-icon-wrapper {
+    color: var(--primary);
+    filter: drop-shadow(0 0 6px var(--primary-drop-shadow));
+    /* Uses new variable */
+}
+
+/* --------------------------------------------
+        DOT NAVIGATION
+-------------------------------------------- */
+.dots {
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 1000;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #0ea5e9;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s;
+    position: relative;
+}
+
+.dot::after {
+    content: "";
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: .3s;
+}
+
+.dot.active {
+    background: #333;
+    transform: scale(1.25);
+}
+
+.dot.active::after {
+    transform: translate(-50%, -50%) scale(1);
+    border-color: #333;
+}
+
+/* --------------------------------------------
+        CAROUSEL X & COMPANY CAROUSEL
+-------------------------------------------- */
+#personal-content {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Grouped carousel base styles */
+.carousel-x,
+.company-carousel {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+}
+
+/* Grouped carousel scrollbar hiding (used to be separate) */
+.carousel-x::-webkit-scrollbar,
+.company-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* CAROUSEL X */
+.carousel-x {
+    scroll-behavior: smooth;
+}
+
+.carousel-x>div {
+    flex: 0 0 calc(100% - 32px);
+    min-width: calc(100% - 32px);
+    scroll-snap-align: center;
+}
+
+/* COMPANY CAROUSEL */
+.company-carousel>div {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+}
+
+@media (min-width: 768px) {
+    .carousel-x>div {
+        flex: 0 0 46%;
+        min-width: 46%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel-x>div {
+        flex: 0 0 30%;
+        min-width: 30%;
+    }
+
+    .company-carousel {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 640px) {
+    .company-carousel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        overflow: visible;
+    }
+
+    .company-carousel>div {
+        flex: none;
+    }
+}
+
+/* Carousel Arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .25s;
+    z-index: 30;
+    color: var(--text);
+}
+
+.carousel-arrow:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-arrow.disabled {
+    opacity: .3;
+    pointer-events: none;
+}
+
+.carousel-left {
+    left: 10px;
+}
+
+.carousel-right {
+    right: 10px;
+}
+
+@media (max-width: 640px) {
+    .carousel-arrow {
+        display: none;
+    }
+}
+
+/* --------------------------------------------
+        SECTION-SPECIFIC RESPONSIVENESS
+-------------------------------------------- */
+
+/* EDUCATION / EXPERIENCE base font size */
+#education p,
+#experience p {
+    font-size: .9rem;
+}
+
+/* EDUCATION / EXPERIENCE Mobile (Combined) */
+@media (max-width: 640px) {
+
+    #education,
+    #experience {
+        padding-top: 25% !important;
+        padding-bottom: 40px;
+    }
+
+    #education .lg\:col-span-4,
+    #education .lg\:col-span-8,
+    #experience [class*="lg:col-span-4"],
+    #experience [class*="lg:col-span-8"] {
+        grid-column: span 12 !important;
+    }
+
+    #education .glass-card,
+    #experience .glass-card {
+        padding: 18px !important;
+    }
+
+    #education .glass-card h4,
+    #experience .glass-card h4 {
+        font-size: 1rem !important;
+    }
+
+    #education .glass-card p,
+    #experience .glass-card p {
+        font-size: .8rem !important;
+    }
+
+    #experience .glass-card .flex {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+}
+
+/* EDUCATION / EXPERIENCE Tablet */
+@media (min-width: 641px) and (max-width: 1023px) {
+
+    #education .glass-card,
+    #experience .glass-card {
+        padding: 24px !important;
+    }
+}
+
+/* ABOUT HEIGHT FIX */
+@media (max-height: 650px) {
+    #about {
+        height: auto !important;
+        padding: 14px 0 50px !important;
+    }
+
+    #about h1 {
+        font-size: 2.3rem !important;
+    }
+
+    #about p,
+    #about span {
+        font-size: .85rem !important;
+    }
+}
+
+/* CONTACT SECTION */
 #contact {
     position: relative;
     overflow: hidden;
 }
 
-/* Background CONTACT text */
 #contact .bg-contact-text {
     position: absolute;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.05;
+    opacity: .08;
     pointer-events: none;
 }
 
 #contact .bg-contact-text span {
     font-size: 20vw;
     font-weight: 900;
-    color: white;
+    color: #ccc;
     user-select: none;
 }
 
-/* Heading (desktop) */
 #contact h3 {
     font-size: 3.3rem;
-    line-height: 1.1;
 }
 
 #contact p.text-xl {
     font-size: 1.3rem;
 }
 
-/* Scroll area for cards */
 .contact-scroll-area {
     position: relative;
+    scrollbar-width: none;
 }
 
-/* Hide scrollbars */
 .contact-scroll-area::-webkit-scrollbar {
     display: none;
 }
 
-.contact-scroll-area {
-    scrollbar-width: none;
-}
-
-
-/* CONTACT - Mobile Optimized */
 @media (max-width: 640px) {
-
     #contact {
         padding: 80px 0 !important;
         height: auto !important;
-        min-height: auto !important;
         overflow: visible !important;
     }
 
-    /* Background text scaling */
     #contact .bg-contact-text span {
         font-size: 34vw !important;
-        opacity: 0.08 !important;
+        opacity: .1 !important;
     }
 
-    /* Heading */
     #contact h3 {
         font-size: 2.2rem !important;
-        margin-bottom: 6px !important;
     }
 
-    /* Subheading */
     #contact p.text-xl {
         font-size: 1rem !important;
-        margin-bottom: 32px !important;
     }
 
-    /* Grid — single column */
     .contact-grid {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
@@ -847,59 +676,4 @@ body::before {
         border-radius: 16px !important;
         text-align: center !important;
     }
-
-    .contact-item h4 {
-        font-size: 1rem !important;
-    }
-
-    .contact-item span,
-    .contact-item a {
-        font-size: 0.9rem !important;
-    }
-
-    .contact-item svg {
-        width: 36px !important;
-        height: 36px !important;
-    }
 }
-/* ================================
-           FOOTER RESPONSIVE FIX
-================================ */
-
-/* --- FINAL MOBILE FIX (This MUST be last) --- */
-@media (max-width: 640px) {
-    section {
-        height: 100vh !important;
-        min-height: auto !important;
-        padding-top: 25% !important;
-        padding-bottom: 50px !important;
-        display: block !important;
-        align-items: flex-start !important;
-    }
-}
-
-
-/* ===============================
-   GLOBAL SCROLLBAR REMOVAL
-================================= */
-
-/* Hide scrollbars on html & body */
-html,
-body {
-    scrollbar-width: none !important;
-    /* Firefox */
-    -ms-overflow-style: none !important;
-    /* IE/Edge */
-}
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-    display: none !important;
-    /* Chrome, Safari, Opera */
-}
-
-
-*::-webkit-scrollbar {
-    display: none !important;
-}
-
