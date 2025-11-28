@@ -57,6 +57,9 @@ body::before {
 /* --------------------------------------------
         BACKGROUND GRADIENT BLOBS
         -------------------------------------------- */
+/* --------------------------------------------------
+   BACKGROUND CONTAINER
+-------------------------------------------------- */
 #gradient-container {
     position: fixed;
     inset: 0;
@@ -64,41 +67,187 @@ body::before {
     pointer-events: none;
 }
 
+/* --------------------------------------------------
+   FLOATING BLOBS (DESKTOP)
+-------------------------------------------------- */
 .gradient-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.22;
-    animation: blobMove 18s infinite alternate ease-in-out;
+    animation:
+        blobFloat 16s ease-in-out infinite alternate,
+        blobRotate 22s linear infinite;
+    will-change: transform;
 }
 
-#blob-cyan {
-    width: 40vw;
-    height: 40vw;
-    background: var(--primary);
-    top: -12%;
-    left: -10%;
-}
-
-#blob-purple {
-    width: 45vw;
-    height: 45vw;
-    background: var(--secondary);
-    bottom: -12%;
-    right: -10%;
-    animation-delay: -3s;
-}
-
-@keyframes blobMove {
+@keyframes blobFloat {
     0% {
         transform: translate(0, 0) scale(1);
     }
 
+    25% {
+        transform: translate(4vw, -3vh) scale(1.05);
+    }
+
+    50% {
+        transform: translate(-5vw, 4vh) scale(1.08);
+    }
+
+    75% {
+        transform: translate(3vw, 6vh) scale(1.04);
+    }
+
     100% {
-        transform: translate(6vw, 5vh) scale(1.08);
+        transform: translate(-3vw, -4vh) scale(1.07);
     }
 }
 
+@keyframes blobRotate {
+    100% {
+        rotate: 360deg;
+    }
+}
+
+/* --------------------------------------------------
+   BLOBS (MOBILE)
+-------------------------------------------------- */
+@media (max-width: 640px) {
+
+    #blob-cyan {
+        width: 70vw !important;
+        height: 70vw !important;
+        opacity: 0.35 !important;
+    }
+
+    #blob-purple {
+        width: 85vw !important;
+        height: 85vw !important;
+        opacity: 0.35 !important;
+    }
+
+    .gradient-blob {
+        animation:
+            blobFloatMobile 14s ease-in-out infinite alternate,
+            blobRotate 22s linear infinite;
+    }
+
+    @keyframes blobFloatMobile {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+
+        25% {
+            transform: translate(10vw, -6vh) scale(1.06);
+        }
+
+        50% {
+            transform: translate(-8vw, 4vh) scale(1.1);
+        }
+
+        75% {
+            transform: translate(6vw, 8vh) scale(1.04);
+        }
+
+        100% {
+            transform: translate(-5vw, -4vh) scale(1.08);
+        }
+    }
+}
+
+/* --------------------------------------------------
+   GLASS MORPHIC ORGANIC SHAPES
+-------------------------------------------------- */
+.glass-shape {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    pointer-events: none;
+    opacity: 0.45;
+    filter: blur(80px) saturate(180%);
+    border-radius: 60% 40% 70% 30% / 50% 50% 40% 60%;
+    background: radial-gradient(circle at 30% 30%, var(--primary), transparent 60%);
+
+    /* FINAL animation set (NO conflicts) */
+    animation:
+        organicMorph 18s ease-in-out infinite alternate,
+        glassSpin 25s linear infinite;
+
+    /* PARALLAX */
+    transform: translateY(calc(var(--scrollY) * 0.25));
+    will-change: transform, border-radius;
+}
+
+/* Organic morphing */
+@keyframes organicMorph {
+    0% {
+        border-radius: 60% 40% 70% 30% / 50% 50% 40% 60%;
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        border-radius: 45% 55% 65% 35% / 60% 45% 65% 50%;
+        transform: translate(5vw, -4vh) scale(1.05);
+    }
+
+    66% {
+        border-radius: 55% 45% 35% 65% / 40% 70% 50% 60%;
+        transform: translate(-4vw, 6vh) scale(1.1);
+    }
+
+    100% {
+        border-radius: 40% 60% 30% 70% / 60% 40% 70% 40%;
+        transform: translate(5vw, 6vh) scale(1.05);
+    }
+}
+
+/* Rotation */
+@keyframes glassSpin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Position overrides */
+#shape1 {
+    top: -10%;
+    left: -15%;
+    background: radial-gradient(circle at 20% 30%, var(--primary), transparent 55%);
+}
+
+#shape2 {
+    bottom: -10%;
+    right: -10%;
+    background: radial-gradient(circle at 60% 30%, var(--secondary), transparent 55%);
+    opacity: 0.38;
+    animation-delay: -6s;
+}
+
+/* --------------------------------------------------
+   MOBILE GLASS SHAPES
+-------------------------------------------------- */
+@media (max-width: 640px) {
+    .glass-shape {
+        width: 75vw;
+        height: 75vw;
+        filter: blur(65px);
+        opacity: 0.38;
+
+        animation:
+            organicMobile 18s ease-in-out infinite alternate,
+            glassSpin 40s linear infinite;
+    }
+
+    @keyframes organicMobile {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+
+        50% {
+            transform: translate(4vw, 4vh) scale(1.05);
+        }
+
+        100% {
+            transform: translate(-4vw, -3vh) scale(1.03);
+        }
+    }
+}
 /* --------------------------------------------
         SCROLL FADE-IN (Simplified)
         -------------------------------------------- */
