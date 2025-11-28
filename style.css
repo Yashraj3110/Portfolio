@@ -184,11 +184,14 @@ body::before {
     .section-title-left {
         font-size: 1.6rem;
         margin-bottom: 1rem;
+        text-align: center !important;
     }
 
     .section-title::after,
     .section-title-left::after {
-        display: none;
+        display: block;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 }
 
@@ -870,6 +873,11 @@ body::before {
 
 /* --- FINAL MOBILE FIX (This MUST be last) --- */
 @media (max-width: 640px) {
+    section .walper span {
+        font-size: 34vw !important;
+        opacity: 0.08 !important;
+    }
+
     section {
         height: 100vh !important;
         min-height: auto !important;
@@ -913,7 +921,7 @@ section {
     overflow: hidden;
 }
 
- section .walper {
+section .walper {
     position: absolute;
     inset: 0;
     display: flex;
