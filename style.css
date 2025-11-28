@@ -115,25 +115,80 @@ body::before {
 /* --------------------------------------------
         SECTION TITLES
         -------------------------------------------- */
+/* ============================================================
+   UNIVERSAL SECTION TITLE (CENTERED)
+============================================================ */
 .section-title {
+    font-size: 2.2rem;
     font-weight: 900;
-    letter-spacing: .06em;
     text-transform: uppercase;
+    letter-spacing: .06em;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+
     background: linear-gradient(to right, #fff, #a5f3fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    position: relative;
 }
 
+/* Underline for centered titles */
 .section-title::after {
     content: "";
     position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 83%;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 120px;
     height: 4px;
     border-radius: 99px;
     background: linear-gradient(90deg, var(--primary), transparent);
+}
+
+/* ============================================================
+   LEFT-ALIGNED TITLES (EDUCATION, EXPERIENCE)
+============================================================ */
+.section-title-left {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    position: relative;
+
+    background: linear-gradient(to right, #fff, #a5f3fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Underline aligned left */
+.section-title-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 120px;
+    height: 4px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+}
+
+/* ============================================================
+   MOBILE — remove underline, smaller size
+============================================================ */
+@media (max-width: 640px) {
+
+    .section-title,
+    .section-title-left {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-title::after,
+    .section-title-left::after {
+        display: none;
+    }
 }
 
 /* --------------------------------------------
@@ -468,10 +523,7 @@ body::before {
    EDUCATION RESPONSIVE IMPROVEMENTS
    =========================== */
 
-/* Section title mobile fix */
-#education .section-title {
-    font-size: 2rem;
-}
+
 
 /* Description spacing */
 #education p {
@@ -492,11 +544,7 @@ body::before {
         grid-column: span 12 / span 12 !important;
     }
 
-    /* Title centered on mobile */
-    #education .section-title {
-        text-align: center;
-        font-size: 1.8rem;
-    }
+
 
     /* Subtext centered */
     #education .lg\:col-span-4 p {
@@ -530,11 +578,7 @@ body::before {
 /* Tablet optimization */
 @media (min-width: 641px) and (max-width: 1023px) {
 
-    /* Section title */
-    #education .section-title {
-        font-size: 2.3rem;
-    }
-
+  
     /* Cards */
     #education .glass-card {
         padding: 24px !important;
@@ -547,9 +591,7 @@ body::before {
    EXPERIENCE SAME AS EDUCATION
 =========================== */
 
-#experience .section-title {
-    font-size: 2rem;
-}
+
 
 #experience p {
     font-size: 0.9rem;
@@ -572,19 +614,7 @@ body::before {
         grid-column: span 12 / span 12 !important;
     }
 
-    /* Center title */
-    #experience .section-title {
-        text-align: center;
-        font-size: 1.8rem;
-    }
-
-    /* Center subtitle text */
-    #experience .section-title+p {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 90%;
-    }
+  
 
     /* Cards — reduce padding */
     #experience .glass-card {
@@ -626,9 +656,6 @@ body::before {
 ================================ */
 @media (min-width: 641px) and (max-width: 1023px) {
 
-    #experience .section-title {
-        font-size: 2.3rem;
-    }
 
     #experience .glass-card {
         padding: 24px !important;
@@ -731,20 +758,14 @@ body::before {
 }
 
 /* ================================
-   CONTACT SECTION RESPONSIVE FIXES
+   CONTACT SECTION BASE
 ================================ */
-
-/* ===========================================================
-   CONTACT SECTION — FULL RESPONSIVE FIX (Mobile + Desktop)
-   =========================================================== */
-/* ============================
-   CONTACT — BASE STYLES
-============================ */
 #contact {
     position: relative;
     overflow: hidden;
 }
 
+/* Background CONTACT text */
 #contact .bg-contact-text {
     position: absolute;
     inset: 0;
@@ -762,11 +783,9 @@ body::before {
     user-select: none;
 }
 
-/* ============================
-   DESKTOP (Default)
-============================ */
+/* Heading (desktop) */
 #contact h3 {
-    font-size: 3.5rem;
+    font-size: 3.3rem;
     line-height: 1.1;
 }
 
@@ -774,141 +793,78 @@ body::before {
     font-size: 1.3rem;
 }
 
-/* ============================
-   MOBILE RESPONSIVE FIX
-============================ */
+/* Scroll area for cards */
+.contact-scroll-area {
+    position: relative;
+}
+
+/* Hide scrollbars */
+.contact-scroll-area::-webkit-scrollbar {
+    display: none;
+}
+
+.contact-scroll-area {
+    scrollbar-width: none;
+}
+
+
+/* CONTACT - Mobile Optimized */
 @media (max-width: 640px) {
 
-    /* Section should not be full screen on mobile */
     #contact {
+        padding: 80px 0 !important;
         height: auto !important;
         min-height: auto !important;
-        padding-top: 60px !important;
-        padding-bottom: 60px !important;
-        display: block !important;
+        overflow: visible !important;
     }
 
-    /* Resize background CONTACT text */
+    /* Background text scaling */
     #contact .bg-contact-text span {
-        font-size: 32vw !important;
-        opacity: 0.1;
+        font-size: 34vw !important;
+        opacity: 0.08 !important;
     }
 
     /* Heading */
     #contact h3 {
-        font-size: 2rem !important;
-        margin-bottom: 8px;
-        line-height: 2.3rem;
+        font-size: 2.2rem !important;
+        margin-bottom: 6px !important;
     }
 
     /* Subheading */
     #contact p.text-xl {
         font-size: 1rem !important;
-        margin-bottom: 28px !important;
+        margin-bottom: 32px !important;
     }
 
-    /* Cards stack */
-    #contact .grid {
+    /* Grid — single column */
+    .contact-grid {
         grid-template-columns: 1fr !important;
-        gap: 18px !important;
+        gap: 20px !important;
     }
 
-    /* Contact cards */
-    #contact .contact-item {
-        padding: 18px !important;
-        border-radius: 16px;
+    .contact-item {
+        padding: 20px !important;
+        border-radius: 16px !important;
+        text-align: center !important;
     }
 
-    #contact .contact-item h4 {
+    .contact-item h4 {
         font-size: 1rem !important;
     }
 
-    #contact .contact-item a,
-    #contact .contact-item span {
-        font-size: 0.85rem !important;
+    .contact-item span,
+    .contact-item a {
+        font-size: 0.9rem !important;
     }
 
-    #contact svg {
-        width: 32px !important;
-        height: 32px !important;
-    }
-
-    /* Footer inside contact section */
-    #contact footer {
-        padding-top: 40px !important;
-        padding-bottom: 40px !important;
-    }
-
-    #contact footer .flex {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 18px !important;
-    }
-
-    #contact footer p.text-2xl {
-        font-size: 1.3rem !important;
-        text-align: center !important;
-    }
-
-    #contact footer a {
-        font-size: 0.75rem !important;
-    }
-
-    .wire-line {
-        margin: 18px 0 !important;
+    .contact-item svg {
+        width: 36px !important;
+        height: 36px !important;
     }
 }
-
 /* ================================
            FOOTER RESPONSIVE FIX
 ================================ */
-
-@media (max-width: 640px) {
-
-    footer {
-        padding-top: 14px !important;
-        padding-bottom: 40px !important;
-    }
-
-    footer p.text-2xl {
-        font-size: 1.2rem !important;
-        text-align: center;
-    }
-
-    footer p.text-xs {
-        text-align: center;
-    }
-
-    footer .flex {
-        flex-direction: column !important;
-        gap: 16px !important;
-    }
-
-    footer .flex.space-x-6 {
-        justify-content: center !important;
-        gap: 18px !important;
-    }
-
-    footer a {
-        font-size: 0.75rem !important;
-    }
-
-    .wire-line {
-        margin: 18px 0 !important;
-    }
-}
-
-/* Tablet Footer tweaks */
-@media (min-width: 641px) and (max-width: 1024px) {
-
-    footer p.text-2xl {
-        font-size: 1.4rem;
-    }
-
-    footer .flex.space-x-6 a {
-        font-size: 0.8rem !important;
-    }
-}
 
 /* --- FINAL MOBILE FIX (This MUST be last) --- */
 @media (max-width: 640px) {
@@ -947,8 +903,3 @@ body::-webkit-scrollbar {
     display: none !important;
 }
 
-@media (max-width: 640px) {
-    .section-title::after {
-        display: none !important;
-    }
-}
