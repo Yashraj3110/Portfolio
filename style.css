@@ -68,91 +68,7 @@ body::before {
 }
 
 /* --------------------------------------------------
-   FLOATING BLOBS (DESKTOP)
--------------------------------------------------- */
-.gradient-blob {
-    animation:
-        blobFloat 16s ease-in-out infinite alternate,
-        blobRotate 22s linear infinite;
-    will-change: transform;
-}
-
-@keyframes blobFloat {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    25% {
-        transform: translate(4vw, -3vh) scale(1.05);
-    }
-
-    50% {
-        transform: translate(-5vw, 4vh) scale(1.08);
-    }
-
-    75% {
-        transform: translate(3vw, 6vh) scale(1.04);
-    }
-
-    100% {
-        transform: translate(-3vw, -4vh) scale(1.07);
-    }
-}
-
-@keyframes blobRotate {
-    100% {
-        rotate: 360deg;
-    }
-}
-
-/* --------------------------------------------------
-   BLOBS (MOBILE)
--------------------------------------------------- */
-@media (max-width: 640px) {
-
-    #blob-cyan {
-        width: 70vw !important;
-        height: 70vw !important;
-        opacity: 0.35 !important;
-    }
-
-    #blob-purple {
-        width: 85vw !important;
-        height: 85vw !important;
-        opacity: 0.35 !important;
-    }
-
-    .gradient-blob {
-        animation:
-            blobFloatMobile 14s ease-in-out infinite alternate,
-            blobRotate 22s linear infinite;
-    }
-
-    @keyframes blobFloatMobile {
-        0% {
-            transform: translate(0, 0) scale(1);
-        }
-
-        25% {
-            transform: translate(10vw, -6vh) scale(1.06);
-        }
-
-        50% {
-            transform: translate(-8vw, 4vh) scale(1.1);
-        }
-
-        75% {
-            transform: translate(6vw, 8vh) scale(1.04);
-        }
-
-        100% {
-            transform: translate(-5vw, -4vh) scale(1.08);
-        }
-    }
-}
-
-/* --------------------------------------------------
-   GLASS MORPHIC ORGANIC SHAPES
+   GLASS MORPHIC ORGANIC SHAPES (DESKTOP)
 -------------------------------------------------- */
 .glass-shape {
     position: absolute;
@@ -164,12 +80,12 @@ body::before {
     border-radius: 60% 40% 70% 30% / 50% 50% 40% 60%;
     background: radial-gradient(circle at 30% 30%, var(--primary), transparent 60%);
 
-    /* FINAL animation set (NO conflicts) */
+    /* Morph + rotation */
     animation:
         organicMorph 18s ease-in-out infinite alternate,
         glassSpin 25s linear infinite;
 
-    /* PARALLAX */
+    /* Parallax */
     transform: translateY(calc(var(--scrollY) * 0.25));
     will-change: transform, border-radius;
 }
@@ -204,7 +120,7 @@ body::before {
     }
 }
 
-/* Position overrides */
+/* Positions */
 #shape1 {
     top: -10%;
     left: -15%;
@@ -329,6 +245,9 @@ body::before {
 ============================================================ */
 @media (max-width: 640px) {
 
+    #bnr{
+        display: none;
+    }
     .section-title,
     .section-title-left {
         font-size: 1.6rem;
