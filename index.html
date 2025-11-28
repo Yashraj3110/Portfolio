@@ -200,10 +200,11 @@
         </section>
 
 
-
-
         <section id="projects" class="relative overflow-hidden snap-start py-8 sm:py-10">
             <div class="container mx-auto px-3 sm:px-6 max-w-7xl">
+                <h3 class="text-2xl font-black text-white section-title text-center mx-auto block mb-6">
+                    PROJECTS
+                </h3>
 
                 <!-- Tabs -->
                 <div class="flex justify-center mb-8 sm:mb-10">
@@ -226,7 +227,6 @@
                 <div id="company-content" class="tab-content" style="width: 94%;">
 
                     <div class=" text-center mb-8 sm:mb-10 fade-in-on-scroll">
-                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-black text-white">COMPANY PROJECTS</h3>
                         <p class="text-gray-500 mt-3 text-sm sm:text-base">Real-world production applications made
                             during work
                         </p>
@@ -269,7 +269,6 @@
 
                     <!-- Header -->
                     <div class="text-center mb-6 sm:mb-10 fade-in-on-scroll">
-                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-black text-white">PERSONAL PROJECTS</h3>
                         <p class="text-gray-500 mt-3 text-sm sm:text-base">Independent projects built with modern tech
                         </p>
                     </div>
@@ -374,7 +373,7 @@
                                 <a class="project-btn" href="#">Source Code</a>
                             </div>
                         </div>
-                      
+
 
                         <!-- Your other 6 project cards remain unchanged -->
                     </div>
@@ -439,8 +438,7 @@
         <section id="skills" class="py-16 sm:py-20 border-t border-white/5">
             <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
 
-                <h2
-                    class="text-3xl sm:text-4xl font-black text-white mb-12 text-center tracking-tight fade-in-on-scroll">
+                <h2 class="text-xl mb-12 font-black text-white section-title">
                     Skills & Technologies
                 </h2>
 
@@ -656,14 +654,21 @@
         document.addEventListener("DOMContentLoaded", () => {
 
             /* =====================================================
-               Detect Mobile
+               GLOBAL STATE
             ===================================================== */
-            const isMobile = (
-                /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)
-            ) && navigator.maxTouchPoints > 0;
+            let sectionLock = false;
+            let currentSectionIndex = 0;
+
+            const sections = [...document.querySelectorAll("section[id]")];
+            const dots = document.querySelectorAll(".dot");
+
+            const isMobile =
+                (/Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent))
+                && navigator.maxTouchPoints > 0;
+
 
             /* =====================================================
-               1) SMOOTH SCROLL FOR NAV LINKS
+               1) SMOOTH SCROLL FOR NAVIGATION LINKS
             ===================================================== */
             document.querySelectorAll('a[href^="#"]').forEach(link => {
                 link.addEventListener("click", e => {
@@ -671,12 +676,15 @@
                     if (!target) return;
 
                     e.preventDefault();
+                    sectionLock = true;
                     target.scrollIntoView({ behavior: "smooth" });
+                    setTimeout(() => sectionLock = false, 450);
                 });
             });
 
+
             /* =====================================================
-               2) FADE-IN ON SCROLL
+               2) FADE-IN OBSERVER
             ===================================================== */
             const fadeObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
@@ -687,15 +695,16 @@
             document.querySelectorAll(".fade-in-on-scroll")
                 .forEach(el => fadeObserver.observe(el));
 
-            /* =====================================================
-               3) DOT NAVIGATION
-            ===================================================== */
-            const dots = document.querySelectorAll(".dot");
-            const sections = [...document.querySelectorAll("section[id]")];
 
+            /* =====================================================
+               3) DOT NAVIGATION — Update active dot ONLY when allowed
+            ===================================================== */
             const dotObserver = new IntersectionObserver(entries => {
+                if (sectionLock) return;
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
+
+                    currentSectionIndex = sections.indexOf(entry.target);
 
                     dots.forEach(dot => dot.classList.remove("active"));
                     const active = document.querySelector(`.dot[data-target="#${entry.target.id}"]`);
@@ -703,93 +712,79 @@
                 });
             }, { threshold: 0.55 });
 
-            sections.forEach(s => dotObserver.observe(s));
+            sections.forEach(sec => dotObserver.observe(sec));
 
+            // Dot click
             dots.forEach(dot => {
                 dot.addEventListener("click", () => {
                     const target = document.querySelector(dot.dataset.target);
-                    if (target) target.scrollIntoView({ behavior: "smooth" });
+                    if (!target) return;
+
+                    sectionLock = true;
+                    target.scrollIntoView({ behavior: "smooth" });
+
+                    setTimeout(() => sectionLock = false, 450);
                 });
             });
 
+
             /* =====================================================
-               4) DESKTOP ONLY — SNAP WHEEL SCROLL
+               4) DESKTOP — Wheel Snap Scrolling
             ===================================================== */
             if (!isMobile) {
-                let idx = 0;
-                let locked = false;
+                let wheelLocked = false;
 
                 window.addEventListener("wheel", e => {
-                    if (locked) return;
-                    locked = true;
+                    if (sectionLock || wheelLocked) return;
 
-                    idx += e.deltaY > 0 ? 1 : -1;
-                    if (idx < 0) idx = 0;
-                    if (idx >= sections.length) idx = sections.length - 1;
+                    wheelLocked = true;
 
-                    sections[idx].scrollIntoView({ behavior: "smooth" });
+                    currentSectionIndex += e.deltaY > 0 ? 1 : -1;
+                    currentSectionIndex = Math.max(0, Math.min(currentSectionIndex, sections.length - 1));
 
-                    setTimeout(() => locked = false, 800);
+                    sections[currentSectionIndex].scrollIntoView({ behavior: "smooth" });
+
+                    setTimeout(() => wheelLocked = false, 800);
                 }, { passive: false });
             }
-            /* =====================================================
-       4.1) MOBILE SWIPE TO CHANGE SECTION
-    ===================================================== */
-            if (isMobile) {
-                let touchStartY = 0;
-                let touchEndY = 0;
-                let index = 0;
-                let isLocked = false;
 
-                // Avoid interfering with carousels or inner scroll areas
-                const isInsideInteractive = (el) =>
+
+            /* =====================================================
+               4.1) MOBILE — Swipe Navigation
+            ===================================================== */
+            if (isMobile) {
+                let startY = 0, isSwipeLocked = false;
+
+                const insideInteractive = (el) =>
                     el.closest(".carousel-x") ||
                     el.closest(".company-carousel") ||
                     el.closest("[contenteditable]");
 
-                window.addEventListener("touchstart", (e) => {
-                    if (isInsideInteractive(e.target)) return;
-                    touchStartY = e.changedTouches[0].clientY;
+                window.addEventListener("touchstart", e => {
+                    if (insideInteractive(e.target)) return;
+                    startY = e.touches[0].clientY;
                 }, { passive: true });
 
-                window.addEventListener("touchmove", (e) => {
-                    if (isInsideInteractive(e.target)) return;
-                    touchEndY = e.changedTouches[0].clientY;
-                }, { passive: true });
+                window.addEventListener("touchend", e => {
+                    if (insideInteractive(e.target)) return;
+                    if (sectionLock || isSwipeLocked) return;
 
-                window.addEventListener("touchend", (e) => {
-                    if (isInsideInteractive(e.target)) return;
-                    if (isLocked) return;
-
-                    const diff = touchStartY - touchEndY;
-
-                    // Ignore small swipes
+                    let diff = startY - e.changedTouches[0].clientY;
                     if (Math.abs(diff) < 50) return;
 
-                    // Lock
-                    isLocked = true;
-                    setTimeout(() => isLocked = false, 700);
+                    isSwipeLocked = true;
+                    setTimeout(() => isSwipeLocked = false, 650);
 
-                    // Detect direction
-                    if (diff > 0) {
-                        // Swipe UP → next section
-                        index++;
-                    } else {
-                        // Swipe DOWN → previous section
-                        index--;
-                    }
+                    currentSectionIndex += diff > 0 ? 1 : -1;
+                    currentSectionIndex = Math.max(0, Math.min(currentSectionIndex, sections.length - 1));
 
-                    // Clamp
-                    if (index < 0) index = 0;
-                    if (index >= sections.length) index = sections.length - 1;
-
-                    sections[index].scrollIntoView({ behavior: "smooth" });
+                    sections[currentSectionIndex].scrollIntoView({ behavior: "smooth" });
                 });
             }
 
 
             /* =====================================================
-               5) PROJECT TAB SWITCHING
+               5) PROJECT TABS — Do NOT change section / index
             ===================================================== */
             const tabCompany = document.getElementById("tab-company");
             const tabPersonal = document.getElementById("tab-personal");
@@ -798,21 +793,35 @@
             const personalContent = document.getElementById("personal-content");
 
             if (tabCompany && tabPersonal) {
+
+                const lockForTab = () => {
+                    sectionLock = true;
+                    setTimeout(() => sectionLock = false, 350);
+                };
+
                 tabCompany.onclick = () => {
+                    lockForTab();
+
                     tabCompany.classList.add("active");
                     tabPersonal.classList.remove("active");
+
                     companyContent.classList.remove("hidden");
                     personalContent.classList.add("hidden");
                 };
 
                 tabPersonal.onclick = () => {
+                    lockForTab();
+
                     tabPersonal.classList.add("active");
                     tabCompany.classList.remove("active");
+
                     personalContent.classList.remove("hidden");
                     companyContent.classList.add("hidden");
-                    setTimeout(() => updateArrows && updateArrows(), 100);
+
+                    setTimeout(() => window.updateArrows && updateArrows(), 100);
                 };
             }
+
 
             /* =====================================================
                6) PERSONAL PROJECT CAROUSEL
@@ -842,6 +851,8 @@
 
         });
     </script>
+
+
 
 
 

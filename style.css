@@ -39,6 +39,7 @@ body {
     overflow-y: hidden;
     /* <–– FIX */
 }
+
 /* --------------------------------------------
         SOFT NOISE TEXTURE
         -------------------------------------------- */
@@ -259,6 +260,7 @@ body::before {
     transform: translate(-50%, -50%) scale(1);
     border-color: white;
 }
+
 /*======================================================================== Projects  */
 /* --------------------------------------
    ACTIVE TAB
@@ -460,6 +462,7 @@ body::before {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
 /*======================================================================== Projects  */
 /* ===========================
    EDUCATION RESPONSIVE IMPROVEMENTS
@@ -479,7 +482,7 @@ body::before {
 @media (max-width: 640px) {
 
     #education {
-        padding-top: 14px !important ;
+        padding-top: 25% !important;
         padding-bottom: 40px;
     }
 
@@ -537,6 +540,7 @@ body::before {
         padding: 24px !important;
     }
 }
+
 /*======================================================================== education  */
 
 /* ===========================
@@ -550,6 +554,7 @@ body::before {
 #experience p {
     font-size: 0.9rem;
 }
+
 /* ================================
    EXPERIENCE — MOBILE RESPONSIVE
 ================================ */
@@ -557,7 +562,8 @@ body::before {
 
     /* Add proper vertical spacing */
     #experience {
-        padding-top: 14px !important;        padding-bottom: 40px;
+        padding-top: 25% !important;
+        padding-bottom: 40px;
     }
 
     /* Stack both columns */
@@ -632,7 +638,8 @@ body::before {
 @media (max-height: 650px) {
     #about {
         height: auto !important;
-        padding-top: 14px !important;        padding-bottom: 50px;
+        padding-top: 14px !important;
+        padding-bottom: 50px;
     }
 
     #about h1 {
@@ -692,13 +699,11 @@ body::before {
 @media (max-width: 640px) {
 
     #skills {
-        padding-top: 14px !important;        padding-bottom: 40px;
+        padding-top: 14px !important;
+        padding-bottom: 40px;
     }
 
-    #skills h2 {
-        font-size: 1.8rem;
-        margin-bottom: 24px;
-    }
+   
 
     .grid {
         gap: 24px !important;
@@ -724,6 +729,7 @@ body::before {
         font-size: 1.3rem;
     }
 }
+
 /* ================================
    CONTACT SECTION RESPONSIVE FIXES
 ================================ */
@@ -852,6 +858,7 @@ body::before {
         margin: 18px 0 !important;
     }
 }
+
 /* ================================
            FOOTER RESPONSIVE FIX
 ================================ */
@@ -859,7 +866,8 @@ body::before {
 @media (max-width: 640px) {
 
     footer {
-        padding-top: 14px !important;        padding-bottom: 40px !important;
+        padding-top: 14px !important;
+        padding-bottom: 40px !important;
     }
 
     footer p.text-2xl {
@@ -907,7 +915,8 @@ body::before {
     section {
         height: 100vh !important;
         min-height: auto !important;
-        padding-top: 14px !important;        padding-bottom: 50px !important;
+        padding-top: 25% !important;
+        padding-bottom: 50px !important;
         display: block !important;
         align-items: flex-start !important;
     }
