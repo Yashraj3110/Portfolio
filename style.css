@@ -140,7 +140,7 @@ body::before {
     left: 50%;
     bottom: -10px;
     transform: translateX(-50%);
-    width: 120px;
+    width: 220px;
     height: 4px;
     border-radius: 99px;
     background: linear-gradient(90deg, var(--primary), transparent);
@@ -169,7 +169,7 @@ body::before {
     position: absolute;
     left: 0;
     bottom: -10px;
-    width: 120px;
+    width: 265px;
     height: 4px;
     border-radius: 99px;
     background: linear-gradient(90deg, var(--primary), transparent);
@@ -579,7 +579,7 @@ body::before {
 /* Tablet optimization */
 @media (min-width: 641px) and (max-width: 1023px) {
 
-  
+
     /* Cards */
     #education .glass-card {
         padding: 24px !important;
@@ -615,7 +615,7 @@ body::before {
         grid-column: span 12 / span 12 !important;
     }
 
-  
+
 
     /* Cards — reduce padding */
     #experience .glass-card {
@@ -731,7 +731,7 @@ body::before {
         padding-bottom: 40px;
     }
 
-   
+
 
     .grid {
         gap: 24px !important;
@@ -771,7 +771,7 @@ body::before {
     position: absolute;
     inset: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     opacity: 0.05;
     pointer-events: none;
@@ -863,6 +863,7 @@ body::before {
         height: 36px !important;
     }
 }
+
 /* ================================
            FOOTER RESPONSIVE FIX
 ================================ */
@@ -904,3 +905,27 @@ body::-webkit-scrollbar {
     display: none !important;
 }
 
+
+
+
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+ section .walper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+section .walper span {
+    font-size: 20vw;
+    font-weight: 900;
+    color: white;
+    user-select: none;
+}
