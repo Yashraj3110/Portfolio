@@ -182,7 +182,7 @@
                         </div> -->
 
                         <!-- Training -->
-                        <!-- <div class="glass-card p-8 rounded-2xl fade-in-on-scroll hover:border-cyan-500/30 transition duration-300"
+                        <div class="glass-card p-8 rounded-2xl fade-in-on-scroll hover:border-cyan-500/30 transition duration-300"
                             style="transition-delay: 0.3s;">
                             <div class="flex flex-col md:flex-row justify-between md:items-center mb-2">
                                 <h4 class="text-xl font-bold text-white">PHP Development Training</h4>
@@ -190,7 +190,7 @@
                                     Months</span>
                             </div>
                             <p class="text-gray-400">Grras Pvt. Ltd.</p>
-                        </div> -->
+                        </div>
 
                     </div>
 
@@ -223,9 +223,9 @@
                 </div>
 
                 <!-- COMPANY PROJECTS -->
-                <div id="company-content" class="tab-content">
+                <div id="company-content" class="tab-content" style="width: 94%;">
 
-                    <div class="text-center mb-8 sm:mb-10 fade-in-on-scroll">
+                    <div class=" text-center mb-8 sm:mb-10 fade-in-on-scroll">
                         <h3 class="text-3xl sm:text-4xl md:text-5xl font-black text-white">COMPANY PROJECTS</h3>
                         <p class="text-gray-500 mt-3 text-sm sm:text-base">Real-world production applications made
                             during work
@@ -265,7 +265,7 @@
                 </div>
 
                 <!-- PERSONAL PROJECTS -->
-                <div id="personal-content" class="tab-content hidden">
+                <div id="personal-content" class="tab-content hidden" style="width: 94%;">
 
                     <!-- Header -->
                     <div class="text-center mb-6 sm:mb-10 fade-in-on-scroll">
@@ -303,7 +303,8 @@
                             <p class="text-gray-300">Course system with videos, quizzes, dashboards & roles.</p>
                             <div class="mt-4 space-x-4">
                                 <a class="project-btn" href="https://course-easy.infinityfreeapp.com/"
-                                    target="_blank">View Demo →</a>
+                                    target="_blank">View
+                                    Demo →</a>
                                 <a class="project-btn" href="#">Source Code</a>
                             </div>
                         </div>
@@ -319,7 +320,8 @@
                             <p class="text-gray-300">Streaming, authentication, dashboards & progress tracking.</p>
                             <div class="mt-4 space-x-4">
                                 <a class="project-btn" href="https://course-easy.vercel.app/HomePage"
-                                    target="_blank">View Demo →</a>
+                                    target="_blank">View
+                                    Demo →</a>
                                 <a class="project-btn" href="#">Source Code</a>
                             </div>
                         </div>
@@ -372,16 +374,7 @@
                                 <a class="project-btn" href="#">Source Code</a>
                             </div>
                         </div>
-                        <!-- Example card (your full set stays unchanged) -->
-                        <div class="project-card bg-white/5 backdrop-blur-md p-5 rounded-xl border border-white/10">
-                            <div class="w-full h-36 sm:h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/cel.jpg" class="w-full h-full object-cover opacity-80">
-                            </div>
-                            <h4 class="text-xl sm:text-2xl font-bold text-white mb-1">Course-Easy (Laravel)</h4>
-                            <p class="text-teal-400 mb-2 sm:mb-3">Laravel</p>
-                            <p class="text-gray-300 text-sm sm:text-base">Course system with videos, quizzes & roles.
-                            </p>
-                        </div>
+                      
 
                         <!-- Your other 6 project cards remain unchanged -->
                     </div>
@@ -397,10 +390,10 @@
                 <div class="grid lg:grid-cols-12 gap-12">
                     <div class="lg:col-span-4 fade-in-on-scroll">
                         <h3 class="text-4xl font-black text-white section-title">EDUCATION</h3>
-                    <p class="text-sm text-gray-500 mt-8 leading-relaxed max-w-xs hidden sm:block">
-                        Academic background combining theoretical foundations in computer applications with
-                        practical, modern development methodologies.
-                    </p>
+                        <p class="text-sm text-gray-500 mt-8 leading-relaxed max-w-xs hidden sm:block">
+                            Academic background combining theoretical foundations in computer applications with
+                            practical, modern development methodologies.
+                        </p>
 
                     </div>
 
@@ -659,141 +652,196 @@
 
     </main>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
-        /* =====================================================
-           Detect Mobile
-        ===================================================== */
-        const isMobile = (
-            /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)
-        ) && navigator.maxTouchPoints > 0; 
+            /* =====================================================
+               Detect Mobile
+            ===================================================== */
+            const isMobile = (
+                /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)
+            ) && navigator.maxTouchPoints > 0;
 
-        /* =====================================================
-           1) SMOOTH SCROLL FOR NAV LINKS
-        ===================================================== */
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener("click", e => {
-                const target = document.querySelector(link.getAttribute("href"));
-                if (!target) return;
+            /* =====================================================
+               1) SMOOTH SCROLL FOR NAV LINKS
+            ===================================================== */
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener("click", e => {
+                    const target = document.querySelector(link.getAttribute("href"));
+                    if (!target) return;
 
-                e.preventDefault();
-                target.scrollIntoView({ behavior: "smooth" });
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: "smooth" });
+                });
             });
+
+            /* =====================================================
+               2) FADE-IN ON SCROLL
+            ===================================================== */
+            const fadeObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add("is-visible");
+                });
+            }, { threshold: 0.25 });
+
+            document.querySelectorAll(".fade-in-on-scroll")
+                .forEach(el => fadeObserver.observe(el));
+
+            /* =====================================================
+               3) DOT NAVIGATION
+            ===================================================== */
+            const dots = document.querySelectorAll(".dot");
+            const sections = [...document.querySelectorAll("section[id]")];
+
+            const dotObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+
+                    dots.forEach(dot => dot.classList.remove("active"));
+                    const active = document.querySelector(`.dot[data-target="#${entry.target.id}"]`);
+                    if (active) active.classList.add("active");
+                });
+            }, { threshold: 0.55 });
+
+            sections.forEach(s => dotObserver.observe(s));
+
+            dots.forEach(dot => {
+                dot.addEventListener("click", () => {
+                    const target = document.querySelector(dot.dataset.target);
+                    if (target) target.scrollIntoView({ behavior: "smooth" });
+                });
+            });
+
+            /* =====================================================
+               4) DESKTOP ONLY — SNAP WHEEL SCROLL
+            ===================================================== */
+            if (!isMobile) {
+                let idx = 0;
+                let locked = false;
+
+                window.addEventListener("wheel", e => {
+                    if (locked) return;
+                    locked = true;
+
+                    idx += e.deltaY > 0 ? 1 : -1;
+                    if (idx < 0) idx = 0;
+                    if (idx >= sections.length) idx = sections.length - 1;
+
+                    sections[idx].scrollIntoView({ behavior: "smooth" });
+
+                    setTimeout(() => locked = false, 800);
+                }, { passive: false });
+            }
+            /* =====================================================
+       4.1) MOBILE SWIPE TO CHANGE SECTION
+    ===================================================== */
+            if (isMobile) {
+                let touchStartY = 0;
+                let touchEndY = 0;
+                let index = 0;
+                let isLocked = false;
+
+                // Avoid interfering with carousels or inner scroll areas
+                const isInsideInteractive = (el) =>
+                    el.closest(".carousel-x") ||
+                    el.closest(".company-carousel") ||
+                    el.closest("[contenteditable]");
+
+                window.addEventListener("touchstart", (e) => {
+                    if (isInsideInteractive(e.target)) return;
+                    touchStartY = e.changedTouches[0].clientY;
+                }, { passive: true });
+
+                window.addEventListener("touchmove", (e) => {
+                    if (isInsideInteractive(e.target)) return;
+                    touchEndY = e.changedTouches[0].clientY;
+                }, { passive: true });
+
+                window.addEventListener("touchend", (e) => {
+                    if (isInsideInteractive(e.target)) return;
+                    if (isLocked) return;
+
+                    const diff = touchStartY - touchEndY;
+
+                    // Ignore small swipes
+                    if (Math.abs(diff) < 50) return;
+
+                    // Lock
+                    isLocked = true;
+                    setTimeout(() => isLocked = false, 700);
+
+                    // Detect direction
+                    if (diff > 0) {
+                        // Swipe UP → next section
+                        index++;
+                    } else {
+                        // Swipe DOWN → previous section
+                        index--;
+                    }
+
+                    // Clamp
+                    if (index < 0) index = 0;
+                    if (index >= sections.length) index = sections.length - 1;
+
+                    sections[index].scrollIntoView({ behavior: "smooth" });
+                });
+            }
+
+
+            /* =====================================================
+               5) PROJECT TAB SWITCHING
+            ===================================================== */
+            const tabCompany = document.getElementById("tab-company");
+            const tabPersonal = document.getElementById("tab-personal");
+
+            const companyContent = document.getElementById("company-content");
+            const personalContent = document.getElementById("personal-content");
+
+            if (tabCompany && tabPersonal) {
+                tabCompany.onclick = () => {
+                    tabCompany.classList.add("active");
+                    tabPersonal.classList.remove("active");
+                    companyContent.classList.remove("hidden");
+                    personalContent.classList.add("hidden");
+                };
+
+                tabPersonal.onclick = () => {
+                    tabPersonal.classList.add("active");
+                    tabCompany.classList.remove("active");
+                    personalContent.classList.remove("hidden");
+                    companyContent.classList.add("hidden");
+                    setTimeout(() => updateArrows && updateArrows(), 100);
+                };
+            }
+
+            /* =====================================================
+               6) PERSONAL PROJECT CAROUSEL
+            ===================================================== */
+            const carousel = document.querySelector("#personal-content .carousel-x");
+            const btnPrev = document.getElementById("prevProject");
+            const btnNext = document.getElementById("nextProject");
+
+            if (carousel && btnPrev && btnNext) {
+
+                window.updateArrows = () => {
+                    const max = carousel.scrollWidth - carousel.clientWidth;
+                    btnPrev.classList.toggle("disabled", carousel.scrollLeft <= 3);
+                    btnNext.classList.toggle("disabled", carousel.scrollLeft >= max - 3);
+                };
+
+                btnNext.onclick = () =>
+                    carousel.scrollBy({ left: carousel.clientWidth * 0.7, behavior: "smooth" });
+
+                btnPrev.onclick = () =>
+                    carousel.scrollBy({ left: -carousel.clientWidth * 0.7, behavior: "smooth" });
+
+                carousel.addEventListener("scroll", updateArrows);
+
+                updateArrows();
+            }
+
         });
-
-        /* =====================================================
-           2) FADE-IN ON SCROLL
-        ===================================================== */
-        const fadeObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add("is-visible");
-            });
-        }, { threshold: 0.25 });
-
-        document.querySelectorAll(".fade-in-on-scroll")
-            .forEach(el => fadeObserver.observe(el));
-
-        /* =====================================================
-           3) DOT NAVIGATION
-        ===================================================== */
-        const dots = document.querySelectorAll(".dot");
-        const sections = [...document.querySelectorAll("section[id]")];
-
-        const dotObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-
-                dots.forEach(dot => dot.classList.remove("active"));
-                const active = document.querySelector(`.dot[data-target="#${entry.target.id}"]`);
-                if (active) active.classList.add("active");
-            });
-        }, { threshold: 0.55 });
-
-        sections.forEach(s => dotObserver.observe(s));
-
-        dots.forEach(dot => {
-            dot.addEventListener("click", () => {
-                const target = document.querySelector(dot.dataset.target);
-                if (target) target.scrollIntoView({ behavior: "smooth" });
-            });
-        });
-
-        /* =====================================================
-           4) DESKTOP ONLY — SNAP WHEEL SCROLL
-        ===================================================== */
-        if (!isMobile) {
-            let idx = 0;
-            let locked = false;
-
-            window.addEventListener("wheel", e => {
-                if (locked) return;
-                locked = true;
-
-                idx += e.deltaY > 0 ? 1 : -1;
-                if (idx < 0) idx = 0;
-                if (idx >= sections.length) idx = sections.length - 1;
-
-                sections[idx].scrollIntoView({ behavior: "smooth" });
-
-                setTimeout(() => locked = false, 800);
-            }, { passive: false });
-        }
-
-        /* =====================================================
-           5) PROJECT TAB SWITCHING
-        ===================================================== */
-        const tabCompany = document.getElementById("tab-company");
-        const tabPersonal = document.getElementById("tab-personal");
-
-        const companyContent = document.getElementById("company-content");
-        const personalContent = document.getElementById("personal-content");
-
-        if (tabCompany && tabPersonal) {
-            tabCompany.onclick = () => {
-                tabCompany.classList.add("active");
-                tabPersonal.classList.remove("active");
-                companyContent.classList.remove("hidden");
-                personalContent.classList.add("hidden");
-            };
-
-            tabPersonal.onclick = () => {
-                tabPersonal.classList.add("active");
-                tabCompany.classList.remove("active");
-                personalContent.classList.remove("hidden");
-                companyContent.classList.add("hidden");
-                setTimeout(() => updateArrows && updateArrows(), 100);
-            };
-        }
-
-        /* =====================================================
-           6) PERSONAL PROJECT CAROUSEL
-        ===================================================== */
-        const carousel = document.querySelector("#personal-content .carousel-x");
-        const btnPrev = document.getElementById("prevProject");
-        const btnNext = document.getElementById("nextProject");
-
-        if (carousel && btnPrev && btnNext) {
-
-            window.updateArrows = () => {
-                const max = carousel.scrollWidth - carousel.clientWidth;
-                btnPrev.classList.toggle("disabled", carousel.scrollLeft <= 3);
-                btnNext.classList.toggle("disabled", carousel.scrollLeft >= max - 3);
-            };
-
-            btnNext.onclick = () =>
-                carousel.scrollBy({ left: carousel.clientWidth * 0.7, behavior: "smooth" });
-
-            btnPrev.onclick = () =>
-                carousel.scrollBy({ left: -carousel.clientWidth * 0.7, behavior: "smooth" });
-
-            carousel.addEventListener("scroll", updateArrows);
-
-            updateArrows();
-        }
-
-    });
-</script>
+    </script>
 
 
 
