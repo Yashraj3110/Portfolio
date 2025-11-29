@@ -1,6 +1,3 @@
-<!DOCTYPE>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,11 +10,14 @@
     <meta name="keywords"
         content="Full Stack Developer, MERN Developer, Software Engineer, Portfolio, React, Node, MongoDB" />
 
-    <!-- Social Preview (LinkedIn/X/Facebook) -->
+    <!-- Social Preview -->
     <meta property="og:title" content="Yashraj Singh Rathore | Full Stack Developer">
     <meta property="og:description"
         content="Building modern, scalable applications using MERN, PHP, and Cloud technologies.">
     <meta property="og:type" content="website">
+
+    <!-- Load Three.js FIRST -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,11 +29,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
+
+
+
+
 </head>
 
 
 <body class="antialiased selection:bg-cyan-500 selection:text-black">
-
     <!-- Floating Dots Navigation -->
     <div class="dots">
         <div class="dot active" data-target="#about"></div>
@@ -44,12 +47,6 @@
         <div class="dot" data-target="#contact"></div>
     </div>
 
-
-    <!-- Gradient Background Container -->
-    <!-- <div id="gradient-container">
-        <div class="gradient-blob" id="blob-cyan"></div>
-        <div class="gradient-blob" id="blob-purple"></div>
-    </div> -->
     <div id="gradient-container">
         <div class="glass-shape" id="shape1"></div>
         <div class="glass-shape" id="shape2"></div>
@@ -210,193 +207,448 @@
         </section>
 
 
-    <section id="projects" class="relative overflow-hidden snap-start py-8 sm:py-16 border-t border-white/5 bg-black/20">
-    
-        <div class="absolute inset-0 walper pointer-events-none flex items-center justify-center">
-            <span>Projects</span>
-        </div>
-    
-        <div class="container mx-auto px-3 sm:px-6 max-w-7xl">
-    
-            <!-- ========================= -->
-            <!-- ROW 1: TITLE + TABS -->
-            <!-- ========================= -->
-            <div class="flex flex-col lg:flex-row justify-between lg:items-center gap-6">
-    
-                <!-- LEFT: Title + Description -->
-                <div class="fade-in-on-scroll lg:w-1/2">
-                    <h3 class="section-title-left">PROJECTS</h3>
-                    <p class="text-gray-500 mt-3 text-sm sm:text-base max-w-lg">
-                        A curated view of my professional and personal work, showcasing diverse tech stacks.
-                    </p>
-                </div>
-    
-                <!-- RIGHT: Filter Tabs -->
-                <div class="lg:w-1/2 flex lg:justify-end justify-center">
-                    <div class="flex gap-6">
-                        <button id="tab-personal" class="project-tab active-tab">
-                            Personal Projects
-                        </button>
-    
-                        <button id="tab-company" class="project-tab">
-                            Company Projects
-                        </button>
-                    </div>
-                </div>
-    
+        <section id="projects"
+            class="relative overflow-hidden snap-start py-8 sm:py-16 border-t border-white/5 bg-black/20">
+
+            <div class="absolute inset-0 walper pointer-events-none flex items-center justify-center">
+                <span>Projects</span>
             </div>
-    
-            <!-- ========================= -->
-            <!-- ROW 2: LIST + DETAILS -->
-            <!-- ========================= -->
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mt-12">
-    
-                <!-- LEFT COLUMN = CAROUSEL -->
-                <div class="lg:col-span-4 space-y-4 flex flex-col items-center">
-    
-                    <!-- Arrow Up -->
-                    <button id="prevProject" class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
-                        </svg>
-                    </button>
-    
-                    <!-- Project List Viewport -->
-                    <div id="project-list-viewport" class="w-full relative h-[270px] overflow-hidden">
-                        <div id="project-list-container" class="transition-transform duration-500 ease-out space-y-4">
-    
-                            <!-- Example Item -->
-                            <div class="project-list-item active" data-project-id="crm" data-type="company">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-list-item active" data-project-id="crm" data-type="company">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-list-item active" data-project-id="crm" data-type="personal">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-list-item active" data-project-id="crm" data-type="personal">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-list-item active" data-project-id="crm" data-type="personal">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-list-item active" data-project-id="crm" data-type="personal">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-list-item active" data-project-id="crm" data-type="personal">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-list-item active" data-project-id="crm" data-type="personal">
-                                <div class="item-card active-card">
-                                    <span class="icon">⚙️</span>
-                                    <div>
-                                        <h5 class="title">C.R.M. System</h5>
-                                        <p class="subtitle">Laravel</p>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- More items... -->
+
+            <div class="container mx-auto px-3 sm:px-6 max-w-7xl">
+
+                <!-- ========================= -->
+                <!-- ROW 1: TITLE + TABS -->
+                <!-- ========================= -->
+                <div class="flex flex-col lg:flex-row justify-between lg:items-center gap-6">
+
+                    <!-- LEFT: Title + Description -->
+                    <div class="fade-in-on-scroll lg:w-1/2">
+                        <h3 class="section-title-left">PROJECTS</h3>
+                        <p class="text-gray-500 mt-3 text-sm sm:text-base max-w-lg">
+                            A curated view of my professional and personal work, showcasing diverse tech stacks.
+                        </p>
+                    </div>
+
+                    <!-- RIGHT: Filter Tabs -->
+                    <div class="lg:w-1/2 flex lg:justify-end justify-center">
+                        <div class="flex gap-6">
+                            <button id="tab-personal" class="project-tab active-tab">
+                                Personal Projects
+                            </button>
+
+                            <button id="tab-company" class="project-tab">
+                                Company Projects
+                            </button>
                         </div>
                     </div>
-    
-                    <!-- Arrow Down -->
-                    <button id="nextProject" class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-    
+
                 </div>
-    
-                <!-- RIGHT COLUMN = DETAILS -->
-                <div class="lg:col-span-8">
-                    <div class="project-detail-card">
-    
-                        <!-- CRM -->
-                        <div class="detail-content active" data-project-id="crm">
-                            <div class="grid md:grid-cols-2 gap-6">
-    
-                                <div class="rounded-lg overflow-hidden bg-white/5 p-2">
-                                    <img src="https://via.placeholder.com/800x450?text=CRM+Screenshot"
-                                        class="w-full h-auto object-cover rounded-md" />
-                                </div>
-    
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-2">C.R.M. System</h3>
-                                    <p class="text-sm text-gray-300 mb-4">
-                                        Lead management, role-based permissions, field mapping...
-                                    </p>
-    
-                                    <ul class="text-sm text-gray-300 space-y-2 mb-4">
-                                        <li>• Role based access</li>
-                                        <li>• Field mapping</li>
-                                        <li>• Admin dashboard</li>
-                                    </ul>
-    
-                                    <div class="flex gap-3">
-                                        <a href="#" class="px-4 py-2 rounded bg-indigo-600 text-white">View Demo</a>
-                                        <a href="#"
-                                            class="px-4 py-2 rounded border border-gray-700 text-gray-200">Source</a>
+
+                <!-- ========================= -->
+                <!-- ROW 2: LIST + DETAILS -->
+                <!-- ========================= -->
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mt-12">
+
+                    <!-- LEFT COLUMN = CAROUSEL -->
+                    <div class="lg:col-span-4 space-y-4 flex flex-col items-center">
+
+                        <!-- Arrow Up -->
+                        <button id="prevProject"
+                            class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                            </svg>
+                        </button>
+
+                        <!-- Project List Viewport -->
+                        <div id="project-list-viewport" class="w-full relative h-[270px] overflow-hidden">
+                            <div id="project-list-container"
+                                class="transition-transform duration-500 ease-out space-y-4">
+
+                                <div class="project-list-item active" data-project-id="crm" data-type="company">
+                                    <div class="item-card active-card">
+                                        <span class="icon">📈</span>
+                                        <div>
+                                            <h5 class="title">C.R.M. System</h5>
+                                            <p class="subtitle">Laravel</p>
+                                        </div>
                                     </div>
                                 </div>
-    
+
+                                <div class="project-list-item active" data-project-id="wa" data-type="company">
+                                    <div class="item-card active-card">
+                                        <span class="icon">🌐</span>
+                                        <div>
+                                            <h5 class="title">Wix Applications</h5>
+                                            <p class="subtitle">Mern</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item active" data-project-id="cel" data-type="personal">
+                                    <div class="item-card active-card">
+                                        <span class="icon">📚</span>
+                                        <div>
+                                            <h5 class="title">Course-Easy</h5>
+                                            <p class="subtitle">Laravel</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item active" data-project-id="cem" data-type="personal">
+                                    <div class="item-card active-card">
+                                        <span class="icon">📖</span>
+                                        <div>
+                                            <h5 class="title">Course-Easy</h5>
+                                            <p class="subtitle">Mern</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item active" data-project-id="eb" data-type="personal">
+                                    <div class="item-card active-card">
+                                        <span class="icon">🛍️</span>
+                                        <div>
+                                            <h5 class="title">E-buy</h5>
+                                            <p class="subtitle">React</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item active" data-project-id="fk" data-type="personal">
+                                    <div class="item-card active-card">
+                                        <span class="icon">🛒</span>
+                                        <div>
+                                            <h5 class="title">Flipkart</h5>
+                                            <p class="subtitle">React</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item active" data-project-id="int" data-type="personal">
+                                    <div class="item-card active-card">
+                                        <span class="icon">🏠</span>
+                                        <div>
+                                            <h5 class="title">Interior</h5>
+                                            <p class="subtitle">Bootstrap</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-    
-                        <!-- Other detail items... -->
-    
+
+                        <!-- Arrow Down -->
+                        <button id="nextProject"
+                            class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
                     </div>
+
+                    <!-- RIGHT COLUMN = DETAILS -->
+                    <div class="lg:col-span-8">
+                        <div class="project-detail-card">
+
+                            <!-- CRM -->
+                            <div class="detail-content active" data-project-id="crm">
+                                <div class="grid md:grid-cols-2 gap-6 items-start">
+
+                                    <!-- LEFT SIDE — shown only on tablet & desktop -->
+                                    <div class="hidden md:flex flex-col h-full min-h-[350px]">
+
+                                        <!-- IMAGE (70% height) -->
+                                        <div
+                                            class="flex-grow-[8] flex-shrink rounded-lg overflow-hidden bg-white/5 p-2">
+                                            <img src="./images/crm.jpg" class="w-full h-full object-cover rounded-md" />
+                                        </div>
+
+                                        <!-- BUTTONS (30% height) -->
+                                        <div class="flex-grow-[2] mt-3 flex items-end gap-3">
+                                            <a href="https://crm.betterstudy.in/v2/login"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 transition">
+                                                View Demo
+                                            </a>
+
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200 hover:bg-gray-800 transition">
+                                                Source
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- RIGHT SIDE — always visible -->
+                                    <div class="space-y-4">
+                                        <h3 class="text-2xl font-bold">C.R.M. System</h3>
+
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            A full-featured CRM system built for
+                                            <span class="font-semibold text-indigo-400">
+                                                Career Point University
+                                            </span>.
+                                            This system helps manage student leads, automate workflows,
+                                            and handle team permissions with complete control.
+                                        </p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2">
+                                            <li>• Role-based access control</li>
+                                            <li>• Field mapping & API-based lead push</li>
+                                            <li>• Multi-user admin dashboard</li>
+                                            <li>• University-wise lead routing</li>
+                                            <li>• Lead duplication check</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="detail-content active" data-project-id="wa">
+                                <div class="grid md:grid-cols-2 gap-6 items-start">
+
+                                    <!-- LEFT SIDE — Image (shown on tablet & desktop only) -->
+                                    <div class="hidden md:flex flex-col h-full min-h-[350px]">
+
+                                        <!-- IMAGE (70%) -->
+                                        <div class="flex-grow-[8] rounded-lg overflow-hidden bg-white/5 p-2">
+                                            <img src="./images/sp.jpg" class="w-full h-full object-cover rounded-md" />
+                                        </div>
+
+                                        <!-- BUTTONS (30%) -->
+                                        <div class="flex-grow-[2] mt-3 flex items-end gap-3">
+                                            <a href="https://www.wix.com/app-market/developer/nayra-apps"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 transition">
+                                                View Demo
+                                            </a>
+
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200 hover:bg-gray-800 transition">
+                                                Source
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- RIGHT SIDE — Description -->
+                                    <div class="space-y-4">
+
+                                        <h3 class="text-2xl font-bold">Wix Applications</h3>
+
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            I built two full MERN-based applications for Wix stores, designed to help
+                                            ecommerce
+                                            brands easily customize their product pages without writing code.
+                                        </p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2">
+                                            <li>• <strong>Size Chart App</strong> — merchants can create, customize, and
+                                                attach dynamic size charts
+                                                to any product.</li>
+                                            <li>• <strong>FAQ App</strong> — store owners can build flexible FAQs and
+                                                display them beautifully on
+                                                their site.</li>
+                                            <li>• Built with MERN + Wix App Market SDK</li>
+                                            <li>• Custom admin panels & editor integration</li>
+                                            <li>• Real-time updates inside product pages</li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="detail-content active" data-project-id="cel">
+                                <div class="grid md:grid-cols-2 gap-6 items-start">
+
+                                    <!-- LEFT SIDE — Image (shown on tablet & desktop only) -->
+                                    <div class="hidden md:flex flex-col h-full min-h-[350px]">
+
+                                        <!-- IMAGE (70%) -->
+                                        <div class="flex-grow-[8] rounded-lg overflow-hidden bg-white/5 p-2">
+                                            <img src="./images/cel.jpg" class="w-full h-full object-contain rounded-md" />
+                                        </div>
+
+                                        <!-- BUTTONS (30%) -->
+                                        <div class="flex-grow-[2] mt-3 flex items-end gap-3">
+                                            <a href="https://course-easy.infinityfreeapp.com/"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 transition">
+                                                View Demo
+                                            </a>
+
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200 hover:bg-gray-800 transition">
+                                                Source
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- RIGHT SIDE — Description -->
+                                    <div class="space-y-4">
+
+                                        <h3 class="text-2xl font-bold">Course-Easy (Laravel)</h3>
+
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            A complete <span class="font-semibold text-indigo-400">e-learning
+                                                platform</span> built in Laravel,
+                                            featuring separate dashboards for both instructors and students.
+                                            The system supports paid courses, interactive learning tools, assessments,
+                                            and progress tracking — making it a fully functional LMS.
+                                        </p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2">
+                                            <li>• Instructor & Student dashboards</li>
+                                            <li>• Paid courses with secure enrollment</li>
+                                            <li>• Quizzes & automatic certificate generation</li>
+                                            <li>• Video lectures & content management</li>
+                                            <li>• Student discussion / Q&A under lectures</li>
+                                            <li>• Course completion & progress tracking system</li>
+                                            <li>• Admin panel for managing courses, users & payments</li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="detail-content active" data-project-id="cem">
+                                <div class="grid md:grid-cols-2 gap-6">
+
+                                    <div class="rounded-lg overflow-hidden bg-white/5 p-2">
+                                        <img src="./images/cem.jpg" class="w-full h-auto object-cover rounded-md" />
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2">Course-Easy (Mern)</h3>
+                                        <p class="text-sm text-gray-300 mb-4">
+                                            Course system with videos, quizzes, dashboards & roles.
+                                        </p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2 mb-4">
+                                            <li>• Role based access</li>
+                                            <li>• Field mapping</li>
+                                            <li>• Admin dashboard</li>
+                                        </ul>
+
+                                        <div class="flex gap-3">
+                                            <a href="https://course-easy.vercel.app/HomePage"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white">View Demo</a>
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200">Source</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="detail-content active" data-project-id="eb">
+                                <div class="grid md:grid-cols-2 gap-6">
+
+                                    <div class="rounded-lg overflow-hidden bg-white/5 p-2">
+                                        <img src="./images/ebuy.jpg" class="w-full h-auto object-cover rounded-md" />
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2">E-Commerce Website</h3>
+                                        <p class="text-sm text-gray-300 mb-4">
+                                            Reusable components, clean UI, smooth user flow
+                                        </p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2 mb-4">
+                                            <li>• Role based access</li>
+                                            <li>• Field mapping</li>
+                                            <li>• Admin dashboard</li>
+                                        </ul>
+
+                                        <div class="flex gap-3">
+                                            <a href="https://easy-buy-six.vercel.app/"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white">View Demo</a>
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200">Source</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="detail-content active" data-project-id="fk">
+                                <div class="grid md:grid-cols-2 gap-6">
+
+                                    <div class="rounded-lg overflow-hidden bg-white/5 p-2">
+                                        <img src="./images/fl.jpg" class="w-full h-auto object-cover rounded-md" />
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2">Flipkart Clone</h3>
+                                        <p class="text-sm text-gray-300 mb-4">
+                                            Marketplace UI, categories, product grids.
+                                        </p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2 mb-4">
+                                            <li>• Role based access</li>
+                                            <li>• Field mapping</li>
+                                            <li>• Admin dashboard</li>
+                                        </ul>
+
+                                        <div class="flex gap-3">
+                                            <a href="project-btn" href="https://flipkart-clone-delta-three.vercel.app/"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white">View
+                                                Demo</a>
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200">Source</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="detail-content active" data-project-id="int">
+                                <div class="grid md:grid-cols-2 gap-6">
+
+                                    <div class="rounded-lg overflow-hidden bg-white/5 p-2">
+                                        <img src="./images/int.jpg" class="w-full h-auto object-cover rounded-md" />
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2">Interior Design Template</h3>
+                                        <p class="text-sm text-gray-300 mb-4">
+                                            Marketplace UI, categories, product grids.
+                                        </p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2 mb-4">
+                                            <li>• Role based access</li>
+                                            <li>• Field mapping</li>
+                                            <li>• Admin dashboard</li>
+                                        </ul>
+
+                                        <div class="flex gap-3">
+                                            <a href="project-btn"
+                                                href="https://yashraj3110.github.io/Interior-design-Template/"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white">View
+                                                Demo</a>
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200">Source</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Other detail items... -->
+
+                        </div>
+                    </div>
+
                 </div>
-    
             </div>
-        </div>
-    </section>
+        </section>
 
 
 
@@ -622,6 +874,21 @@
 
 
     </main>
+
+    <script>
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            color: 0x00ffff,
+            backgroundColor: 0x000000
+        });
+    </script>
 
     <script>
         window.addEventListener("scroll", () => {
@@ -944,6 +1211,7 @@
             });
         }
     </script>
+
 
 
 
