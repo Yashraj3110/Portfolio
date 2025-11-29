@@ -1322,3 +1322,41 @@ section .walper span {
         width: 100%;
     }
 }
+@media (max-width: 768px) {
+
+    /* List container (must be visible above the detail card) */
+    .lg\:col-span-4 {
+        order: 1;
+        /* List is first */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Detail Card container */
+    .lg\:col-span-8 {
+        order: 2;
+        /* Detail card is second */
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    .project-detail-card {
+        /* Override fixed desktop height for mobile */
+        height: auto;
+        min-height: 250px;
+        /* Ensure a decent minimum height on mobile */
+        max-height: 45vh;
+        /* Allow it to be scrollable if needed */
+        width: 100%;
+        flex: unset !important;
+    }
+
+    /* Ensure mobile detail content adapts */
+    .detail-content {
+        position: static !important;
+        padding: 12px;
+        /* Use smaller mobile padding */
+    }
+}
