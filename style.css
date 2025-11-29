@@ -1163,6 +1163,9 @@ section .walper span {
 
     /* Grid container for list/detail columns should stack vertically */
     #projects .grid {
+
+         margin-top: 7% !important;
+            
         flex: 1;
         /* Allow the grid to take the remaining vertical space */
         display: flex;
@@ -1180,7 +1183,7 @@ section .walper span {
     }
 
     #projects p {
-        margin-bottom: 10px !important;
+        margin-bottom: 12% !important;
         font-size: 0.82rem;
         max-width: 100%;
         padding: 0 10px;
@@ -1358,5 +1361,79 @@ section .walper span {
         position: static !important;
         padding: 12px;
         /* Use smaller mobile padding */
+    }
+}
+@media (max-width: 768px) {
+
+    /* --- STRUCTURE/LAYOUT (Ordering remains correct) --- */
+    /* ... (rest of the mobile structure CSS) ... */
+
+    /* List container (order: 1) */
+    .lg\:col-span-4 {
+        order: 1;
+        /* List is first */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Detail Card container (order: 2) */
+    .lg\:col-span-8 {
+        order: 2;
+        /* Detail card is second */
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    /* --- MOBILE SCROLLING FIX (No changes needed here from previous step) --- */
+    /* ... (project list viewport and item styles) ... */
+
+    /* --- DETAIL PANEL (BOTTOM AREA) --- */
+    .project-detail-card {
+        /* Override desktop fixed height for mobile */
+        height: auto;
+        min-height: 250px;
+        /* Ensure a decent minimum height on mobile */
+        max-height: 45vh;
+        /* Allow it to be scrollable if needed */
+        width: 100%;
+        flex: unset !important;
+        /* Remove fixed position on mobile */
+        position: relative;
+        overflow: hidden;
+        /* Keep content contained */
+    }
+
+    .detail-content {
+        /* Reset positioning for mobile flow */
+        position: static !important;
+        /* Make detail content flow normally */
+        padding: 12px;
+        /* Use smaller mobile padding */
+        visibility: visible;
+        /* Ensure content is visible in the flow */
+        opacity: 1;
+        /* Ensure content is visible in the flow */
+        transform: none;
+        /* No transform needed for flow */
+        height: auto;
+        /* Allow natural height flow */
+        overflow-y: auto;
+    }
+
+    /* Use display: none/block for mobile switching instead of position/opacity */
+    .detail-content:not(.active) {
+        display: none !important;
+    }
+
+    .detail-content.active {
+        display: block !important;
+    }
+
+    /* Hide arrows */
+    #prevProject,
+    #nextProject {
+        display: none !important;
     }
 }
