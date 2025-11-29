@@ -1199,6 +1199,7 @@ section .walper span {
 
     /* Title + Paragraph + Tabs compressed */
     #projects .section-title {
+        text-align: left !important;
         margin-top: 5px;
         margin-bottom: 6px;
         font-size: 1.4rem;
