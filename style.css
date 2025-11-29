@@ -1187,7 +1187,7 @@ section .walper span {
     /* Grid container for list/detail columns should stack vertically */
     #projects .grid {
 
-        margin-top: 7% !important;
+        margin-top: 3% !important;
 
         flex: 1;
         /* Allow the grid to take the remaining vertical space */
@@ -1206,7 +1206,7 @@ section .walper span {
     }
 
     #projects p {
-        margin-bottom: 12% !important;
+        margin-bottom: 5% !important;
         font-size: 0.82rem;
         max-width: 100%;
         padding: 0 10px;

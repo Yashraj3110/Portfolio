@@ -1,0 +1,168 @@
+   <!-- COMPANY PROJECTS -->
+                <div id="company-content" class="tab-content" style="width: 94%;">
+
+                    <div class=" text-center mb-8 sm:mb-10 fade-in-on-scroll">
+                        <p class="text-gray-500 mt-3 text-sm sm:text-base">Real-world production applications made
+                            during work
+                        </p>
+                    </div>
+
+                    <!-- Responsive Grid -->
+                    <div class="company-carousel">
+
+                        <!-- CRM -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
+                            <div class="w-full h-36 sm:h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
+                                <img src="./images/crm.jpg" class="w-full h-full object-cover opacity-80" />
+                            </div>
+                            <h4 class="text-xl sm:text-2xl font-bold text-white mb-1">C.R.M.</h4>
+                            <p class="text-teal-400 mb-2 sm:mb-3">Laravel</p>
+                            <p class="text-gray-300 text-sm sm:text-base">Lead management, tracking, automation, and
+                                workflow.
+                            </p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://crm.betterstudy.in/v2/login" target="_blank">View
+                                    Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- WIX -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
+                            <div class="w-full h-36 sm:h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
+                                <img src="./images/sp.jpg" class="w-full h-full object-cover opacity-80" />
+                            </div>
+                            <h4 class="text-xl sm:text-2xl font-bold text-white mb-1">Wix Applications</h4>
+                            <p class="text-teal-400 mb-2 sm:mb-3">MERN Stack</p>
+                            <p class="text-gray-300 text-sm sm:text-base">Dynamic FAQ & Size-Chart apps for ecommerce
+                                brands.
+                            </p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://www.wix.com/app-market/developer/nayra-apps"
+                                    target="_blank">View Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PERSONAL PROJECTS -->
+                <div id="personal-content" class="tab-content hidden" style="width: 94%;">
+
+                    <!-- Header -->
+                    <div class="text-center mb-6 sm:mb-10 fade-in-on-scroll">
+                        <p class="text-gray-500 mt-3 text-sm sm:text-base">Independent projects built with modern tech
+                        </p>
+                    </div>
+
+                    <!-- Arrows (hidden on mobile) -->
+                    <div class="carousel-arrow carousel-left" id="prevProject">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </div>
+
+                    <div class="carousel-arrow carousel-right" id="nextProject">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+
+                    <!-- Horizontal Scroll Carousel -->
+                    <div class="carousel-x pb-2">
+
+                        <!-- Course Easy Laravel -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
+                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
+                                <img src="./images/cel.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Course-Easy (Laravel)</h4>
+                            <p class="text-teal-400 mb-3">Laravel</p>
+                            <p class="text-gray-300">Course system with videos, quizzes, dashboards & roles.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://course-easy.infinityfreeapp.com/"
+                                    target="_blank">View
+                                    Demo →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- MERN -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-purple-500 transition">
+                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
+                                <img src="./images/cem.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Course-Easy (MERN)</h4>
+                            <p class="text-teal-400 mb-3">MERN Stack</p>
+                            <p class="text-gray-300">Streaming, authentication, dashboards & progress tracking.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://course-easy.vercel.app/HomePage"
+                                    target="_blank">View
+                                    Demo →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- E-commerce -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
+                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
+                                <img src="./images/ebuy.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">E-Commerce Website</h4>
+                            <p class="text-teal-400 mb-3">React • Tailwind</p>
+                            <p class="text-gray-300">Reusable components, clean UI, smooth user flow.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://easy-buy-six.vercel.app/" target="_blank">View Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- Flipkart Clone -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-blue-500 transition">
+                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
+                                <img src="./images/fl.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Flipkart Clone</h4>
+                            <p class="text-teal-400 mb-3">React</p>
+                            <p class="text-gray-300">Marketplace UI, categories, product grids.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://flipkart-clone-delta-three.vercel.app/"
+                                    target="_blank">View Demo
+                                    →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+                        <!-- Interior Template -->
+                        <div
+                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-green-500 transition">
+                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
+                                <img src="./images/int.jpg" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Interior Design Template</h4>
+                            <p class="text-teal-400 mb-3">Bootstrap</p>
+                            <p class="text-gray-300">Modern static UI for design agencies.</p>
+                            <div class="mt-4 space-x-4">
+                                <a class="project-btn" href="https://yashraj3110.github.io/Interior-design-Template/"
+                                    target="_blank">View Demo →</a>
+                                <a class="project-btn" href="#">Source Code</a>
+                            </div>
+                        </div>
+
+
+                        <!-- Your other 6 project cards remain unchanged -->
+                    </div>
+                </div>
+                
