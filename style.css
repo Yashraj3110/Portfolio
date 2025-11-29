@@ -164,6 +164,7 @@ body::before {
         }
     }
 }
+
 /* --------------------------------------------
         SCROLL FADE-IN (Simplified)
         -------------------------------------------- */
@@ -245,9 +246,10 @@ body::before {
 ============================================================ */
 @media (max-width: 640px) {
 
-    #bnr{
+    #bnr {
         display: none;
     }
+
     .section-title,
     .section-title-left {
         font-size: 1.6rem;
@@ -296,16 +298,6 @@ body::before {
     box-shadow: 0 4px 22px rgba(0, 0, 0, 0.22);
 }
 
-.project-card {
-    border: 1px solid rgba(0, 224, 255, 0.18);
-    transition: .3s ease;
-    background: var(--card-bg);
-}
-
-.project-card:hover {
-    border-color: var(--primary);
-    box-shadow: 0 8px 25px rgba(0, 224, 255, 0.22);
-}
 
 /* --------------------------------------------
         SKILL TAG (Unified — No Duplicates)
@@ -390,27 +382,7 @@ body::before {
 
 /*======================================================================== Projects  */
 /* --------------------------------------
-   ACTIVE TAB
--------------------------------------- */
-.project-tab {
-    transition: 0.25s ease;
-    white-space: nowrap;
-    user-select: none;
-}
-
-.project-tab.active {
-    background: rgba(255, 255, 255, 0.18);
-    color: #fff !important;
-}
-
-/* Tabs - Make small screens fit */
-@media (max-width: 420px) {
-    .project-tab {
-        padding: 0.45rem 0.7rem;
-        font-size: 0.7rem;
-    }
-}
-
+ 
 /* --------------------------------------
    FADE ANIMATION
 -------------------------------------- */
@@ -433,31 +405,6 @@ body::before {
 /* --------------------------------------
    COMPANY PROJECTS RESPONSIVENESS
 -------------------------------------- */
-
-.project-card img {
-    object-fit: cover;
-}
-
-/* Smaller card padding on tiny screens */
-@media (max-width: 420px) {
-    .project-card {
-        padding: 14px !important;
-    }
-
-    .project-card h4 {
-        font-size: 1rem !important;
-    }
-
-    .project-card p {
-        font-size: 0.78rem;
-        line-height: 1.2rem;
-    }
-
-    .project-card .w-full.h-36,
-    .project-card .w-full.h-40 {
-        height: 130px !important;
-    }
-}
 
 /* --------------------------------------
    PERSONAL PROJECTS CAROUSEL
@@ -1004,4 +951,319 @@ section .walper span {
     font-weight: 900;
     color: white;
     user-select: none;
+}
+
+
+/* --------------------------------------------
+    PROJECTS SECTION STYLING (Single Item Navigation)
+-------------------------------------------- */
+
+/* --------------------------------------------
+    DETAIL CONTENT TRANSITION FIX
+-------------------------------------------- */
+/* Container for absolute-positioned detail panels */
+/* Base card style */
+/* Each project list item */
+/* --- Global Variables & Mixins (Not shown here, but assume standard dark mode) --- */
+
+/* ----------------------------------------------------
+   1. PROJECT LIST ITEMS (Carousel)
+---------------------------------------------------- */
+/* PROJECT LIST ITEM WRAPPER */
+.project-list-item {
+    width: 100%;
+}
+
+/* BASE CARD STYLE */
+.item-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 1rem 1.2rem;
+    border-radius: 18px;
+    height: 84px;
+    width: 100%;
+    cursor: pointer;
+
+    /* Dark glass effect */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all .35s ease-in-out;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ICON */
+.item-card .icon {
+    font-size: 2rem;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    transition: 0.35s ease;
+}
+
+/* TEXT */
+.item-card .title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e5e7eb;
+}
+
+.item-card .subtitle {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* ACTIVE CARD (center focus) */
+.item-card.active-card {
+    background: linear-gradient(259deg, rgb(38, 2, 52), #013131);
+        border-color: rgb(255 255 255 / 0%);
+        box-shadow: 0 0px 5px hsl(0deg 0% 33.01%), inset 0 0 15px rgb(30 11 35);
+        transform: scale(1.08);
+}
+
+/* ACTIVE ICON */
+.item-card.active-card .icon {
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* ACTIVE TEXT */
+.item-card.active-card .title {
+    color: white;
+}
+
+.item-card.active-card .subtitle {
+    color: #bfdbfe;
+}
+
+/* INACTIVE CARDS */
+.item-card.inactive-card {
+    opacity: 0.6;
+    transform: scale(0.94);
+}
+
+.item-card.inactive-card .icon {
+    background: rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+}
+
+.item-card.inactive-card .title {
+    color: #d1d5db;
+}
+
+.item-card.inactive-card .subtitle {
+    color: #9ca3af;
+}
+/* ----------------------------------------------------
+   3. CAROUSEL & DETAIL LAYOUT
+---------------------------------------------------- */
+
+/* Viewport for the list */
+#project-list-viewport {
+    height: 284px !important;
+    /* 3*84px + 2*16px space = 284px */
+    padding: 100px 15px;
+    /* Clear padding */
+    overflow: hidden;
+}
+
+/* Detail panel: Border gradient and elevation */
+.project-detail-card {
+    position: relative;
+    min-height: 380px;
+    padding: 1.25rem;
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(25, 27, 30, 0.8), rgba(15, 17, 20, 0.8));
+    /* Deep dark gradient */
+    border: 2px solid;
+    /* Use for the gradient border effect */
+    border-image-slice: 1;
+    /* Soft Blue Gradient Border */
+    border-image-source: linear-gradient(135deg, #008f8f, #000000, #690092);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    /* Prominent lift */
+    overflow: hidden;
+}
+
+/* Detail content transition (already good, just for completeness) */
+.detail-content {
+    transition: opacity .4s ease, transform .4s ease;
+    /* ... rest of detail-content styles ... */
+}
+
+/* Arrows */
+.project-nav-arrow {
+    background: rgba(255, 255, 255, 0.08);
+    /* Darker arrow background */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.project-nav-arrow:hover {
+    background: rgba(0, 123, 255, 0.3);
+    /* Hover effect using the primary color */
+    transform: scale(1.05);
+}
+
+.project-tab {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: #9ca3af;
+    border-bottom: 2px solid transparent;
+    transition: all .3s ease;
+}
+
+.project-tab:hover {
+    color: #e5e7eb;
+}
+
+.project-tab.active-tab {
+    color: #ffffff;
+    border-bottom-color: #3b82f6;
+}
+
+/* ---------- MOBILE FULLSCREEN PROJECTS (No Scroll) ---------- */
+/* ------------------------------
+    MOBILE (<= 768px)
+   ------------------------------ */
+@media (max-width: 768px) {
+
+    /* Section takes full screen */
+    #projects {
+        height: 100vh !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #projects .container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    /* Title + tabs wrapper */
+    #projects .section-title {
+        margin-top: 14px;
+        margin-bottom: 4px;
+    }
+
+    #projects .section-title+p {
+        margin: 0 0 10px 0 !important;
+        padding: 0 10px;
+        font-size: 0.8rem;
+    }
+
+    /* TABS */
+    .project-tab {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+
+    /* Disable desktop grid */
+    #projects .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1;
+        overflow: hidden;
+    }
+
+    /* Hide arrows */
+    #prevProject,
+    #nextProject {
+        display: none !important;
+    }
+
+    /* Horizontal project list */
+    #project-list-viewport {
+        flex-shrink: 0;
+        height: 130px !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap;
+        padding: 10px 0;
+    }
+
+    #project-list-container {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 12px;
+        transform: none !important;
+        height: auto !important;
+        padding-left: 10px;
+    }
+
+    .project-list-item {
+        width: 150px;
+        flex-shrink: 0;
+        display: inline-block !important;
+    }
+
+    .item-card {
+        height: 110px;
+        border-radius: 14px;
+        padding: 12px;
+    }
+
+    /* DETAILS AREA */
+    .project-detail-card {
+        flex: 1;
+        background: rgba(20, 20, 20, 0.65);
+        padding: 12px;
+        overflow-y: auto;
+    }
+
+    .detail-content {
+        position: relative;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        padding: 0;
+    }
+
+    .detail-content.hidden {
+        display: none !important;
+    }
+
+    /* Hide screenshot images */
+    .detail-content img {
+        display: none !important;
+    }
+
+    /* Compact text */
+    .detail-content h3 {
+        font-size: 1rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    .detail-content p,
+    .detail-content li {
+        font-size: 0.75rem !important;
+        line-height: 1.2rem;
+    }
+
+    .detail-content ul {
+        margin-bottom: 6px !important;
+    }
+
+    .detail-content .flex a {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+    }
+        .project-list-item.hidden {
+            display: none !important;
+            /* Force hide on mobile */
+        }
 }

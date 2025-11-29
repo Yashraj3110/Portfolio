@@ -99,9 +99,13 @@
                     <!-- Introduction -->
                     <p
                         class="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed border-l-2 border-gray-800 pl-4 sm:pl-6 mt-6 max-w-2xl">
-                        Passionate Full Stack Developer focused on building scalable and efficient web applications.
-                        Skilled in MERN stack, PHP, and modern UI frameworks with emphasis on clean code, performance,
-                        and seamless user experience.
+                        I’m a full-stack developer who enjoys building products that scale. I like to design modular
+                        backends and clean UIs.
+                        Over the past years I've worked on CRMs, e-commerce platforms, and course portals — building
+                        features from user
+                        authentication and role permissions to file uploads and analytics dashboards. I care about
+                        maintainable code, meaningful
+                        tests and readable architecture.
                     </p>
 
                     <!-- CTA Buttons -->
@@ -206,198 +210,169 @@
         </section>
 
 
-        <section id="projects" class="relative overflow-hidden snap-start py-8 sm:py-10">
-            <!-- Background CONTACT text -->
+        <section id="projects"
+            class="relative overflow-hidden snap-start py-8 sm:py-16 border-t border-white/5 bg-black/20">
             <div class="absolute inset-0 walper pointer-events-none flex items-center justify-center">
                 <span>Projects </span>
             </div>
+
             <div class="container mx-auto px-3 sm:px-6 max-w-7xl">
                 <h3 class="section-title">PROJECTS</h3>
+                <p class="text-center text-gray-500 mt-3 mb-10 text-sm sm:text-base max-w-lg mx-auto">
+                    A curated view of my professional and personal work, showcasing diverse tech stacks.
+                </p>
+                <!-- ⭐ FILTER TABS -->
+                <div class="flex items-center justify-center gap-6 mb-8">
+                    <button id="tab-personal" class="project-tab active-tab">
+                        Personal Projects
+                    </button>
 
+                    <button id="tab-company" class="project-tab">
+                        Company Projects
+                    </button>
+                </div>
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mt-10">
 
-                <!-- Tabs -->
-                <div class="flex justify-center mb-8 sm:mb-10">
-                    <div class="flex bg-white/10 backdrop-blur-md p-1 rounded-xl border border-white/10">
+                    <div class="lg:col-span-4 space-y-4 flex flex-col items-center">
 
-                        <button id="tab-company"
-                            class="project-tab active px-4 sm:px-6 py-2 rounded-lg font-semibold text-xs sm:text-sm text-cyan-300">
-                            Company Projects
+                        <!-- Up Arrow -->
+                        <button id="prevProject"
+                            class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                            </svg>
                         </button>
 
-                        <button id="tab-personal"
-                            class="project-tab px-4 sm:px-6 py-2 rounded-lg font-semibold text-xs sm:text-sm text-cyan-300">
-                            Personal Projects
+                        <!-- Viewport (shows 3 items) -->
+                        <div id="project-list-viewport" class="w-full relative h-[270px] overflow-hidden">
+
+                            <div id="project-list-container"
+                                class="transition-transform duration-500 ease-out space-y-4">
+
+                                <div class="project-list-item" data-project-id="crm" data-type="company">
+                                    <div class="item-card">
+                                        <span class="icon">⚙️</span>
+                                        <div>
+                                            <h5 class="title">C.R.M. System</h5>
+                                            <p class="subtitle">Company • Laravel</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item" data-project-id="wix-apps" data-type="company">
+                                    <div class="item-card">
+                                        <span class="icon">🛍️</span>
+                                        <div>
+                                            <h5 class="title">Wix Ecommerce Apps</h5>
+                                            <p class="subtitle">Company • MERN Stack</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item" data-project-id="ce-laravel" data-type="personal">
+                                    <div class="item-card">
+                                        <span class="icon">🎓</span>
+                                        <div>
+                                            <h5 class="title">Course Easy (Laravel)</h5>
+                                            <p class="subtitle">Personal • LMS</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item" data-project-id="ce-mern" data-type="personal">
+                                    <div class="item-card">
+                                        <span class="icon">🚀</span>
+                                        <div>
+                                            <h5 class="title">Course Easy (MERN)</h5>
+                                            <p class="subtitle">Personal • Streaming</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-list-item" data-project-id="ecommerce" data-type="personal">
+                                    <div class="item-card">
+                                        <span class="icon">🛒</span>
+                                        <div>
+                                            <h5 class="title">E-Commerce Website</h5>
+                                            <p class="subtitle">Personal • React</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Down Arrow -->
+                        <button id="nextProject"
+                            class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
                         </button>
 
                     </div>
-                </div>
 
-                <!-- COMPANY PROJECTS -->
-                <div id="company-content" class="tab-content" style="width: 94%;">
 
-                    <div class=" text-center mb-8 sm:mb-10 fade-in-on-scroll">
-                        <p class="text-gray-500 mt-3 text-sm sm:text-base">Real-world production applications made
-                            during work
-                        </p>
+                    <div class="lg:col-span-8">
+                        <div class="project-detail-card">
+
+                            <div class="detail-content active" data-project-id="crm">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <!-- Left: screenshot -->
+                                    <div class="rounded-lg overflow-hidden bg-white/5 p-2">
+                                        <img src="https://via.placeholder.com/800x450?text=CRM+Screenshot"
+                                            alt="CRM screenshot" class="w-full h-auto object-cover rounded-md" />
+                                    </div>
+
+                                    <!-- Right: copy -->
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2">C.R.M. System</h3>
+                                        <p class="text-sm text-gray-300 mb-4">Lead management, role-based permissions,
+                                            field mapping and webhook
+                                            handlers. Built with Laravel, MySQL and Ajax.</p>
+
+                                        <ul class="text-sm text-gray-300 space-y-2 mb-4">
+                                            <li>• Role based access & permissions</li>
+                                            <li>• Field mapping & webhook integrations</li>
+                                            <li>• Admin analytics & dashboard</li>
+                                        </ul>
+
+                                        <div class="flex gap-3">
+                                            <a href="https://crm.betterstudy.in/v2/login" target="_blank"
+                                                class="px-4 py-2 rounded bg-indigo-600 text-white">View Demo</a>
+                                            <a href="#"
+                                                class="px-4 py-2 rounded border border-gray-700 text-gray-200">Source</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail-content hidden" data-project-id="wix-apps">
+                                <h3 class="text-xl font-bold">Wix Apps</h3>
+                                <p class="text-gray-300 text-sm">Details coming soon...</p>
+                            </div>
+
+                            <div class="detail-content hidden" data-project-id="ce-laravel">
+                                <h3 class="text-xl font-bold">Course-Easy Laravel</h3>
+                                <p class="text-gray-300 text-sm">Details coming soon...</p>
+                            </div>
+
+                            <div class="detail-content hidden" data-project-id="ce-mern">
+                                <h3 class="text-xl font-bold">Course-Easy MERN</h3>
+                                <p class="text-gray-300 text-sm">Details coming soon...</p>
+                            </div>
+
+                            <div class="detail-content hidden" data-project-id="ecommerce">
+                                <h3 class="text-xl font-bold">E-Commerce Website</h3>
+                                <p class="text-gray-300 text-sm">Details coming soon...</p>
+                            </div>
+
+
+                        </div>
                     </div>
 
-                    <!-- Responsive Grid -->
-                    <div class="company-carousel">
-
-                        <!-- CRM -->
-                        <div
-                            class="project-card bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
-                            <div class="w-full h-36 sm:h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/crm.jpg" class="w-full h-full object-cover opacity-80" />
-                            </div>
-                            <h4 class="text-xl sm:text-2xl font-bold text-white mb-1">C.R.M.</h4>
-                            <p class="text-teal-400 mb-2 sm:mb-3">Laravel</p>
-                            <p class="text-gray-300 text-sm sm:text-base">Lead management, tracking, automation, and
-                                workflow.
-                            </p>
-                            <div class="mt-4 space-x-4">
-                                <a class="project-btn" href="https://crm.betterstudy.in/v2/login" target="_blank">View
-                                    Demo
-                                    →</a>
-                                <a class="project-btn" href="#">Source Code</a>
-                            </div>
-                        </div>
-
-                        <!-- WIX -->
-                        <div
-                            class="project-card bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
-                            <div class="w-full h-36 sm:h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/sp.jpg" class="w-full h-full object-cover opacity-80" />
-                            </div>
-                            <h4 class="text-xl sm:text-2xl font-bold text-white mb-1">Wix Applications</h4>
-                            <p class="text-teal-400 mb-2 sm:mb-3">MERN Stack</p>
-                            <p class="text-gray-300 text-sm sm:text-base">Dynamic FAQ & Size-Chart apps for ecommerce
-                                brands.
-                            </p>
-                            <div class="mt-4 space-x-4">
-                                <a class="project-btn" href="https://www.wix.com/app-market/developer/nayra-apps"
-                                    target="_blank">View Demo
-                                    →</a>
-                                <a class="project-btn" href="#">Source Code</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- PERSONAL PROJECTS -->
-                <div id="personal-content" class="tab-content hidden" style="width: 94%;">
-
-                    <!-- Header -->
-                    <div class="text-center mb-6 sm:mb-10 fade-in-on-scroll">
-                        <p class="text-gray-500 mt-3 text-sm sm:text-base">Independent projects built with modern tech
-                        </p>
-                    </div>
-
-                    <!-- Arrows (hidden on mobile) -->
-                    <div class="carousel-arrow carousel-left" id="prevProject">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </div>
-
-                    <div class="carousel-arrow carousel-right" id="nextProject">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path d="M9 5l7 7-7 7" />
-                        </svg>
-                    </div>
-
-                    <!-- Horizontal Scroll Carousel -->
-                    <div class="carousel-x pb-2">
-
-                        <!-- Course Easy Laravel -->
-                        <div
-                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
-                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/cel.jpg" class="w-full h-full object-cover opacity-80">
-                            </div>
-                            <h4 class="text-2xl font-bold text-white mb-1">Course-Easy (Laravel)</h4>
-                            <p class="text-teal-400 mb-3">Laravel</p>
-                            <p class="text-gray-300">Course system with videos, quizzes, dashboards & roles.</p>
-                            <div class="mt-4 space-x-4">
-                                <a class="project-btn" href="https://course-easy.infinityfreeapp.com/"
-                                    target="_blank">View
-                                    Demo →</a>
-                                <a class="project-btn" href="#">Source Code</a>
-                            </div>
-                        </div>
-
-                        <!-- MERN -->
-                        <div
-                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-purple-500 transition">
-                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/cem.jpg" class="w-full h-full object-cover opacity-80">
-                            </div>
-                            <h4 class="text-2xl font-bold text-white mb-1">Course-Easy (MERN)</h4>
-                            <p class="text-teal-400 mb-3">MERN Stack</p>
-                            <p class="text-gray-300">Streaming, authentication, dashboards & progress tracking.</p>
-                            <div class="mt-4 space-x-4">
-                                <a class="project-btn" href="https://course-easy.vercel.app/HomePage"
-                                    target="_blank">View
-                                    Demo →</a>
-                                <a class="project-btn" href="#">Source Code</a>
-                            </div>
-                        </div>
-
-                        <!-- E-commerce -->
-                        <div
-                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-cyan-500 transition">
-                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/ebuy.jpg" class="w-full h-full object-cover opacity-80">
-                            </div>
-                            <h4 class="text-2xl font-bold text-white mb-1">E-Commerce Website</h4>
-                            <p class="text-teal-400 mb-3">React • Tailwind</p>
-                            <p class="text-gray-300">Reusable components, clean UI, smooth user flow.</p>
-                            <div class="mt-4 space-x-4">
-                                <a class="project-btn" href="https://easy-buy-six.vercel.app/" target="_blank">View Demo
-                                    →</a>
-                                <a class="project-btn" href="#">Source Code</a>
-                            </div>
-                        </div>
-
-                        <!-- Flipkart Clone -->
-                        <div
-                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-blue-500 transition">
-                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/fl.jpg" class="w-full h-full object-cover opacity-80">
-                            </div>
-                            <h4 class="text-2xl font-bold text-white mb-1">Flipkart Clone</h4>
-                            <p class="text-teal-400 mb-3">React</p>
-                            <p class="text-gray-300">Marketplace UI, categories, product grids.</p>
-                            <div class="mt-4 space-x-4">
-                                <a class="project-btn" href="https://flipkart-clone-delta-three.vercel.app/"
-                                    target="_blank">View Demo
-                                    →</a>
-                                <a class="project-btn" href="#">Source Code</a>
-                            </div>
-                        </div>
-
-                        <!-- Interior Template -->
-                        <div
-                            class="project-card bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:border-green-500 transition">
-                            <div class="w-full h-40 bg-white/10 rounded-lg overflow-hidden mb-4">
-                                <img src="./images/int.jpg" class="w-full h-full object-cover opacity-80">
-                            </div>
-                            <h4 class="text-2xl font-bold text-white mb-1">Interior Design Template</h4>
-                            <p class="text-teal-400 mb-3">Bootstrap</p>
-                            <p class="text-gray-300">Modern static UI for design agencies.</p>
-                            <div class="mt-4 space-x-4">
-                                <a class="project-btn" href="https://yashraj3110.github.io/Interior-design-Template/"
-                                    target="_blank">View Demo →</a>
-                                <a class="project-btn" href="#">Source Code</a>
-                            </div>
-                        </div>
-
-
-                        <!-- Your other 6 project cards remain unchanged -->
-                    </div>
                 </div>
             </div>
         </section>
@@ -637,14 +612,13 @@
     </script>
 
 
-
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
-
             /* =====================================================
-               GLOBAL STATE
+               YOUR EXISTING SCROLL / NAV / DOT CODE (UNCHANGED)
             ===================================================== */
+
             let sectionLock = false;
             let currentSectionIndex = 0;
 
@@ -655,10 +629,7 @@
                 (/Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent))
                 && navigator.maxTouchPoints > 0;
 
-
-            /* =====================================================
-               1) SMOOTH SCROLL FOR NAVIGATION LINKS
-            ===================================================== */
+            // Smooth scroll links
             document.querySelectorAll('a[href^="#"]').forEach(link => {
                 link.addEventListener("click", e => {
                     const target = document.querySelector(link.getAttribute("href"));
@@ -671,10 +642,7 @@
                 });
             });
 
-
-            /* =====================================================
-               2) FADE-IN OBSERVER
-            ===================================================== */
+            // Fade-in observer
             const fadeObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add("is-visible");
@@ -684,10 +652,7 @@
             document.querySelectorAll(".fade-in-on-scroll")
                 .forEach(el => fadeObserver.observe(el));
 
-
-            /* =====================================================
-               3) DOT NAVIGATION — Update active dot ONLY when allowed
-            ===================================================== */
+            // DOT system
             const dotObserver = new IntersectionObserver(entries => {
                 if (sectionLock) return;
                 entries.forEach(entry => {
@@ -703,7 +668,6 @@
 
             sections.forEach(sec => dotObserver.observe(sec));
 
-            // Dot click
             dots.forEach(dot => {
                 dot.addEventListener("click", () => {
                     const target = document.querySelector(dot.dataset.target);
@@ -711,15 +675,11 @@
 
                     sectionLock = true;
                     target.scrollIntoView({ behavior: "smooth" });
-
                     setTimeout(() => sectionLock = false, 450);
                 });
             });
 
-
-            /* =====================================================
-               4) DESKTOP — Wheel Snap Scrolling
-            ===================================================== */
+            // Wheel Snap (Desktop)
             if (!isMobile) {
                 let wheelLocked = false;
 
@@ -737,10 +697,7 @@
                 }, { passive: false });
             }
 
-
-            /* =====================================================
-               4.1) MOBILE — Swipe Navigation
-            ===================================================== */
+            // Swipe scroll (Mobile)
             if (isMobile) {
                 let startY = 0, isSwipeLocked = false;
 
@@ -771,79 +728,164 @@
                 });
             }
 
-
             /* =====================================================
-               5) PROJECT TABS — Do NOT change section / index
+               TABS (unchanged)
             ===================================================== */
-            const tabCompany = document.getElementById("tab-company");
-            const tabPersonal = document.getElementById("tab-personal");
-
-            const companyContent = document.getElementById("company-content");
-            const personalContent = document.getElementById("personal-content");
-
-            if (tabCompany && tabPersonal) {
-
-                const lockForTab = () => {
-                    sectionLock = true;
-                    setTimeout(() => sectionLock = false, 350);
-                };
-
-                tabCompany.onclick = () => {
-                    lockForTab();
-
-                    tabCompany.classList.add("active");
-                    tabPersonal.classList.remove("active");
-
-                    companyContent.classList.remove("hidden");
-                    personalContent.classList.add("hidden");
-                };
-
-                tabPersonal.onclick = () => {
-                    lockForTab();
-
-                    tabPersonal.classList.add("active");
-                    tabCompany.classList.remove("active");
-
-                    personalContent.classList.remove("hidden");
-                    companyContent.classList.add("hidden");
-
-                    setTimeout(() => window.updateArrows && updateArrows(), 100);
-                };
-            }
-
-
             /* =====================================================
-               6) PERSONAL PROJECT CAROUSEL
+               FIXED PROJECT ROTATOR LOGIC
             ===================================================== */
-            const carousel = document.querySelector("#personal-content .carousel-x");
-            const btnPrev = document.getElementById("prevProject");
-            const btnNext = document.getElementById("nextProject");
-
-            if (carousel && btnPrev && btnNext) {
-
-                window.updateArrows = () => {
-                    const max = carousel.scrollWidth - carousel.clientWidth;
-                    btnPrev.classList.toggle("disabled", carousel.scrollLeft <= 3);
-                    btnNext.classList.toggle("disabled", carousel.scrollLeft >= max - 3);
-                };
-
-                btnNext.onclick = () =>
-                    carousel.scrollBy({ left: carousel.clientWidth * 0.7, behavior: "smooth" });
-
-                btnPrev.onclick = () =>
-                    carousel.scrollBy({ left: -carousel.clientWidth * 0.7, behavior: "smooth" });
-
-                carousel.addEventListener("scroll", updateArrows);
-
-                updateArrows();
-            }
 
         });
+
     </script>
 
+<script>
+    function initProjectCarousel() {
 
+        let items = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
+        const list = document.getElementById("project-list-container");
+        const detailContents = [...document.querySelectorAll(".detail-content")];
 
+        if (!items.length) return;
 
+        const cardHeight = 84;
+        const gap = 16;
+        const totalItemHeight = cardHeight + gap;
+
+        let currentIndex = 0;
+        let clickedIndex = null;
+
+        function refreshItems() {
+            items = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
+        }
+
+        function updateCarousel() {
+            refreshItems();
+
+            // Desktop → vertical scroll
+            if (window.innerWidth > 768) {
+                const maxIndex = items.length - 1;
+                list.style.transform = `translateY(-${currentIndex * totalItemHeight}px)`;
+            }
+            // Mobile → Horizontal, no transform
+            else {
+                list.style.transform = "none";
+            }
+
+            let activeIndex = clickedIndex !== null ? clickedIndex : currentIndex;
+            clickedIndex = null;
+
+            const activeProjectId = items[activeIndex]?.dataset.projectId;
+
+            items.forEach((item, i) => {
+                const card = item.querySelector(".item-card");
+                card.classList.remove("active-card", "inactive-card");
+                if (i === activeIndex) card.classList.add("active-card");
+                else card.classList.add("inactive-card");
+            });
+
+            if (activeProjectId) {
+                detailContents.forEach(d => {
+                    const match = d.dataset.projectId === activeProjectId;
+                    d.classList.toggle("active", match);
+                    d.classList.toggle("hidden", !match);
+                });
+            }
+        }
+
+        // Desktop arrows only
+        document.getElementById("nextProject").onclick = () => {
+            if (window.innerWidth <= 768) return;
+            refreshItems();
+            const maxIndex = items.length - 1;
+            if (currentIndex < maxIndex) currentIndex++;
+            clickedIndex = currentIndex;
+            updateCarousel();
+        };
+
+        document.getElementById("prevProject").onclick = () => {
+            if (window.innerWidth <= 768) return;
+            refreshItems();
+            if (currentIndex > 0) currentIndex--;
+            clickedIndex = currentIndex;
+            updateCarousel();
+        };
+
+        // Click item (works in mobile + desktop)
+        items.forEach((item, i) => {
+            item.onclick = () => {
+                clickedIndex = i;
+                currentIndex = i;
+                updateCarousel();
+            };
+        });
+
+        updateCarousel();
+    }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const tabPersonal = document.getElementById("tab-personal");
+        const tabCompany = document.getElementById("tab-company");
+        const listContainer = document.getElementById("project-list-container");
+
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        function filterProjects(type) {
+            const items = document.querySelectorAll(".project-list-item");
+
+            // Hide non-matching items
+            items.forEach(item => {
+                if (item.dataset.type === type) {
+                    item.classList.remove("hidden");
+                } else {
+                    item.classList.add("hidden");
+                }
+            });
+
+            // Auto-select the first visible project
+            const firstVisible = document.querySelector(".project-list-item:not(.hidden)");
+            if (firstVisible) {
+                const id = firstVisible.dataset.projectId;
+
+                document.querySelectorAll(".detail-content").forEach(d => {
+                    const match = d.dataset.projectId === id;
+                    d.classList.toggle("active", match);
+                    d.classList.toggle("hidden", !match);
+                });
+            }
+
+            // Mobile ONLY: scroll list back to left
+            if (isMobile()) {
+                listContainer.scrollLeft = 0;
+            }
+            else {
+                // Desktop → reset vertical carousel
+                listContainer.style.transform = "translateY(0)";
+                initProjectCarousel();
+            }
+        }
+
+        tabPersonal.addEventListener("click", () => {
+            tabPersonal.classList.add("active-tab");
+            tabCompany.classList.remove("active-tab");
+            filterProjects("personal");
+        });
+
+        tabCompany.addEventListener("click", () => {
+            tabCompany.classList.add("active-tab");
+            tabPersonal.classList.remove("active-tab");
+            filterProjects("company");
+        });
+
+        // Default start
+        filterProjects("personal");
+    });
+</script>
 
 
 
