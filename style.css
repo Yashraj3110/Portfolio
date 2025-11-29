@@ -1140,6 +1140,7 @@ section .walper span {
 /* MOBILE MODE */
 @media (max-width: 768px) {
 
+    /* --- SECTION STRUCTURE --- */
     /* Whole section fits exactly one screen */
     #projects {
         height: 100vh;
@@ -1149,13 +1150,25 @@ section .walper span {
         padding: 0 !important;
     }
 
-    /* Inner container takes full height but no extra spacing */
+    /* Inner container takes full height */
     #projects .container {
         flex: 1;
         display: flex;
         flex-direction: column;
-        padding: 0 !important;
+        padding: 0 10px !important;
+        /* Add slight horizontal padding */
         margin: 0 !important;
+        max-width: 100%;
+    }
+
+    /* Grid container for list/detail columns should stack vertically */
+    #projects .grid {
+        flex: 1;
+        /* Allow the grid to take the remaining vertical space */
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        /* Reduced gap for mobile */
     }
 
     /* Title + Paragraph + Tabs compressed */
@@ -1163,26 +1176,34 @@ section .walper span {
         margin-top: 12px;
         margin-bottom: 6px;
         font-size: 1.4rem;
+        padding: 0 10px;
     }
 
     #projects p {
         margin-bottom: 10px !important;
         font-size: 0.82rem;
-        max-width: 90%;
+        max-width: 100%;
+        padding: 0 10px;
     }
 
-    .project-tab {
-        padding: 6px 12px;
-        font-size: 0.8rem;
+    .mb-8 {
+        margin-bottom: 0rem !important;
     }
 
-    /* --- Horizontal List (TOP AREA) --- */
+    .mt-10 {
+        margin-top: 0rem !important;
+    }
+
+    /* --- HORIZONTAL PROJECT LIST (The Fix) --- */
+
     #project-list-viewport {
         flex-shrink: 0;
-        height: 120px;
+        height: 120px !important;
         /* FIXED small height */
         overflow-x: auto;
+        /* Enable horizontal scrolling */
         white-space: nowrap;
+        /* Prevent list items from wrapping */
         scrollbar-width: none;
         padding: 6px 0;
     }
@@ -1194,23 +1215,26 @@ section .walper span {
     #project-list-container {
         display: flex !important;
         flex-direction: row !important;
-        gap: 12px;
-        padding-left: 10px;
+        gap: 12px !important;
+        /* spacing between cards */
+        padding: 0 10px !important;
+        /* Padding for the sides of the horizontal scroll */
         transform: none !important;
-        min-width: 100%;
     }
 
     .project-list-item {
         flex-shrink: 0;
-        width: 160px;
-        /* Smaller cards for mobile */
+        /* Crucial: Prevents items from shrinking to fit */
+        width: 160px !important;
+        /* FIXED CARD WIDTH for scrolling */
         display: inline-flex !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
-
-    .project-list-item.hidden {
-        display: none !important;
-        /* No whitespace shifting */
-    }
+        .project-list-item.hidden {
+            display: none !important;
+            /* No whitespace shifting */
+        }
 
     .item-card {
         width: 100%;
@@ -1220,27 +1244,60 @@ section .walper span {
         display: flex;
         gap: 10px;
         align-items: center;
+        /* Remove redundant width: 25% !important here */
     }
 
-    /* --- Detail Panel (BOTTOM AREA) --- */
+    /* Icon and text scaling */
+    .item-card .icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    .item-card .title {
+        font-size: 0.9rem;
+    }
+
+    .item-card .subtitle {
+        font-size: 0.7rem;
+    }
+
+    /* --- DETAIL PANEL (BOTTOM AREA) --- */
+    .lg\:col-span-8 {
+        order: 1;
+        /* Move detail card up visually (optional) */
+        width: 100%;
+        margin: 0 !important;
+    }
+
     .project-detail-card {
         flex: 1;
-        /* Fill remaining space */
-        overflow-y: auto;
+        /* Allows it to fill space if content is short */
+        max-height: 45vh;
+        min-height: 250px;
+        width: 100%;
         padding: 12px;
+        overflow-y: auto;
         background: rgba(20, 20, 20, 0.45);
     }
 
     .detail-content {
-        display: none;
+        position: static !important;
+        /* Make detail content flow normally */
         opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: none;
     }
 
     .detail-content.active {
         display: block !important;
         opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
     }
 
+    /* Still hide large images for mobile */
     .detail-content img {
         display: none !important;
     }
@@ -1254,72 +1311,14 @@ section .walper span {
     #nextProject {
         display: none !important;
     }
-}
 
-@media (max-width: 768px) {
-
-    .mb-8 {
-        margin-bottom: 0rem !important
-    }
-
-    .mt-10 {
-        margin-top: 0rem
-    }
-
-    /* Remove padding/margin from viewport */
-    #project-list-viewport {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    /* Remove padding/margin from container */
-    #project-list-container {
-        padding: 0 !important;
-        margin: 0 !important;
-        gap: 10px !important;
-        /* adjust spacing between cards */
-    }
-
-    /* Remove margins inside each item */
-    .project-list-item {
-        width: 25% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* Remove extra spacing inside card (optional) */
-    .item-card {
-        padding: 10px !important;
-                width: 25% !important;
-        /* smaller compact padding */
-        margin: 0 !important;
-        border-radius: 14px;
-    }
-
-    /* Make viewport height smaller */
-    #project-list-viewport {
-        height: 120px !important;
-    }
-}
-
-@media (max-width: 768px) {
-
-    .project-detail-card {
-        height: auto !important;
-        /* takes natural height only */
-        max-height: 45vh;
-        width: 80%;
-        /* optional limit */
-        flex: unset !important;
-        /* remove stretching */
-        padding: 12px;
-        overflow-y: auto;
-        /* scroll only inside card if content big */
-        background: rgba(20, 20, 20, 0.45);
-    }
-
-    /* Still hide large images for mobile */
-    .detail-content img {
-        display: none !important;
+    /* Hide the wrapper for the arrows on mobile */
+    .lg\:col-span-4 {
+        order: 2;
+        /* Keep it below the list and detail card */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 }
