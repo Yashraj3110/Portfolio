@@ -876,38 +876,37 @@
 </script>
 
 <script>
-    function enableMobileClicks() {
+   function enableMobileClicks() {
 
-        const isMobile = window.innerWidth <= 768;
-        if (!isMobile) return;
+        if (window.innerWidth > 768) return;
 
         const items = document.querySelectorAll(".project-list-item:not(.hidden)");
 
-        // Remove old listeners before adding new ones
+        // Remove old listeners
         items.forEach(item => {
-            const newItem = item.cloneNode(true);
-            item.parentNode.replaceChild(newItem, item);
+            const clone = item.cloneNode(true);
+            item.parentNode.replaceChild(clone, item);
         });
 
         const freshItems = document.querySelectorAll(".project-list-item:not(.hidden)");
 
         freshItems.forEach(item => {
             item.addEventListener("click", () => {
+
                 const id = item.dataset.projectId;
 
+                // Update detail panel only (NO SCROLL)
                 document.querySelectorAll(".detail-content").forEach(d => {
                     const match = d.dataset.projectId === id;
                     d.classList.toggle("active", match);
                     d.classList.toggle("hidden", !match);
                 });
 
-                item.scrollIntoView({
-                    behavior: "smooth",
-                    inline: "center"
-                });
+                // ❌ removed scrollIntoView — NO VIEWPORT SHIFT
             });
         });
     }
+
 </script>
 
 
