@@ -1140,6 +1140,29 @@ section .walper span {
 /* MOBILE MODE */
 @media (max-width: 768px) {
 
+    /* ACTIVE CARD (center focus) */
+    .item-card.active-card {
+        background: linear-gradient(259deg, rgb(38, 2, 52), #013131) !important;
+        border-color: rgb(255 255 255 / 0%);
+        box-shadow: 0 0px 5px hsl(0deg 0% 33.01%), inset 0 0 15px rgb(30 11 35);
+        transform: scale(1.08);
+    }
+
+    /* ACTIVE ICON */
+    .item-card.active-card .icon {
+        background: #3b82f6 !important;
+        color: #fff !important;
+    }
+
+    /* ACTIVE TEXT */
+    .item-card.active-card .title {
+        color: white !important;
+    }
+
+    .item-card.active-card .subtitle {
+        color: #bfdbfe !important;
+    }
+
     /* --- SECTION STRUCTURE --- */
     /* Whole section fits exactly one screen */
     #projects {
@@ -1164,8 +1187,8 @@ section .walper span {
     /* Grid container for list/detail columns should stack vertically */
     #projects .grid {
 
-         margin-top: 7% !important;
-            
+        margin-top: 7% !important;
+
         flex: 1;
         /* Allow the grid to take the remaining vertical space */
         display: flex;
@@ -1234,10 +1257,11 @@ section .walper span {
         margin: 0 !important;
         padding: 0 !important;
     }
-        .project-list-item.hidden {
-            display: none !important;
-            /* No whitespace shifting */
-        }
+
+    .project-list-item.hidden {
+        display: none !important;
+        /* No whitespace shifting */
+    }
 
     .item-card {
         width: 100%;
@@ -1325,6 +1349,7 @@ section .walper span {
         width: 100%;
     }
 }
+
 @media (max-width: 768px) {
 
     /* List container (must be visible above the detail card) */
@@ -1363,6 +1388,7 @@ section .walper span {
         /* Use smaller mobile padding */
     }
 }
+
 @media (max-width: 768px) {
 
     /* --- STRUCTURE/LAYOUT (Ordering remains correct) --- */

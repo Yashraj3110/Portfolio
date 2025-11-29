@@ -251,7 +251,7 @@
                                 class="transition-transform duration-500 ease-out space-y-4">
 
                                 <div class="project-list-item active" data-project-id="crm" data-type="company">
-                                    <div class="item-card">
+                                    <div class="item-card active-card">
                                         <span class="icon">⚙️</span>
                                         <div>
                                             <h5 class="title">C.R.M. System</h5>
@@ -271,7 +271,7 @@
                                 </div>
 
                                 <div class="project-list-item active" data-project-id="ce-laravel" data-type="personal">
-                                    <div class="item-card">
+                                    <div class="item-card active-card">
                                         <span class="icon">🎓</span>
                                         <div>
                                             <h5 class="title">Course Easy</h5>
@@ -876,7 +876,7 @@
 </script>
 
 <script>
-   function enableMobileClicks() {
+    function enableMobileClicks() {
 
         if (window.innerWidth > 768) return;
 
@@ -895,18 +895,33 @@
 
                 const id = item.dataset.projectId;
 
-                // Update detail panel only (NO SCROLL)
+                /* -----------------------------------
+                   1. UPDATE DETAIL CONTENT (mobile)
+                ----------------------------------- */
                 document.querySelectorAll(".detail-content").forEach(d => {
                     const match = d.dataset.projectId === id;
                     d.classList.toggle("active", match);
                     d.classList.toggle("hidden", !match);
                 });
 
-                // ❌ removed scrollIntoView — NO VIEWPORT SHIFT
+                /* -----------------------------------
+                   2. MOBILE ACTIVE CARD UI
+                ----------------------------------- */
+
+                // remove active-card from all cards
+                freshItems.forEach(i => {
+                    const card = i.querySelector(".item-card");
+                    if (card) card.classList.remove("active-card");
+                });
+
+                // add active-card to the clicked item
+                const clickedCard = item.querySelector(".item-card");
+                if (clickedCard) clickedCard.classList.add("active-card");
+
+                // ❌ No scrollIntoView → no viewport shift
             });
         });
     }
-
 </script>
 
 
