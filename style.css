@@ -338,8 +338,8 @@ body::before {
 /* === DOT NAVIGATION === */
 .dots {
     position: fixed;
-    right: 10px;
-    top: 50%;
+    right: 8px;
+    top: 87%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
