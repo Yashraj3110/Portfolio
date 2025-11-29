@@ -1136,134 +1136,79 @@ section .walper span {
 /* ------------------------------
     MOBILE (<= 768px)
    ------------------------------ */
+/* MOBILE MODE */
 @media (max-width: 768px) {
 
-    /* Section takes full screen */
+    /* Whole section fits in screen */
     #projects {
-        height: 100vh !important;
-        padding: 0 !important;
-        overflow: hidden !important;
+        height: 100vh;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
     }
 
-    #projects .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
-
-    /* Title + tabs wrapper */
-    #projects .section-title {
-        margin-top: 14px;
-        margin-bottom: 4px;
-    }
-
-    #projects .section-title+p {
-        margin: 0 0 10px 0 !important;
-        padding: 0 10px;
-        font-size: 0.8rem;
-    }
-
-    /* TABS */
-    .project-tab {
-        padding: 6px 14px;
-        font-size: 0.8rem;
-    }
-
-    /* Disable desktop grid */
-    #projects .grid {
-        display: flex !important;
-        flex-direction: column !important;
-        flex: 1;
-        overflow: hidden;
-    }
-
-    /* Hide arrows */
-    #prevProject,
-    #nextProject {
-        display: none !important;
-    }
-
-    /* Horizontal project list */
     #project-list-viewport {
-        flex-shrink: 0;
-        height: 130px !important;
-        overflow-x: auto !important;
+        overflow-x: auto;
         overflow-y: hidden !important;
         white-space: nowrap;
-        padding: 10px 0;
+        padding: 8px 0;
+        height: auto !important;
     }
 
     #project-list-container {
         display: flex !important;
         flex-direction: row !important;
-        gap: 12px;
+        gap: 16px;
         transform: none !important;
-        height: auto !important;
         padding-left: 10px;
     }
 
     .project-list-item {
-        width: 150px;
-        flex-shrink: 0;
         display: inline-block !important;
+       width: 200px;
+        flex-shrink: 0;
+    }
+
+    /* Force hide filtered items */
+    .project-list-item.hidden {
+        display: none !important;
     }
 
     .item-card {
-        height: 110px;
-        border-radius: 14px;
-        padding: 12px;
+        width: 200px;
+        height: 120px;
+        padding: 14px;
+        border-radius: 16px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
     }
 
-    /* DETAILS AREA */
+    /* Hide carousel arrows */
+    #prevProject,
+    #nextProject {
+        display: none !important;
+    }
+
+    /* DETAIL PANEL */
     .project-detail-card {
-        flex: 1;
-        background: rgba(20, 20, 20, 0.65);
+        height: 45vh;
+        overflow: auto;
         padding: 12px;
-        overflow-y: auto;
+        background: rgba(20, 20, 20, 0.5);
     }
 
     .detail-content {
-        position: relative;
+        display: none;
+    }
+
+    .detail-content.active {
+        display: block !important;
         opacity: 1 !important;
-        transform: none !important;
-        visibility: visible !important;
-        padding: 0;
     }
 
-    .detail-content.hidden {
-        display: none !important;
-    }
-
-    /* Hide screenshot images */
+    /* Hide images in detail on mobile */
     .detail-content img {
         display: none !important;
     }
-
-    /* Compact text */
-    .detail-content h3 {
-        font-size: 1rem !important;
-        margin-bottom: 6px !important;
-    }
-
-    .detail-content p,
-    .detail-content li {
-        font-size: 0.75rem !important;
-        line-height: 1.2rem;
-    }
-
-    .detail-content ul {
-        margin-bottom: 6px !important;
-    }
-
-    .detail-content .flex a {
-        padding: 6px 10px !important;
-        font-size: 0.75rem !important;
-    }
-        .project-list-item.hidden {
-            display: none !important;
-            /* Force hide on mobile */
-        }
 }

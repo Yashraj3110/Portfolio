@@ -742,6 +742,8 @@
 <script>
     function initProjectCarousel() {
 
+        if (window.innerWidth <= 768) return; // ❗ disable carousel on mobile
+
         let items = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
         const list = document.getElementById("project-list-container");
         const detailContents = [...document.querySelectorAll(".detail-content")];
@@ -762,15 +764,8 @@
         function updateCarousel() {
             refreshItems();
 
-            // Desktop → vertical scroll
-            if (window.innerWidth > 768) {
-                const maxIndex = items.length - 1;
-                list.style.transform = `translateY(-${currentIndex * totalItemHeight}px)`;
-            }
-            // Mobile → Horizontal, no transform
-            else {
-                list.style.transform = "none";
-            }
+            const maxIndex = items.length - 1;
+            list.style.transform = `translateY(-${currentIndex * totalItemHeight}px)`;
 
             let activeIndex = clickedIndex !== null ? clickedIndex : currentIndex;
             clickedIndex = null;
@@ -793,9 +788,8 @@
             }
         }
 
-        // Desktop arrows only
+        // Arrows
         document.getElementById("nextProject").onclick = () => {
-            if (window.innerWidth <= 768) return;
             refreshItems();
             const maxIndex = items.length - 1;
             if (currentIndex < maxIndex) currentIndex++;
@@ -804,14 +798,13 @@
         };
 
         document.getElementById("prevProject").onclick = () => {
-            if (window.innerWidth <= 768) return;
             refreshItems();
             if (currentIndex > 0) currentIndex--;
             clickedIndex = currentIndex;
             updateCarousel();
         };
 
-        // Click item (works in mobile + desktop)
+        // Click item (desktop)
         items.forEach((item, i) => {
             item.onclick = () => {
                 clickedIndex = i;
@@ -836,18 +829,15 @@
         }
 
         function filterProjects(type) {
+
             const items = document.querySelectorAll(".project-list-item");
 
-            // Hide non-matching items
+            // Show/hide project list items
             items.forEach(item => {
-                if (item.dataset.type === type) {
-                    item.classList.remove("hidden");
-                } else {
-                    item.classList.add("hidden");
-                }
+                item.classList.toggle("hidden", item.dataset.type !== type);
             });
 
-            // Auto-select the first visible project
+            // select first visible project
             const firstVisible = document.querySelector(".project-list-item:not(.hidden)");
             if (firstVisible) {
                 const id = firstVisible.dataset.projectId;
@@ -859,32 +849,65 @@
                 });
             }
 
-            // Mobile ONLY: scroll list back to left
             if (isMobile()) {
                 listContainer.scrollLeft = 0;
-            }
-            else {
-                // Desktop → reset vertical carousel
+                enableMobileClicks();  // reattach fresh mobile listeners
+            } else {
                 listContainer.style.transform = "translateY(0)";
                 initProjectCarousel();
             }
         }
 
-        tabPersonal.addEventListener("click", () => {
+        tabPersonal.onclick = () => {
             tabPersonal.classList.add("active-tab");
             tabCompany.classList.remove("active-tab");
             filterProjects("personal");
-        });
+        };
 
-        tabCompany.addEventListener("click", () => {
+        tabCompany.onclick = () => {
             tabCompany.classList.add("active-tab");
             tabPersonal.classList.remove("active-tab");
             filterProjects("company");
-        });
+        };
 
-        // Default start
+        // Default view
         filterProjects("personal");
     });
+</script>
+
+<script>
+    function enableMobileClicks() {
+
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) return;
+
+        const items = document.querySelectorAll(".project-list-item:not(.hidden)");
+
+        // Remove old listeners before adding new ones
+        items.forEach(item => {
+            const newItem = item.cloneNode(true);
+            item.parentNode.replaceChild(newItem, item);
+        });
+
+        const freshItems = document.querySelectorAll(".project-list-item:not(.hidden)");
+
+        freshItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const id = item.dataset.projectId;
+
+                document.querySelectorAll(".detail-content").forEach(d => {
+                    const match = d.dataset.projectId === id;
+                    d.classList.toggle("active", match);
+                    d.classList.toggle("hidden", !match);
+                });
+
+                item.scrollIntoView({
+                    behavior: "smooth",
+                    inline: "center"
+                });
+            });
+        });
+    }
 </script>
 
 
