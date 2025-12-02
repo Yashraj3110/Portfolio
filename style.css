@@ -753,7 +753,7 @@ body::before {
 
     .grid {
         gap: 24px !important;
-        
+
     }
 
     .skill-heading {
@@ -1062,9 +1062,13 @@ section .walper span {
 ============================================================ */
 #project-list-viewport {
     height: 284px !important;
-    padding: 0 15px;
+    padding: 50PX 15px;
     overflow: hidden;
     position: relative;
+}
+
+#projects {
+    padding-top: 14px !important;
 }
 
 .project-nav-arrow {
@@ -1131,32 +1135,31 @@ section .walper span {
         width: 100%;
         display: flex;
         align-items: center;
-            height: 120px;
+        height: 120px;
         /* KEY FIX — centers arrows to card row */
     }
 
-          /* ----------------------------------------
+    /* ----------------------------------------
            AUTO CENTERING SPACERS (first + last)
            Now supports any card width!
         ---------------------------------------- */
-    
-          /* BEFORE = centers first card */
-          #project-list-container::before {
-              content: "";
-              display: block;
-              flex-shrink: 0;
-              width: calc(28vw - (50vw * 0.42));
-              /* matches card width below */
-          }
-    
-          /* AFTER = centers last card */
-          #project-list-container::after {
-              content: "";
-              display: block;
-              flex-shrink: 0;
-              width: calc(50vw - (50vw * 0.42));
-          }
-          
+
+    /* Slightly shift first card left */
+    #project-list-container::before {
+        content: "";
+        display: block;
+        flex-shrink: 0;
+        width: calc((100vw - 55vw) / 2 - 60px);
+    }
+
+    /* Keep last card perfectly centered */
+    #project-list-container::after {
+        content: "";
+        display: block;
+        flex-shrink: 0;
+        width: calc((100vw - 55vw) / 2);
+    }
+
     /* Horizontal scroll viewport */
     #project-list-viewport {
         overflow-x: auto !important;
@@ -1170,7 +1173,7 @@ section .walper span {
     /* Horizontal list */
     #project-list-container {
         display: inline-flex !important;
-        gap: 25px !important;
+        gap: 10px !important;
         align-items: center;
         /* cards centered => arrows align too */
         width: max-content !important;
