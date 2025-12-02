@@ -1118,7 +1118,7 @@
     <script>
         function initProjectCarousel() {
 
-            if (window.innerWidth <= 768) return; // ❗ disable carousel on mobile
+            if (window.innerWidth <= 768) return; // disable for mobile
 
             let items = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
             const list = document.getElementById("project-list-container");
@@ -1155,20 +1155,16 @@
                     else card.classList.add("inactive-card");
                 });
 
-                if (activeProjectId) {
-                    detailContents.forEach(d => {
-                        const match = d.dataset.projectId === activeProjectId;
-                        d.classList.toggle("active", match);
-                        d.classList.toggle("hidden", !match);
-                    });
-                }
+                detailContents.forEach(d => {
+                    const match = d.dataset.projectId === activeProjectId;
+                    d.classList.toggle("active", match);
+                    d.classList.toggle("hidden", !match);
+                });
             }
 
-            // Arrows
             document.getElementById("nextProject").onclick = () => {
                 refreshItems();
-                const maxIndex = items.length - 1;
-                if (currentIndex < maxIndex) currentIndex++;
+                if (currentIndex < items.length - 1) currentIndex++;
                 clickedIndex = currentIndex;
                 updateCarousel();
             };
@@ -1180,7 +1176,6 @@
                 updateCarousel();
             };
 
-            // Click item (desktop)
             items.forEach((item, i) => {
                 item.onclick = () => {
                     clickedIndex = i;
@@ -1208,27 +1203,31 @@
 
                 const items = document.querySelectorAll(".project-list-item");
 
-                // Show/hide project list items
+                // Show/hide projects
                 items.forEach(item => {
                     item.classList.toggle("hidden", item.dataset.type !== type);
                 });
 
-                // select first visible project
+                // Activate first visible detail
                 const firstVisible = document.querySelector(".project-list-item:not(.hidden)");
                 if (firstVisible) {
                     const id = firstVisible.dataset.projectId;
-
                     document.querySelectorAll(".detail-content").forEach(d => {
-                        const match = d.dataset.projectId === id;
-                        d.classList.toggle("active", match);
-                        d.classList.toggle("hidden", !match);
+                        d.classList.toggle("active", d.dataset.projectId === id);
+                        d.classList.toggle("hidden", d.dataset.projectId !== id);
                     });
                 }
 
                 if (isMobile()) {
                     listContainer.scrollLeft = 0;
-                    enableMobileClicks();  // reattach fresh mobile listeners
-                } else {
+
+                    // auto-select first card in mobile carousel
+                    setTimeout(() => {
+                        const cards = document.querySelectorAll(".project-list-item:not(.hidden)");
+                        if (cards.length) cards[0].click();
+                    }, 80);
+                }
+                else {
                     listContainer.style.transform = "translateY(0)";
                     initProjectCarousel();
                 }
@@ -1246,74 +1245,67 @@
                 filterProjects("company");
             };
 
-            // Default view
             filterProjects("personal");
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
+            if (window.innerWidth > 768) return;
 
-        if (window.innerWidth > 768) return;   // run only on mobile
+            const viewport = document.getElementById("project-list-viewport");
+            const list = document.getElementById("project-list-container");
+            let cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
+            const details = [...document.querySelectorAll(".detail-content")];
 
-        const viewport = document.getElementById("project-list-viewport");
-        const list = document.getElementById("project-list-container");
-        let cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
-        const details = [...document.querySelectorAll(".detail-content")];
+            const btnPrev = document.getElementById("projectPrev");
+            const btnNext = document.getElementById("projectNext");
 
-        const btnPrev = document.getElementById("projectPrev");
-        const btnNext = document.getElementById("projectNext");
+            let currentIndex = 0;
+            const cardWidth = 172;
 
-        let currentIndex = 0;
-        const cardWidth = 172;   // 160 + 12 gap
+            function refreshCards() {
+                cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
+            }
 
-        /* Refresh list if filter changes */
-        function refreshCards() {
-            cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
-        }
+            function activateProject(index) {
 
-        /* Activate project in detail + highlight card + scroll center */
-        function activateProject(index) {
+                refreshCards();
 
-            refreshCards();
+                // limit index
+                if (index < 0) index = 0;
+                if (index >= cards.length) index = cards.length - 1;
+                currentIndex = index;
 
-            if (index < 0) index = 0;
-            if (index >= cards.length) index = cards.length - 1;
-            currentIndex = index;
+                // highlight
+                cards.forEach(c => c.querySelector(".item-card").classList.remove("active-card"));
+                cards[index].querySelector(".item-card").classList.add("active-card");
 
-            // 1. UI highlight
-            cards.forEach(c => c.querySelector(".item-card").classList.remove("active-card"));
-            cards[index].querySelector(".item-card").classList.add("active-card");
+                // details
+                const id = cards[index].dataset.projectId;
+                details.forEach(d => {
+                    d.classList.toggle("active", d.dataset.projectId === id);
+                    d.classList.toggle("hidden", d.dataset.projectId !== id);
+                });
 
-            // 2. Details update
-            const id = cards[index].dataset.projectId;
-            details.forEach(d => {
-                d.classList.toggle("active", d.dataset.projectId === id);
-                d.classList.toggle("hidden", d.dataset.projectId !== id);
+                // scroll center
+                const offset = index * cardWidth;
+                viewport.scrollTo({
+                    left: offset - viewport.clientWidth / 2 + cardWidth / 2,
+                    behavior: "smooth"
+                });
+            }
+
+            btnPrev.onclick = () => activateProject(currentIndex - 1);
+            btnNext.onclick = () => activateProject(currentIndex + 1);
+
+            cards.forEach((card, i) => {
+                card.onclick = () => activateProject(i);
             });
 
-            // 3. Scroll item to center
-            const offset = index * cardWidth;
-            viewport.scrollTo({
-                left: offset - viewport.clientWidth / 2 + cardWidth / 2,
-                behavior: "smooth"
-            });
-        }
-
-        /* Arrows */
-        btnPrev.onclick = () => activateProject(currentIndex - 1);
-        btnNext.onclick = () => activateProject(currentIndex + 1);
-
-        /* Clicking a card */
-        cards.forEach((card, i) => {
-            card.onclick = () => activateProject(i);
+            activateProject(0);
         });
-
-        /* First load */
-        activateProject(0);
-    });
-</script>
-
+    </script>
 
 </body>
 
