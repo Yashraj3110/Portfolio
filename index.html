@@ -247,10 +247,11 @@
                 <!-- ========================= -->
                 <!-- ROW 2: LIST + DETAILS -->
                 <!-- ========================= -->
-                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mt-12">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mt-12 items-center">
 
                     <!-- LEFT COLUMN = CAROUSEL -->
-                    <div class="lg:col-span-4 space-y-4 flex flex-col items-center">
+                    <div class="lg:col-span-4 space-y-4 flex flex-col items-center"
+                        style="overflow-y: auto; overflow-x: hidden; max-height: 85vh;">
 
                         <!-- Arrow Up -->
                         <button id="prevProject"
@@ -260,91 +261,99 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
                             </svg>
                         </button>
-<!-- MOBILE CAROUSEL ARROWS -->
-<button id="projectPrev" class="carousel-btn left-btn">‹</button>
-<button id="projectNext" class="carousel-btn right-btn">›</button>
-                        <!-- Project List Viewport -->
-                        <div id="project-list-viewport" class="w-full relative h-[270px] overflow-hidden">
-                           
-                            <div id="project-list-container"
-                                class="transition-transform duration-500 ease-out space-y-4">
 
-                                <div class="project-list-item active" data-project-id="crm" data-type="company">
-                                    <div class="item-card ">
-                                        <span class="icon">📈</span>
-                                        <div>
-                                            <h5 class="title">C.R.M. System</h5>
-                                            <p class="subtitle">Laravel</p>
+
+
+                    <div class="carousel-area relative w-full">
+
+                            <button id="projectPrev" class="carousel-btn left-btn">‹</button>
+
+                            <!-- Project List Viewport -->
+                            <div id="project-list-viewport" class="w-full relative ">
+
+                                <div id="project-list-container"
+                                    class="transition-transform duration-500 ease-out md:flex md:flex-col md:space-y-4">
+
+
+
+                                    <div class="project-list-item active" data-project-id="crm" data-type="company">
+                                        <div class="item-card ">
+                                            <span class="icon">📈</span>
+                                            <div>
+                                                <h5 class="title">C.R.M. System</h5>
+                                                <p class="subtitle">Laravel</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="project-list-item active" data-project-id="wa" data-type="company">
-                                    <div class="item-card ">
-                                        <span class="icon">🌐</span>
-                                        <div>
-                                            <h5 class="title">Wix Applications</h5>
-                                            <p class="subtitle">Mern</p>
+                                    <div class="project-list-item" data-project-id="wa" data-type="company">
+                                        <div class="item-card ">
+                                            <span class="icon">🌐</span>
+                                            <div>
+                                                <h5 class="title">Wix Applications</h5>
+                                                <p class="subtitle">Mern</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="project-list-item active" data-project-id="cel" data-type="personal">
-                                    <div class="item-card ">
-                                        <span class="icon">📚</span>
-                                        <div>
-                                            <h5 class="title">Course-Easy</h5>
-                                            <p class="subtitle">Laravel</p>
+                                    <div class="project-list-item" data-project-id="cel" data-type="personal">
+                                        <div class="item-card ">
+                                            <span class="icon">📚</span>
+                                            <div>
+                                                <h5 class="title">Course-Easy</h5>
+                                                <p class="subtitle">Laravel</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="project-list-item active" data-project-id="cem" data-type="personal">
-                                    <div class="item-card ">
-                                        <span class="icon">📖</span>
-                                        <div>
-                                            <h5 class="title">Course-Easy</h5>
-                                            <p class="subtitle">Mern</p>
+                                    <div class="project-list-item" data-project-id="cem" data-type="personal">
+                                        <div class="item-card ">
+                                            <span class="icon">📖</span>
+                                            <div>
+                                                <h5 class="title">Course-Easy</h5>
+                                                <p class="subtitle">Mern</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="project-list-item active" data-project-id="eb" data-type="personal">
-                                    <div class="item-card ">
-                                        <span class="icon">🛍️</span>
-                                        <div>
-                                            <h5 class="title">E-buy</h5>
-                                            <p class="subtitle">React</p>
+                                    <div class="project-list-item" data-project-id="eb" data-type="personal">
+                                        <div class="item-card ">
+                                            <span class="icon">🛍️</span>
+                                            <div>
+                                                <h5 class="title">E-buy</h5>
+                                                <p class="subtitle">React</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="project-list-item active" data-project-id="fk" data-type="personal">
-                                    <div class="item-card ">
-                                        <span class="icon">🛒</span>
-                                        <div>
-                                            <h5 class="title">Flipkart</h5>
-                                            <p class="subtitle">React</p>
+                                    <div class="project-list-item" data-project-id="fk" data-type="personal">
+                                        <div class="item-card ">
+                                            <span class="icon">🛒</span>
+                                            <div>
+                                                <h5 class="title">Flipkart</h5>
+                                                <p class="subtitle">React</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="project-list-item active" data-project-id="int" data-type="personal">
-                                    <div class="item-card ">
-                                        <span class="icon">🏠</span>
-                                        <div>
-                                            <h5 class="title">Interior</h5>
-                                            <p class="subtitle">Bootstrap</p>
+                                    <div class="project-list-item" data-project-id="int" data-type="personal">
+                                        <div class="item-card ">
+                                            <span class="icon">🏠</span>
+                                            <div>
+                                                <h5 class="title">Interior</h5>
+                                                <p class="subtitle">Bootstrap</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
+
+                            <button id="projectNext" class="carousel-btn right-btn">›</button>
+
                         </div>
-
-
-
                         <!-- Arrow Down -->
+
                         <button id="nextProject"
                             class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
@@ -1116,120 +1125,143 @@
     </script>
 
     <script>
-        function initProjectCarousel() {
-
-            if (window.innerWidth <= 768) return; // disable for mobile
-
-            let items = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
-            const list = document.getElementById("project-list-container");
-            const detailContents = [...document.querySelectorAll(".detail-content")];
-
-            if (!items.length) return;
-
-            const cardHeight = 84;
-            const gap = 16;
-            const totalItemHeight = cardHeight + gap;
-
-            let currentIndex = 0;
-            let clickedIndex = null;
-
-            function refreshItems() {
-                items = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
-            }
-
-            function updateCarousel() {
-                refreshItems();
-
-                const maxIndex = items.length - 1;
-                list.style.transform = `translateY(-${currentIndex * totalItemHeight}px)`;
-
-                let activeIndex = clickedIndex !== null ? clickedIndex : currentIndex;
-                clickedIndex = null;
-
-                const activeProjectId = items[activeIndex]?.dataset.projectId;
-
-                items.forEach((item, i) => {
-                    const card = item.querySelector(".item-card");
-                    card.classList.remove("active-card", "inactive-card");
-                    if (i === activeIndex) card.classList.add("active-card");
-                    else card.classList.add("inactive-card");
-                });
-
-                detailContents.forEach(d => {
-                    const match = d.dataset.projectId === activeProjectId;
-                    d.classList.toggle("active", match);
-                    d.classList.toggle("hidden", !match);
-                });
-            }
-
-            document.getElementById("nextProject").onclick = () => {
-                refreshItems();
-                if (currentIndex < items.length - 1) currentIndex++;
-                clickedIndex = currentIndex;
-                updateCarousel();
-            };
-
-            document.getElementById("prevProject").onclick = () => {
-                refreshItems();
-                if (currentIndex > 0) currentIndex--;
-                clickedIndex = currentIndex;
-                updateCarousel();
-            };
-
-            items.forEach((item, i) => {
-                item.onclick = () => {
-                    clickedIndex = i;
-                    currentIndex = i;
-                    updateCarousel();
-                };
-            });
-
-            updateCarousel();
-        }
-    </script>
-
-    <script>
         document.addEventListener("DOMContentLoaded", () => {
+
+            const viewport = document.getElementById("project-list-viewport");
+            const list = document.getElementById("project-list-container");
 
             const tabPersonal = document.getElementById("tab-personal");
             const tabCompany = document.getElementById("tab-company");
-            const listContainer = document.getElementById("project-list-container");
 
-            function isMobile() {
-                return window.innerWidth <= 768;
+            const btnPrev = document.getElementById("projectPrev");
+            const btnNext = document.getElementById("projectNext");
+
+            const cards = () => [...document.querySelectorAll(".project-list-item:not(.hidden)")];
+            const details = () => [...document.querySelectorAll(".detail-content")];
+
+            let currentIndex = 0;
+            const isMobile = () => window.innerWidth <= 768;
+
+            /* ==========================================================
+               UPDATE DETAILS PANEL
+            ========================================================== */
+            function setDetail(id) {
+                details().forEach(d => {
+                    d.classList.toggle("active", d.dataset.projectId === id);
+                    d.classList.toggle("hidden", d.dataset.projectId !== id);
+                });
             }
 
-            function filterProjects(type) {
+            /* ==========================================================
+               DESKTOP VERTICAL CAROUSEL
+            ========================================================== */
+            function initDesktopCarousel() {
+                if (isMobile()) return;
 
-                const items = document.querySelectorAll(".project-list-item");
+                const listEl = list;
+                const itemHeight = 84 + 16; // card + gap
+                currentIndex = 0;
 
-                // Show/hide projects
-                items.forEach(item => {
-                    item.classList.toggle("hidden", item.dataset.type !== type);
-                });
+                function update() {
+                    const c = cards();
+                    if (!c.length) return;
 
-                // Activate first visible detail
-                const firstVisible = document.querySelector(".project-list-item:not(.hidden)");
-                if (firstVisible) {
-                    const id = firstVisible.dataset.projectId;
-                    document.querySelectorAll(".detail-content").forEach(d => {
-                        d.classList.toggle("active", d.dataset.projectId === id);
-                        d.classList.toggle("hidden", d.dataset.projectId !== id);
+                    listEl.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
+
+                    const activeId = c[currentIndex].dataset.projectId;
+                    setDetail(activeId);
+
+                    c.forEach((card, i) => {
+                        const el = card.querySelector(".item-card");
+                        el.classList.toggle("active-card", i === currentIndex);
+                        el.classList.toggle("inactive-card", i !== currentIndex);
                     });
                 }
 
-                if (isMobile()) {
-                    listContainer.scrollLeft = 0;
+                document.getElementById("nextProject").onclick = () => {
+                    const c = cards();
+                    if (currentIndex < c.length - 1) currentIndex++;
+                    update();
+                };
 
-                    // auto-select first card in mobile carousel
-                    setTimeout(() => {
-                        const cards = document.querySelectorAll(".project-list-item:not(.hidden)");
-                        if (cards.length) cards[0].click();
-                    }, 80);
+                document.getElementById("prevProject").onclick = () => {
+                    if (currentIndex > 0) currentIndex--;
+                    update();
+                };
+
+                cards().forEach((card, i) => {
+                    card.onclick = () => {
+                        currentIndex = i;
+                        update();
+                    };
+                });
+
+                update();
+            }
+
+            /* ==========================================================
+               MOBILE HORIZONTAL CAROUSEL (center items)
+            ========================================================== */
+            function initMobileCarousel() {
+                if (!isMobile()) return;
+
+                currentIndex = 0;
+
+                function center(i) {
+                    const c = cards();
+                    if (!c.length) return;
+
+                    i = Math.max(0, Math.min(i, c.length - 1));
+                    currentIndex = i;
+
+                    // highlight card
+                    c.forEach((card, idx) => {
+                        const el = card.querySelector(".item-card");
+                        el.classList.toggle("active-card", idx === i);
+                        el.classList.toggle("inactive-card", idx !== i);
+                    });
+
+                    // update detail
+                    setDetail(c[i].dataset.projectId);
+
+                    // perfect center using spacer
+                    const spacer = window.innerWidth * 0.26;
+                    const left = c[i].offsetLeft - spacer;
+
+                    viewport.scrollTo({ left, behavior: "smooth" });
                 }
-                else {
-                    listContainer.style.transform = "translateY(0)";
-                    initProjectCarousel();
+
+                btnPrev.onclick = () => center(currentIndex - 1);
+                btnNext.onclick = () => center(currentIndex + 1);
+
+                cards().forEach((card, i) => card.onclick = () => center(i));
+
+                center(0);
+
+                // reinit after filtering
+                window.addEventListener("reinit-mobile-carousel", () => {
+                    setTimeout(() => center(0), 50);
+                });
+            }
+
+            /* ==========================================================
+               TAB FILTERING
+            ========================================================== */
+            function filterProjects(type) {
+                const all = document.querySelectorAll(".project-list-item");
+
+                all.forEach(item => {
+                    item.classList.toggle("hidden", item.dataset.type !== type);
+                });
+
+                const first = document.querySelector(".project-list-item:not(.hidden)");
+                if (first) setDetail(first.dataset.projectId);
+
+                if (isMobile()) {
+                    window.dispatchEvent(new Event("reinit-mobile-carousel"));
+                } else {
+                    list.style.transform = "translateY(0)";
+                    initDesktopCarousel();
                 }
             }
 
@@ -1245,65 +1277,13 @@
                 filterProjects("company");
             };
 
+            /* ==========================================================
+               INITIALIZE
+            ========================================================== */
             filterProjects("personal");
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+            initDesktopCarousel();
+            initMobileCarousel();
 
-            if (window.innerWidth > 768) return;
-
-            const viewport = document.getElementById("project-list-viewport");
-            const list = document.getElementById("project-list-container");
-            let cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
-            const details = [...document.querySelectorAll(".detail-content")];
-
-            const btnPrev = document.getElementById("projectPrev");
-            const btnNext = document.getElementById("projectNext");
-
-            let currentIndex = 0;
-            const cardWidth = 172;
-
-            function refreshCards() {
-                cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
-            }
-
-            function activateProject(index) {
-
-                refreshCards();
-
-                // limit index
-                if (index < 0) index = 0;
-                if (index >= cards.length) index = cards.length - 1;
-                currentIndex = index;
-
-                // highlight
-                cards.forEach(c => c.querySelector(".item-card").classList.remove("active-card"));
-                cards[index].querySelector(".item-card").classList.add("active-card");
-
-                // details
-                const id = cards[index].dataset.projectId;
-                details.forEach(d => {
-                    d.classList.toggle("active", d.dataset.projectId === id);
-                    d.classList.toggle("hidden", d.dataset.projectId !== id);
-                });
-
-                // scroll center
-                const offset = index * cardWidth;
-                viewport.scrollTo({
-                    left: offset - viewport.clientWidth / 2 + cardWidth / 2,
-                    behavior: "smooth"
-                });
-            }
-
-            btnPrev.onclick = () => activateProject(currentIndex - 1);
-            btnNext.onclick = () => activateProject(currentIndex + 1);
-
-            cards.forEach((card, i) => {
-                card.onclick = () => activateProject(i);
-            });
-
-            activateProject(0);
         });
     </script>
 
