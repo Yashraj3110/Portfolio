@@ -967,14 +967,14 @@ section .walper span {
 /* --- Global Variables & Mixins (Not shown here, but assume standard dark mode) --- */
 
 /* ----------------------------------------------------
-   1. PROJECT LIST ITEMS (Carousel)
+   1. PROJECT LIST ITEMS (Desktop Carousel)
 ---------------------------------------------------- */
-/* PROJECT LIST ITEM WRAPPER */
+
 .project-list-item {
     width: 100%;
 }
 
-/* BASE CARD STYLE */
+/* BASE CARD */
 .item-card {
     display: flex;
     align-items: center;
@@ -985,13 +985,10 @@ section .walper span {
     width: 100%;
     cursor: pointer;
 
-    /* Dark glass effect */
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(8px);
-
     border: 1px solid rgba(255, 255, 255, 0.06);
     transition: all .35s ease-in-out;
-
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -1001,14 +998,12 @@ section .walper span {
     width: 64px;
     height: 64px;
     border-radius: 16px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    transition: 0.35s ease;
+    color: white;
+    transition: .35s ease;
 }
 
 /* TEXT */
@@ -1023,38 +1018,34 @@ section .walper span {
     color: #9ca3af;
 }
 
-/* ACTIVE CARD (center focus) */
+/* ACTIVE CARD */
 .item-card.active-card {
     background: linear-gradient(259deg, rgb(38, 2, 52), #013131);
-    border-color: rgb(255 255 255 / 0%);
-    box-shadow: 0 0px 5px hsl(0deg 0% 33.01%), inset 0 0 15px rgb(30 11 35);
+    border-color: transparent;
+    box-shadow: 0 0px 5px #555, inset 0 0 15px rgb(30 11 35);
     transform: scale(1.08);
 }
 
-/* ACTIVE ICON */
 .item-card.active-card .icon {
     background: #3b82f6;
-    color: #fff;
 }
 
-/* ACTIVE TEXT */
 .item-card.active-card .title {
-    color: white;
+    color: #fff;
 }
 
 .item-card.active-card .subtitle {
     color: #bfdbfe;
 }
 
-/* INACTIVE CARDS */
+/* INACTIVE CARD */
 .item-card.inactive-card {
-    opacity: 0.6;
-    transform: scale(0.94);
+    opacity: .6;
+    transform: scale(.94);
 }
 
 .item-card.inactive-card .icon {
-    background: rgba(255, 255, 255, 0.1);
-    color: #cbd5e1;
+    background: rgba(255, 255, 255, .1);
 }
 
 .item-card.inactive-card .title {
@@ -1065,64 +1056,63 @@ section .walper span {
     color: #9ca3af;
 }
 
+
 /* ----------------------------------------------------
-   3. CAROUSEL & DETAIL LAYOUT
+   2. DESKTOP CAROUSEL VIEWPORT
 ---------------------------------------------------- */
 
-/* Viewport for the list */
 #project-list-viewport {
     height: 284px !important;
-    /* 3*84px + 2*16px space = 284px */
-    padding: 100px 15px;
-    /* Clear padding */
+    /* 3 items visible */
+    padding: 0 15px;
     overflow: hidden;
-}
-
-/* Detail panel: Border gradient and elevation */
-.project-detail-card {
     position: relative;
-    height: 360px !important;
-    overflow-y: hidden;
-    padding: 1.25rem;
-    border-radius: 16px;
-    background: linear-gradient(145deg, rgba(25, 27, 30, 0.8), rgba(15, 17, 20, 0.8));
-    /* Deep dark gradient */
-    border: 2px solid;
-    /* Use for the gradient border effect */
-    border-image-slice: 1;
-    /* Soft Blue Gradient Border */
-    border-image-source: linear-gradient(135deg, #008f8f, #000000, #690092);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-    /* Prominent lift */
-    overflow: hidden;
 }
 
-/* Detail content transition (already good, just for completeness) */
-.detail-content {
-    transition: opacity .4s ease, transform .4s ease;
-    /* ... rest of detail-content styles ... */
-}
-
-/* Arrows */
 .project-nav-arrow {
-    background: rgba(255, 255, 255, 0.08);
-    /* Darker arrow background */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: background 0.2s, transform 0.2s;
+    /* Desktop up/down arrows */
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .15);
+    transition: .2s;
 }
 
 .project-nav-arrow:hover {
-    background: rgba(0, 123, 255, 0.3);
-    /* Hover effect using the primary color */
+    background: rgba(0, 123, 255, .3);
     transform: scale(1.05);
 }
 
+
+/* ----------------------------------------------------
+   3. DETAIL PANEL
+---------------------------------------------------- */
+
+.project-detail-card {
+    height: 360px !important;
+    border-radius: 16px;
+    padding: 1.25rem;
+    overflow: hidden;
+
+    background: linear-gradient(145deg, rgba(25, 27, 30, .8), rgba(15, 17, 20, .8));
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(135deg, #008f8f, #000000, #690092);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .6);
+}
+
+.detail-content {
+    transition: opacity .4s ease, transform .4s ease;
+}
+
+
+/* ----------------------------------------------------
+   4. TABS
+---------------------------------------------------- */
 .project-tab {
-    padding: 0.5rem 1rem;
+    padding: .5rem 1rem;
     font-weight: 600;
     color: #9ca3af;
     border-bottom: 2px solid transparent;
-    transition: all .3s ease;
+    transition: .3s ease;
 }
 
 .project-tab:hover {
@@ -1130,382 +1120,94 @@ section .walper span {
 }
 
 .project-tab.active-tab {
-    color: #ffffff;
+    color: #fff;
     border-bottom-color: #3b82f6;
 }
 
-/* ---------- MOBILE FULLSCREEN PROJECTS (No Scroll) ---------- */
-/* ------------------------------
-    MOBILE (<= 768px)
-   ------------------------------ */
-/* MOBILE MODE */
+
+/* ----------------------------------------------------
+   5. MOBILE (<= 768px)
+---------------------------------------------------- */
+
+/* ----------------------------
+   MOBILE CAROUSEL (<=768px)
+---------------------------- */
 @media (max-width: 768px) {
 
-    /* ACTIVE CARD (center focus) */
-    .item-card.active-card {
-        background: linear-gradient(259deg, rgb(38, 2, 52), #013131) !important;
-        border-color: rgb(255 255 255 / 0%);
-        box-shadow: 0 0px 5px hsl(0deg 0% 33.01%), inset 0 0 15px rgb(30 11 35);
-        transform: scale(1.08);
-    }
-
-    /* ACTIVE ICON */
-    .item-card.active-card .icon {
-        background: #3b82f6 !important;
-        color: #fff !important;
-    }
-
-    /* ACTIVE TEXT */
-    .item-card.active-card .title {
-        color: white !important;
-    }
-
-    .item-card.active-card .subtitle {
-        color: #bfdbfe !important;
-    }
-
-    /* --- SECTION STRUCTURE --- */
-    /* Whole section fits exactly one screen */
-    #projects {
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        padding: 0 !important;
-    }
-
-    /* Inner container takes full height */
-    #projects .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 0 10px !important;
-        /* Add slight horizontal padding */
-        margin: 0 !important;
-        max-width: 100%;
-    }
-
-    /* Grid container for list/detail columns should stack vertically */
-    #projects .grid {
-
-        margin-top: 3% !important;
-
-        flex: 1;
-        /* Allow the grid to take the remaining vertical space */
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        /* Reduced gap for mobile */
-    }
-
-    /* Title + Paragraph + Tabs compressed */
-    #projects .section-title {
-        text-align: left !important;
-        margin-top: 5px;
-        margin-bottom: 6px;
-        font-size: 1.4rem;
-        padding: 0 10px;
-    }
-
-    #projects p {
-        margin-bottom: 5% !important;
-        font-size: 0.82rem;
-        max-width: 100%;
-        padding: 0 10px;
-    }
-
-    .mb-8 {
-        margin-bottom: 0rem !important;
-    }
-
-    .mt-10 {
-        margin-top: 0rem !important;
-    }
-
-    /* --- HORIZONTAL PROJECT LIST (The Fix) --- */
-
     #project-list-viewport {
-        flex-shrink: 0;
-        height: 120px !important;
-        /* FIXED small height */
-        overflow-x: auto;
-        /* Enable horizontal scrolling */
-        white-space: nowrap;
-        /* Prevent list items from wrapping */
-        scrollbar-width: none;
-        padding: 6px 0;
-    }
-
-    #project-list-viewport::-webkit-scrollbar {
-        display: none;
+        position: relative;
+        height: 130px;
+        overflow: hidden;
+        width: 100%;
     }
 
     #project-list-container {
         display: flex !important;
         flex-direction: row !important;
         gap: 12px !important;
-        /* spacing between cards */
-        padding: 0 10px !important;
-        /* Padding for the sides of the horizontal scroll */
-        transform: none !important;
+        padding: 0 10px;
+        transition: transform .3s ease-out;
+        width: max-content;
     }
 
     .project-list-item {
         flex-shrink: 0;
-        /* Crucial: Prevents items from shrinking to fit */
-        width: 160px !important;
-        /* FIXED CARD WIDTH for scrolling */
-        display: inline-flex !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        width: 160px;
     }
 
-    .project-list-item.hidden {
+    /* MOBILE ARROWS */
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 50;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, .55);
+        color: white;
+        border: none;
+        font-size: 20px;
+    }
+
+    .left-btn {
+        left: 5px;
+    }
+
+    .right-btn {
+        right: 5px;
+    }
+
+    /* Hide desktop arrows */
+    #prevProject,
+    #nextProject {
         display: none !important;
-        /* No whitespace shifting */
     }
 
-    .item-card {
-        width: 100%;
-        height: 100px;
-        border-radius: 12px;
-        padding: 10px;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        /* Remove redundant width: 25% !important here */
-    }
-
-    /* Icon and text scaling */
-    .item-card .icon {
-        width: 48px;
-        height: 48px;
-        font-size: 1.5rem;
-    }
-
-    .item-card .title {
-        font-size: 0.9rem;
-    }
-
-    .item-card .subtitle {
-        font-size: 0.7rem;
-    }
-
-    /* --- DETAIL PANEL (BOTTOM AREA) --- */
-    .lg\:col-span-8 {
-        order: 1;
-        /* Move detail card up visually (optional) */
-        width: 100%;
-        margin: 0 !important;
-    }
-
+    /* DETAIL PANEL */
     .project-detail-card {
-        flex: 1;
-        /* Allows it to fill space if content is short */
+        height: auto;
         max-height: 45vh;
-        min-height: 250px;
-        width: 100%;
-        padding: 12px;
         overflow-y: auto;
-        background: rgba(20, 20, 20, 0.45);
+        padding: 12px;
+        background: rgba(20, 20, 20, .45);
     }
 
     .detail-content {
-        position: static !important;
-        /* Make detail content flow normally */
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: none;
+        display: none !important;
     }
 
     .detail-content.active {
         display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
     }
 
-    /* Still hide large images for mobile */
+    /* Hide detail images */
     .detail-content img {
         display: none !important;
     }
 
-    .detail-content .grid {
-        display: block !important;
-    }
-
-    /* Hide arrows */
-    #prevProject,
-    #nextProject {
-        display: none !important;
-    }
-
-    /* Hide the wrapper for the arrows on mobile */
-    .lg\:col-span-4 {
-        order: 2;
-        /* Keep it below the list and detail card */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* List container (must be visible above the detail card) */
-    .lg\:col-span-4 {
-        order: 1;
-        /* List is first */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    /* Detail Card container */
-    .lg\:col-span-8 {
-        order: 2;
-        /* Detail card is second */
-        width: 100%;
-        margin: 0 !important;
-    }
-
-    .project-detail-card {
-        /* Override fixed desktop height for mobile */
-        height: auto;
-        min-height: 250px;
-        /* Ensure a decent minimum height on mobile */
-        max-height: 45vh;
-        /* Allow it to be scrollable if needed */
-        width: 100%;
-        flex: unset !important;
-    }
-
-    /* Ensure mobile detail content adapts */
-    .detail-content {
-        position: static !important;
-        padding: 12px;
-        /* Use smaller mobile padding */
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* --- STRUCTURE/LAYOUT (Ordering remains correct) --- */
-    /* ... (rest of the mobile structure CSS) ... */
-
-    /* List container (order: 1) */
-    .lg\:col-span-4 {
-        order: 1;
-        /* List is first */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    /* Detail Card container (order: 2) */
-    .lg\:col-span-8 {
-        order: 2;
-        /* Detail card is second */
-        width: 100%;
-        margin: 0 !important;
-    }
-
-    /* --- MOBILE SCROLLING FIX (No changes needed here from previous step) --- */
-    /* ... (project list viewport and item styles) ... */
-
-    /* --- DETAIL PANEL (BOTTOM AREA) --- */
-    .project-detail-card {
-        /* Override desktop fixed height for mobile */
-        height: auto;
-        min-height: 250px;
-        /* Ensure a decent minimum height on mobile */
-        max-height: 45vh;
-        /* Allow it to be scrollable if needed */
-        width: 100%;
-        flex: unset !important;
-        /* Remove fixed position on mobile */
-        position: relative;
+    html,
+    body {
         overflow: hidden;
-        /* Keep content contained */
-    }
-
-    .detail-content {
-        /* Reset positioning for mobile flow */
-        position: static !important;
-        /* Make detail content flow normally */
-        padding: 12px;
-        /* Use smaller mobile padding */
-        visibility: visible;
-        /* Ensure content is visible in the flow */
-        opacity: 1;
-        /* Ensure content is visible in the flow */
-        transform: none;
-        /* No transform needed for flow */
-        height: auto;
-        /* Allow natural height flow */
-        overflow-y: auto;
-    }
-
-    /* Use display: none/block for mobile switching instead of position/opacity */
-    .detail-content:not(.active) {
-        display: none !important;
-    }
-
-    .detail-content.active {
-        display: block !important;
-    }
-
-    /* Hide arrows */
-    #prevProject,
-    #nextProject {
-        display: none !important;
-    }
-}
-
-/* --- MOBILE CAROUSEL BUTTONS --- */
-@media (max-width: 768px) {
-
-    .carousel-btn {
-        position: absolute;
-        top: 155px;
-        /* aligns with your project list height */
-        transform: translateY(-50%);
-        width: 34px;
-        height: 34px;
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        color: white;
-        font-size: 22px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 50;
-        cursor: pointer;
-        transition: 0.2s ease;
-    }
-
-    .carousel-btn:hover {
-        background: rgba(255, 255, 255, 0.25);
-    }
-
-    .left-btn {
-        left: 6px;
-    }
-
-    .right-btn {
-        right: 6px;
-    }
-
-    /* Prevent overlap on desktop */
-    @media (min-width: 769px) {
-        .carousel-btn {
-            display: none !important;
-        }
     }
 }

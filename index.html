@@ -263,11 +263,14 @@
 
                         <!-- Project List Viewport -->
                         <div id="project-list-viewport" class="w-full relative h-[270px] overflow-hidden">
+                            <!-- MOBILE CAROUSEL ARROWS -->
+                            <button id="projectPrev" class="carousel-btn left-btn">‹</button>
+                            <button id="projectNext" class="carousel-btn right-btn">›</button>
                             <div id="project-list-container"
                                 class="transition-transform duration-500 ease-out space-y-4">
 
                                 <div class="project-list-item active" data-project-id="crm" data-type="company">
-                                    <div class="item-card active-card">
+                                    <div class="item-card ">
                                         <span class="icon">📈</span>
                                         <div>
                                             <h5 class="title">C.R.M. System</h5>
@@ -277,7 +280,7 @@
                                 </div>
 
                                 <div class="project-list-item active" data-project-id="wa" data-type="company">
-                                    <div class="item-card active-card">
+                                    <div class="item-card ">
                                         <span class="icon">🌐</span>
                                         <div>
                                             <h5 class="title">Wix Applications</h5>
@@ -287,7 +290,7 @@
                                 </div>
 
                                 <div class="project-list-item active" data-project-id="cel" data-type="personal">
-                                    <div class="item-card active-card">
+                                    <div class="item-card ">
                                         <span class="icon">📚</span>
                                         <div>
                                             <h5 class="title">Course-Easy</h5>
@@ -297,7 +300,7 @@
                                 </div>
 
                                 <div class="project-list-item active" data-project-id="cem" data-type="personal">
-                                    <div class="item-card active-card">
+                                    <div class="item-card ">
                                         <span class="icon">📖</span>
                                         <div>
                                             <h5 class="title">Course-Easy</h5>
@@ -307,7 +310,7 @@
                                 </div>
 
                                 <div class="project-list-item active" data-project-id="eb" data-type="personal">
-                                    <div class="item-card active-card">
+                                    <div class="item-card ">
                                         <span class="icon">🛍️</span>
                                         <div>
                                             <h5 class="title">E-buy</h5>
@@ -317,7 +320,7 @@
                                 </div>
 
                                 <div class="project-list-item active" data-project-id="fk" data-type="personal">
-                                    <div class="item-card active-card">
+                                    <div class="item-card ">
                                         <span class="icon">🛒</span>
                                         <div>
                                             <h5 class="title">Flipkart</h5>
@@ -327,7 +330,7 @@
                                 </div>
 
                                 <div class="project-list-item active" data-project-id="int" data-type="personal">
-                                    <div class="item-card active-card">
+                                    <div class="item-card ">
                                         <span class="icon">🏠</span>
                                         <div>
                                             <h5 class="title">Interior</h5>
@@ -339,9 +342,7 @@
                             </div>
                         </div>
 
-                        <!-- MOBILE CAROUSEL ARROWS -->
-                        <button id="projectPrev" class="carousel-btn left-btn">‹</button>
-                        <button id="projectNext" class="carousel-btn right-btn">›</button>
+
 
                         <!-- Arrow Down -->
                         <button id="nextProject"
@@ -1250,114 +1251,68 @@
         });
     </script>
 
-    <script>
-        function enableMobileClicks() {
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-            if (window.innerWidth > 768) return;
+        if (window.innerWidth > 768) return;   // run only on mobile
 
-            const items = document.querySelectorAll(".project-list-item:not(.hidden)");
+        const viewport = document.getElementById("project-list-viewport");
+        const list = document.getElementById("project-list-container");
+        let cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
+        const details = [...document.querySelectorAll(".detail-content")];
 
-            // Remove old listeners
-            items.forEach(item => {
-                const clone = item.cloneNode(true);
-                item.parentNode.replaceChild(clone, item);
-            });
+        const btnPrev = document.getElementById("projectPrev");
+        const btnNext = document.getElementById("projectNext");
 
-            const freshItems = document.querySelectorAll(".project-list-item:not(.hidden)");
+        let currentIndex = 0;
+        const cardWidth = 172;   // 160 + 12 gap
 
-            freshItems.forEach(item => {
-                item.addEventListener("click", () => {
-
-                    const id = item.dataset.projectId;
-
-                    /* -----------------------------------
-                       1. UPDATE DETAIL CONTENT (mobile)
-                    ----------------------------------- */
-                    document.querySelectorAll(".detail-content").forEach(d => {
-                        const match = d.dataset.projectId === id;
-                        d.classList.toggle("active", match);
-                        d.classList.toggle("hidden", !match);
-                    });
-
-                    /* -----------------------------------
-                       2. MOBILE ACTIVE CARD UI
-                    ----------------------------------- */
-
-                    // remove active-card from all cards
-                    freshItems.forEach(i => {
-                        const card = i.querySelector(".item-card");
-                        if (card) card.classList.remove("active-card");
-                    });
-
-                    // add active-card to the clicked item
-                    const clickedCard = item.querySelector(".item-card");
-                    if (clickedCard) clickedCard.classList.add("active-card");
-
-                    // ❌ No scrollIntoView → no viewport shift
-                });
-            });
-        }
-    </script>
-
-<script>
-    const cards = document.querySelectorAll(".project-list-item");
-    const viewport = document.getElementById("project-list-viewport");
-    const detailContents = document.querySelectorAll(".detail-content");
-
-    // Function to activate a project by index
-    function activateProject(index) {
-
-        if (index < 0 || index >= cards.length) return;
-
-        // Remove existing active states
-        cards.forEach(card => card.classList.remove("active-card"));
-        detailContents.forEach(d => d.classList.remove("active"));
-
-        // Activate selected card
-        const activeCard = cards[index];
-        activeCard.classList.add("active-card");
-
-        // Activate matching detail section
-        const projectID = activeCard.getAttribute("data-project-id");
-        const relatedDetail = document.querySelector(`.detail-content[data-project-id="${projectID}"]`);
-        if (relatedDetail) {
-            relatedDetail.classList.add("active");
+        /* Refresh list if filter changes */
+        function refreshCards() {
+            cards = [...document.querySelectorAll(".project-list-item:not(.hidden)")];
         }
 
-        // Auto-center the card in the horizontal scroll
-        const cardLeft = activeCard.offsetLeft;
-        const cardWidth = activeCard.offsetWidth;
-        const viewportWidth = viewport.offsetWidth;
+        /* Activate project in detail + highlight card + scroll center */
+        function activateProject(index) {
 
-        viewport.scrollTo({
-            left: cardLeft - viewportWidth / 2 + cardWidth / 2,
-            behavior: "smooth"
+            refreshCards();
+
+            if (index < 0) index = 0;
+            if (index >= cards.length) index = cards.length - 1;
+            currentIndex = index;
+
+            // 1. UI highlight
+            cards.forEach(c => c.querySelector(".item-card").classList.remove("active-card"));
+            cards[index].querySelector(".item-card").classList.add("active-card");
+
+            // 2. Details update
+            const id = cards[index].dataset.projectId;
+            details.forEach(d => {
+                d.classList.toggle("active", d.dataset.projectId === id);
+                d.classList.toggle("hidden", d.dataset.projectId !== id);
+            });
+
+            // 3. Scroll item to center
+            const offset = index * cardWidth;
+            viewport.scrollTo({
+                left: offset - viewport.clientWidth / 2 + cardWidth / 2,
+                behavior: "smooth"
+            });
+        }
+
+        /* Arrows */
+        btnPrev.onclick = () => activateProject(currentIndex - 1);
+        btnNext.onclick = () => activateProject(currentIndex + 1);
+
+        /* Clicking a card */
+        cards.forEach((card, i) => {
+            card.onclick = () => activateProject(i);
         });
 
-        // Update current index
-        currentIndex = index;
-    }
-
-    // Detect current active card
-    let currentIndex = [...cards].findIndex(c => c.classList.contains("active-card"));
-    if (currentIndex === -1) currentIndex = 0;
-
-    // LEFT BUTTON
-    document.getElementById("projectPrev").addEventListener("click", function () {
-        activateProject(currentIndex - 1);
-    });
-
-    // RIGHT BUTTON
-    document.getElementById("projectNext").addEventListener("click", function () {
-        activateProject(currentIndex + 1);
-    });
-
-    // ALSO activate when user taps a card manually
-    cards.forEach((card, index) => {
-        card.addEventListener("click", () => activateProject(index));
+        /* First load */
+        activateProject(0);
     });
 </script>
-
 
 
 </body>
