@@ -339,6 +339,10 @@
                             </div>
                         </div>
 
+                        <!-- MOBILE CAROUSEL ARROWS -->
+                        <button id="projectPrev" class="carousel-btn left-btn">‹</button>
+                        <button id="projectNext" class="carousel-btn right-btn">›</button>
+
                         <!-- Arrow Down -->
                         <button id="nextProject"
                             class="project-nav-arrow p-3 rounded-full hover:bg-white/10 transition">
@@ -1295,6 +1299,64 @@
         }
     </script>
 
+<script>
+    const cards = document.querySelectorAll(".project-list-item");
+    const viewport = document.getElementById("project-list-viewport");
+    const detailContents = document.querySelectorAll(".detail-content");
+
+    // Function to activate a project by index
+    function activateProject(index) {
+
+        if (index < 0 || index >= cards.length) return;
+
+        // Remove existing active states
+        cards.forEach(card => card.classList.remove("active-card"));
+        detailContents.forEach(d => d.classList.remove("active"));
+
+        // Activate selected card
+        const activeCard = cards[index];
+        activeCard.classList.add("active-card");
+
+        // Activate matching detail section
+        const projectID = activeCard.getAttribute("data-project-id");
+        const relatedDetail = document.querySelector(`.detail-content[data-project-id="${projectID}"]`);
+        if (relatedDetail) {
+            relatedDetail.classList.add("active");
+        }
+
+        // Auto-center the card in the horizontal scroll
+        const cardLeft = activeCard.offsetLeft;
+        const cardWidth = activeCard.offsetWidth;
+        const viewportWidth = viewport.offsetWidth;
+
+        viewport.scrollTo({
+            left: cardLeft - viewportWidth / 2 + cardWidth / 2,
+            behavior: "smooth"
+        });
+
+        // Update current index
+        currentIndex = index;
+    }
+
+    // Detect current active card
+    let currentIndex = [...cards].findIndex(c => c.classList.contains("active-card"));
+    if (currentIndex === -1) currentIndex = 0;
+
+    // LEFT BUTTON
+    document.getElementById("projectPrev").addEventListener("click", function () {
+        activateProject(currentIndex - 1);
+    });
+
+    // RIGHT BUTTON
+    document.getElementById("projectNext").addEventListener("click", function () {
+        activateProject(currentIndex + 1);
+    });
+
+    // ALSO activate when user taps a card manually
+    cards.forEach((card, index) => {
+        card.addEventListener("click", () => activateProject(index));
+    });
+</script>
 
 
 

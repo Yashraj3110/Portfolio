@@ -1465,3 +1465,47 @@ section .walper span {
         display: none !important;
     }
 }
+
+/* --- MOBILE CAROUSEL BUTTONS --- */
+@media (max-width: 768px) {
+
+    .carousel-btn {
+        position: absolute;
+        top: 155px;
+        /* aligns with your project list height */
+        transform: translateY(-50%);
+        width: 34px;
+        height: 34px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        color: white;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .carousel-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .left-btn {
+        left: 6px;
+    }
+
+    .right-btn {
+        right: 6px;
+    }
+
+    /* Prevent overlap on desktop */
+    @media (min-width: 769px) {
+        .carousel-btn {
+            display: none !important;
+        }
+    }
+}
