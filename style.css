@@ -1138,8 +1138,8 @@ section .walper span {
     /* VIEWPORT */
     #project-list-viewport {
         position: relative;
-        width: 100%;
-        height: 120px;
+        width: 90vw;
+        height: 120px !important;
         /* AUTO FIX for all screens */
         overflow: hidden;
         padding: 0 45px;
@@ -1171,7 +1171,7 @@ section .walper span {
     /* ARROW BUTTONS — ALWAYS VISIBLE */
     .carousel-btn {
         position: absolute;
-        top: 50%;
+        top: 40%;
         transform: translateY(-50%);
         z-index: 20;
         width: 36px;
