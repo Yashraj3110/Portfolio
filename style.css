@@ -954,6 +954,35 @@ section .walper span {
     user-select: none;
 }
 
+/* Name shimmer animation */
+.animated-name {
+    animation: shineText 3s ease-in-out infinite alternate;
+}
+
+@keyframes shineText {
+    0% {
+        filter: brightness(1);
+    }
+
+    100% {
+        filter: brightness(1.35);
+    }
+}
+
+/* Floating hero image */
+@keyframes floatHero {
+    0% {
+        transform: translateY(calc(-50% + 40px));
+    }
+
+    50% {
+        transform: translateY(calc(-50% + 65px));
+    }
+
+    100% {
+        transform: translateY(calc(-50% + 40px));
+    }
+}
 
 /* --------------------------------------------
     PROJECTS SECTION STYLING (Single Item Navigation)

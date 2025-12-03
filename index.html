@@ -56,79 +56,96 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="about" class="h-screen flex items-center relative overflow-hidden snap-start">
-
-            <div class="container mx-auto px-6 max-w-7xl relative z-20 flex flex-col justify-center pt-1 md:pt-1 ">
-
-                <!-- Main Heading -->
-                <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.1] mb-2">
-                    Hi, I'm
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-                        Yashraj Singh Rathore
-                    </span>
-                </h1>
-
-                <!-- Small Top Tagline -->
-                <p class="text-sm sm:text-base text-cyan-400/80 font-medium tracking-wider mb-2 fade-in-on-scroll">
-                    FULL-STACK DEVELOPER • MERN • LARAVEL
-                </p>
-
-                <!-- Professional Subtitle -->
-                <h2 class="text-lg sm:text-xl md:text-2xl text-gray-300 font-light tracking-wide mt-2">
-                    I build fast, scalable & modern web applications.
-                </h2>
-
-                <!-- Introduction -->
-                <p
-                    class="mt-5 max-w-2xl text-gray-400 text-base sm:text-lg leading-relaxed border-l-4 border-cyan-500/30 pl-5">
-                    I'm a full-stack engineer passionate about clean architecture, polished UI and performant backend
-                    systems.
-                    I’ve built CRM systems, Wix apps, e-commerce modules and complete learning platforms — focusing on
-                    quality,
-                    scalability and real-world usability.
-                </p>
-
-                <!-- CTA Buttons -->
-                <div class="mt-7 flex flex-wrap gap-4">
-
-                    <!-- Primary CTA -->
-                    <a href="#projects"
-                        class="group relative px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold rounded-xl shadow-lg shadow-cyan-600/20 hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-[1.03]">
-                        <span class="relative z-10">View Projects</span>
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 
-                    group-hover:opacity-100 transition-all duration-700 group-hover:animate-[shimmer_2s_infinite]">
-                        </div>
-                    </a>
-
-                    <!-- Secondary CTA -->
-                    <a href="#contact" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
-                hover:border-cyan-400 hover:text-cyan-400 transition-all duration-200">
-                        Get in Touch
-                    </a>
-
-                    <!-- Github -->
-                    <a href="https://github.com/Yashraj3110?tab=repositories" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
-                hover:border-purple-400 hover:text-purple-300 transition-all duration-200">
-                        GitHub
-                    </a>
-                </div>
-
-                <!-- Hero Image -->
-                <div id="bnr" class="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pr-10">
-                    <img src="images/hero_setup.avif"
-                        class="w-72 md:w-80 lg:w-[360px] rounded-2xl shadow-2xl shadow-black/50 border border-white/10 object-cover">
-                </div>
-
+    <section id="about" class="relative h-screen flex items-center overflow-hidden snap-start">
+    
+        <!-- PREMIUM DUAL GLOW BACKGROUND -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+    
+            <!-- Layer 1 – Big Cinematic Glow -->
+            <div
+                class="absolute w-[520px] h-[520px] rounded-full bg-cyan-400/15 blur-[160px] opacity-70 animate-slow-pulse">
             </div>
-
-            <!-- Scroll Down Indicator -->
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
+    
+            <!-- Layer 2 – Gradient Beam Glow -->
+            <div
+                class="absolute w-[420px] h-[420px] rounded-full bg-gradient-to-br from-cyan-500/40 via-purple-500/35 to-blue-500/25 blur-[120px] opacity-80 animate-glow-move">
             </div>
+    
+        </div>
+    
+        <div class="container mx-auto px-6 max-w-7xl relative z-20 flex flex-col justify-center pt-10 md:pt-20">
+    
+            <!-- Main Heading -->
+            <h1 class="fade-item delay-100 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.1] mb-3">
+                Hi, I'm
+                <span
+                    class="animated-name bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
+                    Yashraj Singh Rathore
+                </span>
+            </h1>
+    
+            <!-- Small Top Tagline -->
+            <p class="fade-item delay-200 text-sm sm:text-base text-cyan-400/80 font-semibold tracking-wider mb-3">
+                FULL-STACK DEVELOPER • MERN • LARAVEL
+            </p>
+    
+            <!-- Professional Subtitle -->
+            <h2 class="fade-item delay-300 text-lg sm:text-xl md:text-2xl text-gray-300 font-light tracking-wide mt-2">
+                I build fast, scalable & modern web applications with clean code.
+            </h2>
+    
+            <!-- Introduction -->
+            <p
+                class="fade-item delay-400 mt-6 max-w-2xl text-gray-400 text-base sm:text-lg leading-relaxed border-l-4 border-cyan-500/30 pl-5">
+                I'm a full-stack engineer who enjoys creating polished frontends and powerful backends.
+                I’ve built CRMs, e-commerce engines and learning platforms — focusing on performance,
+                scalability and strong UI engineering.
+            </p>
+    
+            <!-- CTA Buttons -->
+            <div class="fade-item delay-500 mt-8 flex flex-wrap gap-4">
+    
+                <a href="#projects"
+                    class="group relative px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold rounded-xl shadow-xl shadow-cyan-600/30 hover:shadow-cyan-400/40 transition-all duration-300 hover:scale-[1.05]">
+                    <span class="relative z-10">View Projects</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 
+                        group-hover:opacity-100 transition-all duration-700 group-hover:animate-[shimmer_2s_infinite]">
+                    </div>
+                </a>
+    
+                <a href="#contact" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
+                    hover:border-cyan-400 hover:text-cyan-400 transition-all duration-200">
+                    Get in Touch
+                </a>
+    
+                <a href="https://github.com/Yashraj3110?tab=repositories" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
+                    hover:border-purple-400 hover:text-purple-300 transition-all duration-200">
+                    GitHub
+                </a>
+            </div>
+    
+            <!-- Hero Image + Glow + Floating Effect -->
+            <div id="bnr"
+                class="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pr-10 fade-item delay-600"
+                style="margin-top: 40px; animation: floatHero 6s ease-in-out infinite;">
+    
+                <img src="images/hero_setup.avif"
+                    class="w-72 md:w-80 lg:w-[360px] rounded-2xl shadow-[0_15px_60px_rgba(0,0,0,0.55)] border border-white/10 object-cover">
+            </div>
+    
+        </div>
+    
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    
+    </section>
 
-        </section>
+
+
 
 
 
