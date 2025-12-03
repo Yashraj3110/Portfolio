@@ -113,12 +113,7 @@ body::before {
     }
 }
 
-/* Rotation */
-@keyframes glassSpin {
-    100% {
-        transform: rotate(360deg);
-    }
-}
+
 
 /* Positions */
 #shape1 {
@@ -313,11 +308,7 @@ body::before {
     transition: .25s;
 }
 
-.skill-tag:hover {
-    background: rgba(0, 224, 255, 0.15);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-}
+
 
 /* --------------------------------------------
         CONTACT ITEM
@@ -953,6 +944,7 @@ section .walper span {
     color: white;
     user-select: none;
 }
+
 /* Name shimmer animation */
 .animated-name {
     animation: shineText 3s ease-in-out infinite alternate;
@@ -1007,6 +999,7 @@ section .walper span {
     filter: blur(2px);
     animation: drift 12s ease-in-out infinite;
 }
+
 .particle {
     will-change: transform;
 }
@@ -1037,6 +1030,7 @@ section .walper span {
         transform: translate(0, 0) scale(1);
     }
 }
+
 @keyframes tagGlow {
     0% {
         filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4)) brightness(1);
@@ -1069,6 +1063,7 @@ section .walper span {
         filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.20));
     }
 }
+
 /* --------------------------------------------
     PROJECTS SECTION STYLING (Single Item Navigation)
 -------------------------------------------- */
@@ -1176,7 +1171,8 @@ section .walper span {
 ============================================================ */
 #project-list-viewport {
     height: 284px !important;
-    padding: 50PX 15px;
+    padding: 0px 15px;
+    padding-top: 35px;
     overflow: hidden;
     position: relative;
 }
@@ -1227,11 +1223,12 @@ section .walper span {
 
 .project-tab:hover {
     color: #e5e7eb;
+    background: #3d6165;
 }
 
 .project-tab.active-tab {
     color: #fff;
-    border-bottom-color: #3b82f6;
+    background: #8a35e8;
 }
 
 
