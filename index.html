@@ -59,12 +59,6 @@
         <!-- Hero Section -->
         <section id="about" class="relative h-screen flex items-center overflow-hidden snap-start">
 
-            <!-- ===================================================== -->
-            <!-- ADVANCED PREMIUM PARTICLE LAYERS (BACK–MID–FRONT) -->
-            <!-- ===================================================== -->
-            <div id="particle-layer-back" class="particle-layer pointer-events-none"></div>
-            <div id="particle-layer-mid" class="particle-layer pointer-events-none"></div>
-            <div id="particle-layer-front" class="particle-layer pointer-events-none"></div>
 
             <!-- ===================================================== -->
             <!-- PREMIUM DUAL GLOW BACKGROUND -->
@@ -190,7 +184,8 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="flex items-center border-t border-white/5 bg-black/40">
+        <section id="experience" class="c flex items-center border-t border-white/5 bg-black/40">
+            
             <!-- Background CONTACT text -->
             <div class="absolute inset-0 walper pointer-events-none flex items-center justify-center">
                 <span>Experience</span>
@@ -795,7 +790,7 @@
 
 
         <!-- Education Section -->
-        <section id="education" class="flex items-center border-t border-white/5 bg-black/20">
+        <section id="education" class="relative flex items-center border-t border-white/5 bg-black/20">
             <!-- Background CONTACT text -->
             <div class="absolute inset-0 walper pointer-events-none flex items-center justify-center">
                 <span>Education</span>
@@ -850,7 +845,7 @@
             </div>
         </section>
 
-        <section id="skills" class="py-16 sm:py-20 border-t border-white/5">
+        <section id="skills" class="relative py-16 sm:py-20 border-t border-white/5">
             <!-- Background CONTACT text -->
             <div class="absolute inset-0 walper pointer-events-none flex items-center justify-center">
                 <span>Skills</span>
@@ -1021,42 +1016,76 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
-            function createParticles(layerId, count, sizeRange, blurType = "") {
-                const layer = document.getElementById(layerId);
+            function initParticles(sectionId, config = {}) {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
 
-                for (let i = 0; i < count; i++) {
-                    const p = document.createElement("div");
-                    p.classList.add("particle");
-                    if (blurType) p.classList.add(blurType);
+                // Create 3 layers automatically
+                const back = document.createElement("div");
+                const mid = document.createElement("div");
+                const front = document.createElement("div");
 
-                    const size = Math.random() * sizeRange + 4;
-                    p.style.width = size + "px";
-                    p.style.height = size + "px";
+                back.classList.add("particle-layer");
+                mid.classList.add("particle-layer");
+                front.classList.add("particle-layer");
 
-                    p.style.left = Math.random() * 100 + "vw";
-                    p.style.top = Math.random() * 100 + "vh";
+                back.classList.add("particle-back");
+                mid.classList.add("particle-mid");
+                front.classList.add("particle-front");
 
-                    const colors = [
+                section.appendChild(back);
+                section.appendChild(mid);
+                section.appendChild(front);
+
+                // Load final config
+                const settings = {
+                    backCount: config.backCount || 20,
+                    midCount: config.midCount || 10,
+                    frontCount: config.frontCount || 5,
+                    colors: config.colors || [
                         "rgba(0,255,255,0.9)",
                         "rgba(168,55,247,0.9)",
                         "rgba(0,150,255,0.9)"
-                    ];
-                    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    ]
+                };
 
-                    p.style.animationDuration = 8 + Math.random() * 10 + "s";
-                    p.style.animationDelay = Math.random() * 6 + "s";
+                createParticles(back, settings.backCount, 6, "");
+                createParticles(mid, settings.midCount, 12, "glow");
+                createParticles(front, settings.frontCount, 60, "nebula");
 
-                    layer.appendChild(p);
+                function createParticles(layer, count, sizeRange, type) {
+                    for (let i = 0; i < count; i++) {
+                        const p = document.createElement("div");
+                        p.classList.add("particle");
+                        if (type) p.classList.add(type);
+
+                        const size = Math.random() * sizeRange + 4;
+                        p.style.width = size + "px";
+                        p.style.height = size + "px";
+
+                        p.style.left = Math.random() * 100 + "vw";
+                        p.style.top = Math.random() * 100 + "vh";
+
+                        p.style.background = settings.colors[Math.floor(Math.random() * settings.colors.length)];
+                        p.style.animationDuration = 8 + Math.random() * 12 + "s";
+                        p.style.animationDelay = Math.random() * 6 + "s";
+
+                        layer.appendChild(p);
+                    }
                 }
             }
 
-            createParticles("particle-layer-back", 18, 6);
-            createParticles("particle-layer-mid", 12, 10, "glow");
-            createParticles("particle-layer-front", 6, 60, "nebula");
-
+            /* Initialize particles for all sections you want */
+            initParticles("about");
+            initParticles("experience", { backCount: 12, midCount: 6, frontCount: 3 });
+            initParticles("projects", { backCount: 16, midCount: 10, frontCount: 4 });
+            initParticles("education", { backCount: 16, midCount: 10, frontCount: 4 });
+            initParticles("skills", { backCount: 16, midCount: 10, frontCount: 4 });
+            initParticles("contact", { backCount: 8, midCount: 3, frontCount: 2 });
 
         });
     </script>
+
 
 
 

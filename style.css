@@ -983,13 +983,19 @@ section .walper span {
     }
 }
 
-/* Particle layers (behind hero image, above glow) */
+/* Base particle layers */
+.particle-section {
+    position: relative;
+    overflow: hidden;
+}
+
 .particle-layer {
     position: absolute;
     inset: 0;
+    pointer-events: none;
     overflow: hidden;
-    z-index: 15;
-    /* between glow (10) and hero image (20) */
+    z-index: 6;
+    /* Between background & content */
 }
 
 /* Base particle */
@@ -997,18 +1003,18 @@ section .walper span {
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 0.7;
     filter: blur(2px);
     animation: drift 12s ease-in-out infinite;
 }
 
-/* Glow particle */
+/* Glow particles */
 .particle.glow {
     filter: blur(6px);
     opacity: 0.9;
 }
 
-/* Nebula soft blur */
+/* Large nebula particles */
 .particle.nebula {
     filter: blur(20px);
     opacity: 0.55;
@@ -1028,7 +1034,6 @@ section .walper span {
         transform: translate(0, 0) scale(1);
     }
 }
-
 @keyframes tagGlow {
     0% {
         filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4)) brightness(1);
