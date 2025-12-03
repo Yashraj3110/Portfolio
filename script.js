@@ -1,51 +1,65 @@
 /* ============================================================
-   0. PARTICLE GENERATOR
+   0. PARTICLE GENERATOR (BOOSTED MOBILE FPS)
 ============================================================ */
 function initParticles(id, cfg = {}) {
     const section = document.getElementById(id);
     if (!section) return;
 
+    const isMobile = navigator.maxTouchPoints > 0 &&
+        window.matchMedia("(max-width: 768px)").matches;
+
     const fragment = document.createDocumentFragment();
 
+    // Desktop = full count, Mobile = reduced count
+    const reduction = isMobile ? 0.25 : 1; // 75% fewer on mobile
+
     const colors = cfg.colors || [
-        "rgba(0,255,255,0.9)",
-        "rgba(168,55,247,0.9)",
-        "rgba(0,150,255,0.9)",
+        "rgba(0,255,255,0.8)",
+        "rgba(168,55,247,0.8)",
+        "rgba(0,150,255,0.8)"
     ];
 
     const layers = [
-        { count: cfg.backCount ?? 20, cls: "particle-back", size: 6 },
-        { count: cfg.midCount ?? 10, cls: "particle-mid", size: 12 },
-        { count: cfg.frontCount ?? 5, cls: "particle-front", size: 60 },
+        { count: Math.floor((cfg.backCount ?? 20) * reduction), cls: "particle-back", size: 4 },
+        { count: Math.floor((cfg.midCount ?? 10) * reduction), cls: "particle-mid", size: 8 },
+        { count: Math.floor((cfg.frontCount ?? 5) * reduction), cls: "particle-front", size: 16 },
     ];
 
     layers.forEach(layer => {
         const wrap = document.createElement("div");
         wrap.className = `particle-layer ${layer.cls}`;
 
+        let html = "";
+
         for (let i = 0; i < layer.count; i++) {
-            const p = document.createElement("div");
-            const size = Math.random() * layer.size + 4;
+            const size = (Math.random() * layer.size + 3).toFixed(1);
+            const x = (Math.random() * 100).toFixed(1);
+            const y = (Math.random() * 100).toFixed(1);
+            const duration = (10 + Math.random() * 10).toFixed(1);
+            const delay = (Math.random() * 6).toFixed(1);
+            const color = colors[(Math.random() * colors.length) | 0];
 
-            p.className = "particle";
-            p.style.cssText = `
-                width:${size}px;
-                height:${size}px;
-                left:${Math.random() * 100}vw;
-                top:${Math.random() * 100}vh;
-                background:${colors[(Math.random() * colors.length) | 0]};
-                animation-duration:${8 + Math.random() * 12}s;
-                animation-delay:${Math.random() * 6}s;
+            html += `
+                <div class="particle optimized"
+                    style="
+                        --size:${size}px;
+                        --x:${x}vw;
+                        --y:${y}vh;
+                        --color:${color};
+                        --duration:${duration}s;
+                        --delay:${delay}s;
+                    ">
+                </div>
             `;
-
-            wrap.appendChild(p);
         }
 
+        wrap.innerHTML = html;
         fragment.appendChild(wrap);
     });
 
     section.appendChild(fragment);
 }
+
 
 
 /* ============================================================
@@ -66,7 +80,9 @@ function initSectionNavigation() {
 
     const sections = [...document.querySelectorAll("section[id]")];
     const dots = [...document.querySelectorAll(".dot")];
-    const isMobile = navigator.maxTouchPoints > 0;
+    const isMobile =
+        navigator.maxTouchPoints > 0 &&
+        window.matchMedia("(max-width: 768px)").matches;
 
     function setActiveDot(index) {
         dots.forEach(d => d.classList.remove("active"));
@@ -205,7 +221,9 @@ function initProjectCarousel() {
     const details = () => [...document.querySelectorAll(".detail-content")];
 
     let currentIndex = 0;
-    const isMobile = () => window.innerWidth <= 768;
+    const isMobile = () =>
+        navigator.maxTouchPoints > 0 &&
+        window.matchMedia("(max-width: 768px)").matches;
 
     function setDetail(id) {
         details().forEach(d => {
