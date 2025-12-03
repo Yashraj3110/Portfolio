@@ -953,7 +953,6 @@ section .walper span {
     color: white;
     user-select: none;
 }
-
 /* Name shimmer animation */
 .animated-name {
     animation: shineText 3s ease-in-out infinite alternate;
@@ -984,6 +983,84 @@ section .walper span {
     }
 }
 
+/* Particle layers (behind hero image, above glow) */
+.particle-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 15;
+    /* between glow (10) and hero image (20) */
+}
+
+/* Base particle */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    filter: blur(2px);
+    animation: drift 12s ease-in-out infinite;
+}
+
+/* Glow particle */
+.particle.glow {
+    filter: blur(6px);
+    opacity: 0.9;
+}
+
+/* Nebula soft blur */
+.particle.nebula {
+    filter: blur(20px);
+    opacity: 0.55;
+}
+
+/* Drift animation */
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(25px, -35px) scale(1.15);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+@keyframes tagGlow {
+    0% {
+        filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4)) brightness(1);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.7)) brightness(1.3);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4)) brightness(1);
+    }
+}
+
+#particle-layer-front {
+    mask-image: linear-gradient(to left, transparent 20%, black 90%);
+}
+
+
+@keyframes paraGlow {
+    0% {
+        filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.20));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.35));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.20));
+    }
+}
 /* --------------------------------------------
     PROJECTS SECTION STYLING (Single Item Navigation)
 -------------------------------------------- */

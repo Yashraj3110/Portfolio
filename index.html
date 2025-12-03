@@ -35,6 +35,7 @@
 
 
 <body class="antialiased selection:bg-cyan-500 selection:text-black">
+
     <!-- Floating Dots Navigation -->
     <div class="dots">
         <div class="dot active" data-target="#about"></div>
@@ -56,99 +57,137 @@
 
     <main>
         <!-- Hero Section -->
-    <section id="about" class="relative h-screen flex items-center overflow-hidden snap-start">
-    
-        <!-- PREMIUM DUAL GLOW BACKGROUND -->
-        <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
-    
-            <!-- Layer 1 – Big Cinematic Glow -->
-            <div
-                class="absolute w-[520px] h-[520px] rounded-full bg-cyan-400/15 blur-[160px] opacity-70 animate-slow-pulse">
+        <section id="about" class="relative h-screen flex items-center overflow-hidden snap-start">
+
+            <!-- ===================================================== -->
+            <!-- ADVANCED PREMIUM PARTICLE LAYERS (BACK–MID–FRONT) -->
+            <!-- ===================================================== -->
+            <div id="particle-layer-back" class="particle-layer pointer-events-none"></div>
+            <div id="particle-layer-mid" class="particle-layer pointer-events-none"></div>
+            <div id="particle-layer-front" class="particle-layer pointer-events-none"></div>
+
+            <!-- ===================================================== -->
+            <!-- PREMIUM DUAL GLOW BACKGROUND -->
+            <!-- ===================================================== -->
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+
+                <!-- Layer 1 – Big Cinematic Glow -->
+                <div
+                    class="absolute w-[520px] h-[520px] rounded-full bg-cyan-400/15 blur-[160px] opacity-70 animate-slow-pulse">
+                </div>
+
+                <!-- Layer 2 – Gradient Beam Glow -->
+                <div class="absolute w-[420px] h-[420px] rounded-full bg-gradient-to-br
+                        from-cyan-500/40 via-purple-500/35 to-blue-500/25 blur-[120px] opacity-80 animate-glow-move">
+                </div>
+
             </div>
-    
-            <!-- Layer 2 – Gradient Beam Glow -->
-            <div
-                class="absolute w-[420px] h-[420px] rounded-full bg-gradient-to-br from-cyan-500/40 via-purple-500/35 to-blue-500/25 blur-[120px] opacity-80 animate-glow-move">
+
+            <!-- ===================================================== -->
+            <!-- HERO CONTENT -->
+            <!-- ===================================================== -->
+            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[480px] h-[480px]
+                                bg-gradient-to-br from-cyan-400/15 via-transparent to-transparent
+                                blur-[150px] opacity-70 pointer-events-none z-15"></div>
+
+            <div class="container mx-auto px-6 max-w-7xl relative z-20 flex flex-col justify-center pt-10 md:pt-20">
+
+                <!-- Main Heading -->
+                <h1 class="fade-item delay-100 text-4xl sm:text-6xl md:text-7xl lg:text-8xl 
+                               font-extrabold leading-[1.1] mb-3
+                               drop-shadow-[0_4px_20px_rgba(0,255,255,0.12)]">
+
+                    Hi, I'm
+                    <span
+                        class="animated-name bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
+                        Yashraj Singh Rathore
+                    </span>
+                </h1>
+
+                <!-- Small Top Tagline -->
+                <p class="fade-item delay-200 text-sm sm:text-base 
+               font-semibold tracking-[0.14em] sm:tracking-[0.18em]
+        
+               text-cyan-300/95 
+               bg-gradient-to-r from-cyan-300 via-blue-200 to-purple-300 
+               bg-clip-text text-transparent
+               drop-shadow-[0_0_8px_rgba(0,255,255,0.35)]
+               animate-[tagGlow_4s_ease-in-out_infinite]">
+                    FULL-STACK DEVELOPER • MERN • LARAVEL
+                </p>
+
+                <!-- Professional Subtitle -->
+                <h2 class="fade-item delay-300 
+                           text-lg sm:text-xl md:text-2xl 
+                           font-medium tracking-wide
+                           text-gray-100 
+                           bg-gradient-to-r from-white to-gray-300 
+                           bg-clip-text text-transparent
+                           drop-shadow-[0_0_10px_rgba(0,0,0,0.75)]">
+                    I build fast, scalable & modern web applications with clean code.
+                </h2>
+
+
+                <!-- Introduction Paragraph -->
+                <p class="fade-item delay-400 
+                 mt-6 max-w-2xl
+                 text-gray-200 text-base sm:text-lg leading-relaxed
+                 border-l-4 border-cyan-400/40 pl-5
+                 drop-shadow-[0_0_12px_rgba(0,0,0,0.55)]
+                 animate-[paraGlow_6s_ease-in-out_infinite_alternate]" style="backdrop-filter: blur(14px); 
+                 background: rgba(0, 0, 0, 0.25);
+                 border-radius: 12px;
+                 padding: 14px 18px;
+                 border: 1px solid rgba(255,255,255,0.08);">
+                    I'm a full-stack engineer who enjoys creating polished frontends and powerful backends.
+                    I’ve built CRMs, e-commerce engines and learning platforms — focusing on performance,
+                    scalability and strong UI engineering.
+                </p>
+
+
+                <!-- CTA Buttons -->
+                <div class="fade-item delay-500 mt-8 flex flex-wrap gap-4">
+
+                    <a href="#projects"
+                        class="group relative px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold rounded-xl shadow-xl shadow-cyan-600/30 hover:shadow-cyan-400/40 transition-all duration-300 hover:scale-[1.05]">
+                        <span class="relative z-10">View Projects</span>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 
+                                group-hover:opacity-100 transition-all duration-700 group-hover:animate-[shimmer_2s_infinite]">
+                        </div>
+                    </a>
+
+                    <a href="#contact" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
+                                hover:border-cyan-400 hover:text-cyan-400 transition-all duration-200">
+                        Get in Touch
+                    </a>
+
+                    <a href="https://github.com/Yashraj3110?tab=repositories" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
+                                hover:border-purple-400 hover:text-purple-300 transition-all duration-200">
+                        GitHub
+                    </a>
+
+                </div>
+
+                <!-- Hero Image (floating) -->
+                <div id="bnr"
+                    class="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pr-10 fade-item delay-600 z-20"
+                    style="margin-top: 40px; animation: floatHero 6s ease-in-out infinite;">
+                    <img src="images/hero_setup.avif"
+                        class="w-72 md:w-80 lg:w-[360px] rounded-2xl hero-img-glow border border-white/10 object-cover">
+
+                </div>
+
             </div>
-    
-        </div>
-    
-        <div class="container mx-auto px-6 max-w-7xl relative z-20 flex flex-col justify-center pt-10 md:pt-20">
-    
-            <!-- Main Heading -->
-            <h1 class="fade-item delay-100 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.1] mb-3">
-                Hi, I'm
-                <span
-                    class="animated-name bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
-                    Yashraj Singh Rathore
-                </span>
-            </h1>
-    
-            <!-- Small Top Tagline -->
-            <p class="fade-item delay-200 text-sm sm:text-base text-cyan-400/80 font-semibold tracking-wider mb-3">
-                FULL-STACK DEVELOPER • MERN • LARAVEL
-            </p>
-    
-            <!-- Professional Subtitle -->
-            <h2 class="fade-item delay-300 text-lg sm:text-xl md:text-2xl text-gray-300 font-light tracking-wide mt-2">
-                I build fast, scalable & modern web applications with clean code.
-            </h2>
-    
-            <!-- Introduction -->
-            <p
-                class="fade-item delay-400 mt-6 max-w-2xl text-gray-400 text-base sm:text-lg leading-relaxed border-l-4 border-cyan-500/30 pl-5">
-                I'm a full-stack engineer who enjoys creating polished frontends and powerful backends.
-                I’ve built CRMs, e-commerce engines and learning platforms — focusing on performance,
-                scalability and strong UI engineering.
-            </p>
-    
-            <!-- CTA Buttons -->
-            <div class="fade-item delay-500 mt-8 flex flex-wrap gap-4">
-    
-                <a href="#projects"
-                    class="group relative px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold rounded-xl shadow-xl shadow-cyan-600/30 hover:shadow-cyan-400/40 transition-all duration-300 hover:scale-[1.05]">
-                    <span class="relative z-10">View Projects</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 
-                        group-hover:opacity-100 transition-all duration-700 group-hover:animate-[shimmer_2s_infinite]">
-                    </div>
-                </a>
-    
-                <a href="#contact" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
-                    hover:border-cyan-400 hover:text-cyan-400 transition-all duration-200">
-                    Get in Touch
-                </a>
-    
-                <a href="https://github.com/Yashraj3110?tab=repositories" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
-                    hover:border-purple-400 hover:text-purple-300 transition-all duration-200">
-                    GitHub
-                </a>
+
+            <!-- Scroll Down Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
             </div>
-    
-            <!-- Hero Image + Glow + Floating Effect -->
-            <div id="bnr"
-                class="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pr-10 fade-item delay-600"
-                style="margin-top: 40px; animation: floatHero 6s ease-in-out infinite;">
-    
-                <img src="images/hero_setup.avif"
-                    class="w-72 md:w-80 lg:w-[360px] rounded-2xl shadow-[0_15px_60px_rgba(0,0,0,0.55)] border border-white/10 object-cover">
-            </div>
-    
-        </div>
-    
-        <!-- Scroll Down Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-        </div>
-    
-    </section>
 
-
-
-
-
-
+        </section>
 
         <!-- Experience Section -->
         <section id="experience" class="flex items-center border-t border-white/5 bg-black/40">
@@ -978,6 +1017,48 @@
 
 
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            function createParticles(layerId, count, sizeRange, blurType = "") {
+                const layer = document.getElementById(layerId);
+
+                for (let i = 0; i < count; i++) {
+                    const p = document.createElement("div");
+                    p.classList.add("particle");
+                    if (blurType) p.classList.add(blurType);
+
+                    const size = Math.random() * sizeRange + 4;
+                    p.style.width = size + "px";
+                    p.style.height = size + "px";
+
+                    p.style.left = Math.random() * 100 + "vw";
+                    p.style.top = Math.random() * 100 + "vh";
+
+                    const colors = [
+                        "rgba(0,255,255,0.9)",
+                        "rgba(168,55,247,0.9)",
+                        "rgba(0,150,255,0.9)"
+                    ];
+                    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+                    p.style.animationDuration = 8 + Math.random() * 10 + "s";
+                    p.style.animationDelay = Math.random() * 6 + "s";
+
+                    layer.appendChild(p);
+                }
+            }
+
+            createParticles("particle-layer-back", 18, 6);
+            createParticles("particle-layer-mid", 12, 10, "glow");
+            createParticles("particle-layer-front", 6, 60, "nebula");
+
+
+        });
+    </script>
+
+
 
     <script>
         window.addEventListener("scroll", () => {
