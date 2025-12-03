@@ -16,8 +16,6 @@
         content="Building modern, scalable applications using MERN, PHP, and Cloud technologies.">
     <meta property="og:type" content="website">
 
-    <!-- Load Three.js FIRST -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -58,89 +56,76 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="about" class="h-screen flex items-center relative overflow-hidden snap-start">
-
-            <div class="w-full h-full flex items-center">
-                <div class="container mx-auto px-6 max-w-6xl z-10 flex flex-col justify-center">
-                    <!-- Heading -->
-                    <h1
-                        class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight mt-4 sm:mt-6">
-                        I'M
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-                            YASHRAJ SINGH RATHORE
-                        </span>
-                    </h1>
-
-                    <!-- Title Badge -->
-                    <div class="flex flex-wrap items-center gap-3 mt-4">
-                        <span class="px-3 sm:px-4 py-1.5 bg-purple-500/10 border border-purple-500/50 
-                        text-purple-300 text-xs sm:text-sm font-bold rounded uppercase tracking-wider">
-                            Full Stack Developer
-                        </span>
+    <section id="about" class="h-screen flex items-center relative overflow-hidden snap-start">
+    
+        <div class="container mx-auto px-6 max-w-7xl relative z-20 flex flex-col justify-center">
+    
+            <!-- Small Top Tagline -->
+            <p class="text-sm sm:text-base text-cyan-400/80 font-medium tracking-wider mb-3 fade-in-on-scroll">
+                FULL-STACK DEVELOPER • MERN • LARAVEL
+            </p>
+    
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight">
+                Hi, I'm
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+                    Yashraj Singh Rathore
+                </span>
+            </h1>
+    
+            <!-- Professional Subtitle -->
+            <h2 class="text-lg sm:text-xl md:text-2xl text-gray-300 mt-4 font-light tracking-wide">
+                I build fast, scalable & modern web applications.
+            </h2>
+    
+            <!-- Introduction Paragraph -->
+            <p class="mt-6 max-w-2xl text-gray-400 text-base sm:text-lg leading-relaxed border-l-4 border-cyan-500/30 pl-5">
+                I'm a full-stack engineer passionate about clean architecture, polished UI and performant backend systems.
+                I’ve built CRM systems, Wix apps, e-commerce modules and complete learning platforms — focusing on quality,
+                scalability and real-world usability.
+            </p>
+    
+            <!-- CTA Buttons -->
+            <div class="mt-8 flex flex-wrap gap-4">
+    
+                <!-- Primary CTA -->
+                <a href="#projects"
+                    class="group relative px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold rounded-xl shadow-lg shadow-cyan-600/20 hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-[1.03]">
+                    <span class="relative z-10">View Projects</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 
+                        group-hover:opacity-100 transition-all duration-700 group-hover:animate-[shimmer_2s_infinite]">
                     </div>
-
-                    <!-- Experience / Availability -->
-                    <div class="flex flex-wrap items-center gap-3 mt-4">
-                        <span class="px-3 sm:px-4 py-1.5 bg-cyan-500/10 border border-cyan-500/50 
-                        text-cyan-300 text-xs sm:text-sm font-bold rounded uppercase">
-                            • MERN / LARAVEL
-                        </span>
-
-                        <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
-
-                        <span class="text-xs sm:text-sm text-gray-400 font-mono">
-                            Available for Work
-                        </span>
-                    </div>
-
-                    <!-- Introduction -->
-                    <p
-                        class="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed border-l-2 border-gray-800 pl-4 sm:pl-6 mt-6 max-w-2xl">
-                        I’m a full-stack developer who enjoys building products that scale. I like to design modular
-                        backends and clean UIs.
-                        Over the past years I've worked on CRMs, e-commerce platforms, and course portals — building
-                        features from user
-                        authentication and role permissions to file uploads and analytics dashboards. I care about
-                        maintainable code, meaningful
-                        tests and readable architecture.
-                    </p>
-
-                    <!-- CTA Buttons -->
-                    <div class="pt-6 sm:pt-8 flex flex-wrap gap-4">
-                        <a href="#projects" class="group relative px-6 sm:px-8 py-3 bg-cyan-500 text-black font-bold rounded 
-                            overflow-hidden transition-all duration-300 hover:scale-105">
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
-                            -translate-x-full group-hover:animate-[shimmer_2s_infinite]">
-                            </div>
-                            VIEW PROJECTS
-                        </a>
-
-                        <a href="#contact" class="px-6 sm:px-8 py-3 border border-gray-600 text-gray-300 font-bold rounded 
-                            hover:border-cyan-500 hover:text-cyan-400 bg-black/20">
-                            GET IN TOUCH
-                        </a>
-                    </div>
-
-                    <div id="bnr" class="flex justify-center md:justify-end" style="
-    position: absolute;
-    top: 35%;
-    right: 8%;
-">
-                        <img src="images/hero_setup.avif"
-                            class="w-52 sm:w-64 md:w-72 lg:w-80 xl:w-96 rounded-2xl shadow-xl border border-white/10 object-cover">
-                    </div>
-                </div>
+                </a>
+    
+                <!-- Secondary CTA -->
+                <a href="#contact" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
+                    hover:border-cyan-400 hover:text-cyan-400 transition-all duration-200">
+                    Get in Touch
+                </a>
+    
+                <!-- Github -->
+                <a href="https://github.com/Yashraj3110?tab=repositories" class="px-8 py-3 border border-gray-600 text-gray-300 font-semibold rounded-xl bg-white/5 
+                    hover:border-purple-400 hover:text-purple-300 transition-all duration-200">
+                    GitHub
+                </a>
             </div>
-
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 text-cyan-400" fill="none"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
+    
+            <!-- Hero Image -->
+            <div id="bnr" class="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pr-10">
+                <img src="images/hero_setup.avif"
+                    class="w-72 md:w-80 lg:w-[420px] rounded-2xl shadow-2xl shadow-black/50 border border-white/10 object-cover">
             </div>
-
-        </section>
+    
+        </div>
+    
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    
+    </section>
 
 
 
@@ -169,7 +154,7 @@
                                 <h4 class="text-xl font-bold text-white">PHP Developer</h4>
                                 <span
                                     class="text-xs font-mono text-cyan-300 bg-cyan-800 px-2 py-1 rounded border border-cyan-500">
-                                    August 2025  – Present
+                                    August 2025  – Present (4 months)
                                 </span>
                             </div>
                             <p class="text-gray-300">Career Point University</p>
@@ -181,7 +166,7 @@
                                 <h4 class="text-xl font-bold text-white">Academic Operations Associate</h4>
                                 <span
                                     class="text-xs font-mono text-gray-300 bg-gray-700 px-2 py-1 rounded border border-gray-500">
-                                    March 2025 – June 2025
+                                    March 2025 – June 2025 (4 months)
                                 </span>
                             </div>
                             <p class="text-gray-300">Unacademy</p>
@@ -971,21 +956,6 @@
 
 
     </main>
-
-    <script>
-        VANTA.NET({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.0,
-            scaleMobile: 1.0,
-            color: 0x00ffff,
-            backgroundColor: 0x000000
-        });
-    </script>
 
     <script>
         window.addEventListener("scroll", () => {
