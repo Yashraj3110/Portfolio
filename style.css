@@ -1000,7 +1000,7 @@ section .walper span {
 .item-card .icon {
     font-size: 2rem;
     width: 64px;
-    height: 64px;
+    /* height: 64px; */
     border-radius: 16px;
     display: flex;
     justify-content: center;
@@ -1031,7 +1031,7 @@ section .walper span {
 }
 
 .item-card.active-card .icon {
-    background: #3b82f6;
+    border: 1px solid #2d63ba;
 }
 
 .item-card.active-card .title {
@@ -1128,6 +1128,25 @@ section .walper span {
    MOBILE (<= 768px)
 ============================================ */
 @media (max-width: 768px) {
+
+    .item-card .icon {
+        font-size: 2rem;
+        width: 64px;
+        height: 44px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        transition: .35s ease;
+        font-size: 25px;
+    }
+
+    .item-card {
+        padding: .45rem 0.6rem !important;
+        height: 4rem !important;
+    }
 
     /* Parent container for proper arrow centering */
     .carousel-area {
