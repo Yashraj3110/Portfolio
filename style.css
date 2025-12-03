@@ -1007,6 +1007,9 @@ section .walper span {
     filter: blur(2px);
     animation: drift 12s ease-in-out infinite;
 }
+.particle {
+    will-change: transform;
+}
 
 /* Glow particles */
 .particle.glow {
