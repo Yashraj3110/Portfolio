@@ -1358,34 +1358,35 @@ section .walper span {
 }
 
 /* ============================================================
-   OPTIMIZED PARTICLES – FAST GPU ANIMATION
+   ULTRA-LITE PARTICLES (Mobile Performance Mode)
 ============================================================ */
-.particle.optimized {
+.particle.ultra-lite {
     position: absolute;
+
     width: var(--size);
     height: var(--size);
     background: var(--color);
     border-radius: 50%;
 
-    /* GPU-accelerated movement */
+    /* Start position (GPU transform) */
     transform: translate3d(var(--x), var(--y), 0);
-    animation: mobileFloat var(--duration) linear infinite;
+
+    /* Light GPU animation */
+    animation: ultraFloat var(--duration) ease-in-out infinite alternate;
     animation-delay: var(--delay);
 
-    will-change: transform;
+    will-change: transform, opacity;
 }
 
-/* Much cheaper animation */
-@keyframes mobileFloat {
+/* Lightweight animation for mobile */
+@keyframes ultraFloat {
     0% {
         transform: translate3d(var(--x), var(--y), 0) scale(1);
-    }
-
-    50% {
-        transform: translate3d(calc(var(--x) + 10px), calc(var(--y) + 10px), 0) scale(1.1);
+        opacity: 0.9;
     }
 
     100% {
-        transform: translate3d(var(--x), var(--y), 0) scale(1);
+        transform: translate3d(calc(var(--x) + 12px), calc(var(--y) + 12px), 0) scale(1.15);
+        opacity: 1;
     }
 }

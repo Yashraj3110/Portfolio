@@ -1,17 +1,19 @@
 /* ============================================================
-   0. PARTICLE GENERATOR (BOOSTED MOBILE FPS)
+   PARTICLE GENERATOR — Ultra Mobile Mode (Few Particles)
 ============================================================ */
 function initParticles(id, cfg = {}) {
     const section = document.getElementById(id);
     if (!section) return;
 
-    const isMobile = navigator.maxTouchPoints > 0 &&
+    // Detect true mobile
+    const isMobile =
+        navigator.maxTouchPoints > 0 &&
         window.matchMedia("(max-width: 768px)").matches;
 
     const fragment = document.createDocumentFragment();
 
-    // Desktop = full count, Mobile = reduced count
-    const reduction = isMobile ? 0.25 : 1; // 75% fewer on mobile
+    // ⭐ Mobile = drastically fewer particles
+    const reduction = isMobile ? 0.15 : 1; // 85% fewer
 
     const colors = cfg.colors || [
         "rgba(0,255,255,0.8)",
@@ -21,8 +23,8 @@ function initParticles(id, cfg = {}) {
 
     const layers = [
         { count: Math.floor((cfg.backCount ?? 20) * reduction), cls: "particle-back", size: 4 },
-        { count: Math.floor((cfg.midCount ?? 10) * reduction), cls: "particle-mid", size: 8 },
-        { count: Math.floor((cfg.frontCount ?? 5) * reduction), cls: "particle-front", size: 16 },
+        { count: Math.floor((cfg.midCount ?? 10) * reduction), cls: "particle-mid", size: 6 },
+        { count: Math.floor((cfg.frontCount ?? 5) * reduction), cls: "particle-front", size: 10 },
     ];
 
     layers.forEach(layer => {
@@ -32,15 +34,15 @@ function initParticles(id, cfg = {}) {
         let html = "";
 
         for (let i = 0; i < layer.count; i++) {
-            const size = (Math.random() * layer.size + 3).toFixed(1);
+            const size = (Math.random() * layer.size + 2).toFixed(1);
             const x = (Math.random() * 100).toFixed(1);
             const y = (Math.random() * 100).toFixed(1);
-            const duration = (10 + Math.random() * 10).toFixed(1);
-            const delay = (Math.random() * 6).toFixed(1);
+            const duration = (6 + Math.random() * 6).toFixed(1);
+            const delay = (Math.random() * 4).toFixed(1);
             const color = colors[(Math.random() * colors.length) | 0];
 
             html += `
-                <div class="particle optimized"
+                <div class="particle ultra-lite"
                     style="
                         --size:${size}px;
                         --x:${x}vw;
