@@ -292,8 +292,13 @@ function initProjectCarousel() {
             i = Math.max(0, Math.min(i, c.length - 1));
             currentIndex = i;
 
-            const spac = window.innerWidth * 0.26;
-            const left = c[i].offsetLeft - spac;
+            const cardWidth = c[i].offsetWidth;
+            const viewportWidth = viewport.offsetWidth;
+
+            const left =
+                c[i].offsetLeft -
+                (viewportWidth / 2) +
+                (cardWidth / 2);
 
             viewport.scrollTo({ left, behavior: "smooth" });
 

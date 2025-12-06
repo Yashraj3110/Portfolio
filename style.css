@@ -299,6 +299,7 @@ body::before {
         display: none;
     }
 }
+
 /* --------------------------------------------
         SKILL TAG (Unified — No Duplicates)
         -------------------------------------------- */
@@ -1186,14 +1187,14 @@ section .walper span {
 
 /* DETAIL PANEL */
 .project-detail-card {
-    height: 360px !important;
+    height: 420px !important;
     padding: 1.25rem;
     border-radius: 16px;
     overflow: hidden;
 
     background: linear-gradient(145deg, rgba(25, 27, 30, .8), rgba(15, 17, 20, .8));
     border: 2px solid;
-    border-image: linear-gradient(135deg, #008f8f, #000, #690092) 1;
+    border-image: linear-gradient(135deg, #690092, #000, #008f8f) 1;
     box-shadow: 0 15px 40px rgba(0, 0, 0, .6);
 }
 
@@ -1251,6 +1252,12 @@ section .walper span {
         height: 4rem !important;
     }
 
+    .grid .details {
+        display: flex !important;
+        flex-direction: column-reverse !important;
+
+    }
+
     /* Parent container for proper arrow centering */
     .carousel-area {
         position: relative;
@@ -1287,6 +1294,7 @@ section .walper span {
         overflow-x: auto !important;
         overflow-y: hidden !important;
         scroll-behavior: smooth;
+        padding-top: 0px !important;
         white-space: nowrap;
         width: 100%;
         display: flex;
