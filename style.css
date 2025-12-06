@@ -75,41 +75,32 @@ body::before {
     width: 55vw;
     height: 55vw;
     pointer-events: none;
-    opacity: 0.45;
-    filter: blur(80px) saturate(180%);
-    border-radius: 60% 40% 70% 30% / 50% 50% 40% 60%;
-    background: radial-gradient(circle at 30% 30%, var(--primary), transparent 60%);
+    opacity: 0.4;
 
-    /* Morph + rotation */
-    animation:
-        organicMorph 18s ease-in-out infinite alternate,
-        glassSpin 25s linear infinite;
+    /* 🔥 Static expensive effects */
+    filter: blur(80px);
+    border-radius: 50%;
 
-    /* Parallax */
-    transform: translateY(calc(var(--scrollY) * 0.25));
-    will-change: transform, border-radius;
+    /* ✅ GPU-only animations */
+    animation: floatShape 22s ease-in-out infinite alternate,
+        glassSpin 40s linear infinite;
+
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
 }
 
 /* Organic morphing */
-@keyframes organicMorph {
+@keyframes floatShape {
     0% {
-        border-radius: 60% 40% 70% 30% / 50% 50% 40% 60%;
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
-    33% {
-        border-radius: 45% 55% 65% 35% / 60% 45% 65% 50%;
-        transform: translate(5vw, -4vh) scale(1.05);
-    }
-
-    66% {
-        border-radius: 55% 45% 35% 65% / 40% 70% 50% 60%;
-        transform: translate(-4vw, 6vh) scale(1.1);
+    50% {
+        transform: translate3d(6vw, -6vh, 0) scale(1.08);
     }
 
     100% {
-        border-radius: 40% 60% 30% 70% / 60% 40% 70% 40%;
-        transform: translate(5vw, 6vh) scale(1.05);
+        transform: translate3d(-5vw, 4vh, 0) scale(1.03);
     }
 }
 
@@ -287,13 +278,27 @@ body::before {
         GLASS / CARD STYLES
         -------------------------------------------- */
 .glass-card {
-    backdrop-filter: blur(12px);
-    background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    isolation: isolate;
+    contain: paint style;
 }
 
+@media (max-width: 640px) {
 
+    .glass-shape,
+    .particle,
+    .nebula {
+        animation-duration: 40s !important;
+        filter: blur(40px) !important;
+        opacity: 0.3 !important;
+    }
+
+    .particle.nebula {
+        display: none;
+    }
+}
 /* --------------------------------------------
         SKILL TAG (Unified — No Duplicates)
         -------------------------------------------- */
@@ -960,20 +965,7 @@ section .walper span {
     }
 }
 
-/* Floating hero image */
-@keyframes floatHero {
-    0% {
-        transform: translateY(calc(-50% + 40px));
-    }
 
-    50% {
-        transform: translateY(calc(-50% + 65px));
-    }
-
-    100% {
-        transform: translateY(calc(-50% + 40px));
-    }
-}
 
 /* Base particle layers */
 .particle-section {
