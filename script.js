@@ -354,7 +354,7 @@ function initProjectCarousel() {
         filterProjects("company");
     };
 
-    filterProjects("personal");
+    filterProjects("company");
     initDesktopCarousel();
     initMobileCarousel();
 }
